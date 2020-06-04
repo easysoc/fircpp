@@ -4,6 +4,8 @@ It can read both high-level and low-level Firrtl file, convert the content to an
 
 Currently, it do not support various transformations supported in the [Scala version of Firrtl](https://github.com/freechipsproject/firrtl). The main purpose of this repository is to parse the low-level Firrtl (LoFIRRTL), then build a fast firrtl execution engine or simulator.
 
+> I am trying to migrate the Scala version of the [IR](https://github.com/freechipsproject/firrtl/tree/master/src/main/scala/firrtl/ir) representation to c++ , make it easier to traverse the circuit. but currently it will focus on the LoFIRRTL part, see branch [ir](https://github.com/easysoc/fircpp/tree/ir).
+
 ## Build
 
 Download antlr4 from https://www.antlr.org/download/antlr-4.8-complete.jar
@@ -15,6 +17,7 @@ cd fircpp
 mkdir build
 cd build
 cmake -DANTLR_JAR_LOCATION=/path/to/antlr4 -DWITH_DEMO=True ..
+make -j4
 ```
 
 a simple demo
