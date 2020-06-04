@@ -31,8 +31,13 @@ int main(int argc, char *argv[])
 
 //    tokens.fill();
 //    for (auto token : tokens.getTokens()) {
-//        std::cout << token->toString() << std::endl;
+////        std::cout << token->toString() << std::endl;
 ////        std::cout << token->getText();
+//        size_t type = token->getType();
+//        if (type == FIRRTLParser::INDENT || type == FIRRTLParser::DEDENT) {
+//            std::cout << token->toString() << std::endl;
+//            std::cout << token->getText();
+//        }
 //    }
 
     FIRRTLParser parser(&tokens);
@@ -41,8 +46,9 @@ int main(int argc, char *argv[])
     tree::ParseTree* tree = parser.circuit();
 
     Visitor visitor(&parser);
-    // will call tree->accept(this), then will call parserVisitor->visitCircuit
-    visitor.visit(tree);
+
+    Circuit *circuit = visitor.visit(tree);
+    std::cout << circuit->serialize();
 
 //    std::cout << tree->toStringTree(&parser) << std::endl << std::endl;
 
