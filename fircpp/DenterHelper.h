@@ -11,12 +11,6 @@ namespace fircpp {
 
 using namespace antlr4;
 
-class InjectedToken : public CommonToken {
-//    std::string typeText;
-public:
-    InjectedToken(Token *oldToken/*, const std::string &tokenTypeStr*/);
-};
-
 class DenterHelper {
 public:
     Lexer *lexer;
@@ -39,6 +33,8 @@ private:
     Token * handleNewlineToken(Token * t);
     Token *unwindTo(int targetIndent, Token *copyFrom);
     Token *eofHandler(Token *t,Token *origin);
+
+    Token *merge(Token *start,Token *end);
 };
 
 }

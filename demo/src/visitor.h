@@ -7,6 +7,7 @@
 #include "ir.h"
 
 namespace fircpp {
+
 class Visitor : public antlr4::tree::AbstractParseTreeVisitor
 {
 public:
@@ -22,9 +23,12 @@ public:
     visitCircuit(FIRRTLParser::CircuitContext * ctx)
     {
         Circuit * circuit = new Circuit(visitInfo(ctx->info()), visitModules(ctx->module()), ctx->id()->getText());
-
-        circuit->indent = ctx->INDENT()->getText();
-        circuit->dedent = ctx->DEDENT()->getText();
+        if (ctx->INDENT()) {
+            circuit->indent = ctx->INDENT()->getText();
+        }
+        if (ctx->DEDENT()) {
+            circuit->dedent = ctx->DEDENT()->getText();
+        }
         return circuit;
     };
 
@@ -48,9 +52,14 @@ public:
         Module * module = nullptr;
 
         if (ctx->Key_module()) {
-            module         = new Module(visitInfo(ctx->info()), ctx->id()->getText());
-            module->indent = ctx->INDENT()->getText();
-            module->dedent = ctx->DEDENT()->getText();
+            module = new Module(visitInfo(ctx->info()), ctx->id()->getText(),
+                                visitPorts(ctx->port()), visitModuleBlock(ctx->moduleBlock()));
+            if (ctx->INDENT()) {
+                module->indent = ctx->INDENT()->getText();
+            }
+            if (ctx->DEDENT()) {
+                module->dedent = ctx->DEDENT()->getText();
+            }
         } else if (ctx->Key_extmodule()) {
             throw std::runtime_error("extmodule not support");
         }
@@ -58,17 +67,66 @@ public:
         return module;
     }
 
-    //    virtual antlrcpp::Any visitPort(FIRRTLParser::PortContext *ctx) override {
-    //      return visitChildren(ctx);
-    //    }
+    virtual std::vector<Port *>
+    visitPorts(std::vector<FIRRTLParser::PortContext *> contexts)
+    {
+        std::vector<Port *> ports;
 
-    //    virtual antlrcpp::Any visitDir(FIRRTLParser::DirContext *ctx) override {
-    //      return visitChildren(ctx);
-    //    }
+        for (auto ctx : contexts) {
+            Port * port = visitPort(ctx);
+            ports.push_back(port);
+        }
 
-    //    virtual antlrcpp::Any visitType(FIRRTLParser::TypeContext *ctx) override {
-    //      return visitChildren(ctx);
-    //    }
+        return ports;
+    }
+
+    virtual Port *
+    visitPort(FIRRTLParser::PortContext * ctx)
+    {
+        // visitPorts ensure ctx != nullptr
+        Port * port = new Port(visitInfo(ctx->info()),
+            ctx->id()->getText(),
+            visitDir(ctx->dir()),
+            visitType(ctx->type()));
+        if (ctx->NEWLINE()) {
+            port->newline = ctx->NEWLINE()->getText();
+        }
+
+        return port;
+    }
+
+    virtual Direction *
+    visitDir(FIRRTLParser::DirContext * ctx)
+    {
+        Direction * direction = nullptr;
+
+        if (ctx->Key_input()) {
+            direction = new Input();
+        } else {
+            direction = new Output();
+        }
+        return direction;
+    }
+
+    virtual Type *
+    visitType(FIRRTLParser::TypeContext * ctx)
+    {
+        Type * type = nullptr;
+
+        // we do not deal with UnknownWidth
+        Width * width = nullptr;
+
+        if (ctx->Key_UInt()) {
+            type = new UIntType(getWidth(ctx->intLit().front()));
+        } else if (ctx->Key_SInt()) {
+            type = new SIntType(getWidth(ctx->intLit().front()));
+        } else if (ctx->Key_Clock()) {
+            type = new ClockType;
+        } else {
+            type = new UnknownType;
+        }
+        return type;
+    }
 
     //    virtual antlrcpp::Any visitField(FIRRTLParser::FieldContext *ctx) override {
     //      return visitChildren(ctx);
@@ -82,9 +140,30 @@ public:
     //      return visitChildren(ctx);
     //    }
 
-    //    virtual antlrcpp::Any visitModuleBlock(FIRRTLParser::ModuleBlockContext *ctx) override {
-    //      return visitChildren(ctx);
-    //    }
+    virtual Block *visitModuleBlock(FIRRTLParser::ModuleBlockContext *ctx) {
+        Block *moduleBlock = nullptr;
+
+        if (ctx) {
+            std::vector<Statement *> stmts;
+
+            std::string nl = "";
+            for(auto ctx: ctx->simple_stmt()) {
+                // newline before a stmt
+                if (ctx->NEWLINE()) {
+                    nl = ctx->NEWLINE()->getText();
+                } else if(ctx->stmt()) {
+                    Statement *stmt = visitStmt(ctx->stmt());
+                    stmt->newline = nl;
+                    stmts.push_back(stmt);
+
+                    nl = "";
+                }
+            }
+            moduleBlock = new Block(stmts);
+        }
+
+        return moduleBlock;
+    }
 
     //    virtual antlrcpp::Any visitSimple_reset0(FIRRTLParser::Simple_reset0Context *ctx) override {
     //      return visitChildren(ctx);
@@ -98,17 +177,17 @@ public:
     //      return visitChildren(ctx);
     //    }
 
-    //    virtual antlrcpp::Any visitStmt(FIRRTLParser::StmtContext *ctx) override {
-    //      return visitChildren(ctx);
-    //    }
+        virtual Statement *visitStmt(FIRRTLParser::StmtContext *ctx) {
+          return new TestStmt(ctx->getText());
+        }
 
     //    virtual antlrcpp::Any visitMemField(FIRRTLParser::MemFieldContext *ctx) override {
     //      return visitChildren(ctx);
     //    }
 
-    //    virtual antlrcpp::Any visitSimple_stmt(FIRRTLParser::Simple_stmtContext *ctx) override {
-    //      return visitChildren(ctx);
-    //    }
+//    virtual antlrcpp::Any visitSimple_stmt(FIRRTLParser::Simple_stmtContext *ctx) override {
+//      return visitChildren(ctx);
+//    }
 
     //    virtual antlrcpp::Any visitSuite(FIRRTLParser::SuiteContext *ctx) override {
     //      return visitChildren(ctx);
@@ -124,7 +203,9 @@ public:
         Info * info;
 
         if (ctx != nullptr) {
-            info = new Info(ctx->getText());
+            // we do not distinguish MultiInfo
+            // we do not use StringLit
+            info = new FileInfo(ctx->getText());
         } else {
             info = new NoInfo;
         }
@@ -177,6 +258,12 @@ public:
 
 private:
     FIRRTLParser * parser;
+
+    Width *
+    getWidth(FIRRTLParser::IntLitContext * n)
+    {
+        return new IntWidth(n->getText());
+    }
 };
 }
 #endif // VISITOR_H

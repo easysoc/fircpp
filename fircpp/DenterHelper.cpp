@@ -3,15 +3,6 @@
 
 using namespace fircpp;
 
-InjectedToken::InjectedToken(Token * oldToken/*, , const std::string &tokenTypeStr*/)
-    : CommonToken(oldToken)
-{
-//    typeText = tokenTypeStr;
-//    if (typeText != "") {
-//        setText(typeText);
-//    }
-}
-
 DenterHelper::DenterHelper(Lexer * lexer) : lexer(lexer)
 {
     nlToken     = FIRRTLLexer::NEWLINE;
@@ -75,17 +66,7 @@ DenterHelper::initIfFirstRun()
 Token *
 DenterHelper::createToken(size_t tokenType, Token * copyFrom)
 {
-//    std::string tokenTypeStr;
-//    if (tokenType == nlToken) {
-//        tokenTypeStr = "newline";
-//    } else if (tokenType == indentToken) {
-//        tokenTypeStr = "indent";
-//    } else if (tokenType == dedentToken) {
-//        tokenTypeStr = "dedent";
-//    } else {
-//        tokenTypeStr = "";
-//    }
-    CommonToken * r = new InjectedToken(copyFrom/*, tokenTypeStr*/);
+    CommonToken * r = new CommonToken(copyFrom);
     r->setType(tokenType);
     return r;
 }
@@ -101,6 +82,7 @@ DenterHelper::handleNewlineToken(Token * t)
 
     while (nextNext->getType() == nlToken) {
         t        = nextNext;
+        origin = merge(origin,t);   // merge all newline
         tt       = pullToken();
         nextNext = tt.get();
         tt.release();
@@ -186,5 +168,13 @@ DenterHelper::eofHandler(Token * t, Token * origin)
         dentsBuffer.push(t);
     }
     reachedEof = true;
+    return r;
+}
+
+Token *DenterHelper::merge(Token *start, Token *end)
+{
+    CommonToken * r = new CommonToken(start);
+    r->setText(start->getText() + end->getText());
+//    r->setStopIndex(end->getStopIndex());
     return r;
 }

@@ -31,13 +31,16 @@ int main(int argc, char *argv[])
 
 //    tokens.fill();
 //    for (auto token : tokens.getTokens()) {
-////        std::cout << token->toString() << std::endl;
-////        std::cout << token->getText();
 //        size_t type = token->getType();
-//        if (type == FIRRTLParser::INDENT || type == FIRRTLParser::DEDENT) {
-//            std::cout << token->toString() << std::endl;
-//            std::cout << token->getText();
+//        std::string typeString = "";
+//        if (type == FIRRTLParser::INDENT) {
+//            typeString = " indent";
+//        } else if(type == FIRRTLParser::DEDENT){
+//            typeString = " dedent";
 //        }
+
+//        std::cout << token->toString() << typeString << std::endl;
+////        std::cout << token->getText();
 //    }
 
     FIRRTLParser parser(&tokens);
