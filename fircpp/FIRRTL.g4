@@ -1,4 +1,4 @@
-// See LICENSE for license details.
+// SPDX-License-Identifier: Apache-2.0
 
 grammar FIRRTL;
 
@@ -95,14 +95,21 @@ stmt
   | mdir 'mport' id '=' id '[' exp ']' exp info?
   | 'inst' id 'of' id info?
   | 'node' id '=' exp info?
-  | exp '<=' exp info?
-  | exp '<-' exp info?
-  | exp 'is' 'invalid' info?
+  | ref '<=' exp info?
+  | ref '<-' exp info?
+  | ref 'is' 'invalid' info?
   | when
-  | 'stop(' exp exp intLit ')' info?
-  | 'printf(' exp exp StringLit ( exp)* ')' info?
+  | 'stop(' exp exp intLit ')' stmtName? info?
+  | 'printf(' exp exp StringLit ( exp)* ')' stmtName? info?
   | 'skip' info?
   | 'attach' '(' exp+ ')' info?
+  | 'assert' '(' exp exp exp StringLit ')' stmtName? info?
+  | 'assume' '(' exp exp exp StringLit ')' stmtName? info?
+  | 'cover' '(' exp exp exp StringLit ')' stmtName? info?
+  ;
+
+stmtName
+  : ':' id
   ;
 
 memField
@@ -156,14 +163,20 @@ ruw
 exp
   : 'UInt' ('<' intLit '>')? '(' intLit ')'
   | 'SInt' ('<' intLit '>')? '(' intLit ')'
-  | id    // Ref
-  | exp '.' fieldId
-  | exp '.' DoubleLit // TODO Workaround for #470
-  | exp '[' intLit ']'
-  | exp '[' exp ']'
+  | ref
   | 'mux(' exp exp exp ')'
   | 'validif(' exp exp ')'
   | primop exp* intLit*  ')'
+  ;
+
+ref
+  : id subref?
+  ;
+
+subref
+  : '.' fieldId subref?
+  | '.' DoubleLit subref? // TODO Workaround for #470
+  | '[' (intLit | exp) ']' subref?
   ;
 
 id
@@ -214,8 +227,11 @@ keywordAsId
   | 'UInt'
   | 'SInt'
   | 'Clock'
+  | 'Reset'
+  | 'AsyncReset'
   | 'Analog'
   | 'Fixed'
+  | 'Interval'
   | 'flip'
   | 'wire'
   | 'reg'
@@ -248,6 +264,10 @@ keywordAsId
   | 'read'
   | 'write'
   | 'rdwr'
+  | 'attach'
+  | 'assert'
+  | 'assume'
+  | 'cover'
   ;
 
 // Parentheses are added as part of name because semantics require no space between primop and open parentheses
@@ -294,6 +314,9 @@ primop
   | 'wrap('
   | 'clip('
   | 'squz('
+  | 'addw('
+  | 'subw('
+  | 'dshlw('
   ;
 
 /*------------------------------------------------------------------
@@ -308,8 +331,11 @@ Key_output : 'output' ;
 Key_UInt  : 'UInt' ;
 Key_SInt  : 'SInt' ;
 Key_Clock  : 'Clock' ;
+Key_Reset  : 'Reset' ;
+Key_AsyncReset  : 'AsyncReset' ;
 Key_Analog  : 'Analog' ;
 Key_Fixed  : 'Fixed' ;
+Key_Interval  : 'Interval' ;
 Key_flip  : 'flip' ;
 Key_wire  : 'wire' ;
 Key_reg  : 'reg' ;
@@ -332,7 +358,7 @@ Key_printf  : 'printf' ;
 Key_skip  : 'skip' ;
 Key_old  : 'old' ;
 Key_new  : 'new' ;
-Key_undefined  : 'undefined' ;
+Key_undefined : 'undefined' ;
 Key_mux : 'mux' ;
 Key_validif  : 'validif' ;
 Key_cmem  : 'cmem' ;
@@ -342,6 +368,10 @@ Key_infer  : 'infer' ;
 Key_read : 'read' ;
 Key_write  : 'write' ;
 Key_rdwr  : 'rdwr' ;
+Key_attach : 'attach' ;
+Key_assert  : 'assert' ;
+Key_assume  : 'assume' ;
+Key_cover  : 'cover' ;
 
 UnsignedInt
   : '0'

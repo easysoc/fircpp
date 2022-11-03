@@ -1,5 +1,5 @@
 
-// Generated from /home/itviewer/compiled/fircpp/fircpp/FIRRTL.g4 by ANTLR 4.8
+// Generated from /media/itviewer/linux/compiled/fircpp/fircpp/FIRRTL.g4 by ANTLR 4.11.1
 
 #pragma once
 
@@ -55,6 +55,9 @@ public:
   virtual void enterStmt(FIRRTLParser::StmtContext *ctx) = 0;
   virtual void exitStmt(FIRRTLParser::StmtContext *ctx) = 0;
 
+  virtual void enterStmtName(FIRRTLParser::StmtNameContext *ctx) = 0;
+  virtual void exitStmtName(FIRRTLParser::StmtNameContext *ctx) = 0;
+
   virtual void enterMemField(FIRRTLParser::MemFieldContext *ctx) = 0;
   virtual void exitMemField(FIRRTLParser::MemFieldContext *ctx) = 0;
 
@@ -78,6 +81,12 @@ public:
 
   virtual void enterExp(FIRRTLParser::ExpContext *ctx) = 0;
   virtual void exitExp(FIRRTLParser::ExpContext *ctx) = 0;
+
+  virtual void enterRef(FIRRTLParser::RefContext *ctx) = 0;
+  virtual void exitRef(FIRRTLParser::RefContext *ctx) = 0;
+
+  virtual void enterSubref(FIRRTLParser::SubrefContext *ctx) = 0;
+  virtual void exitSubref(FIRRTLParser::SubrefContext *ctx) = 0;
 
   virtual void enterId(FIRRTLParser::IdContext *ctx) = 0;
   virtual void exitId(FIRRTLParser::IdContext *ctx) = 0;

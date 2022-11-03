@@ -1,5 +1,5 @@
 
-// Generated from /home/itviewer/compiled/fircpp/fircpp/FIRRTL.g4 by ANTLR 4.8
+// Generated from /media/itviewer/linux/compiled/fircpp/fircpp/FIRRTL.g4 by ANTLR 4.11.1
 
 #pragma once
 
@@ -57,6 +57,9 @@ public:
   virtual void enterStmt(FIRRTLParser::StmtContext * /*ctx*/) override { }
   virtual void exitStmt(FIRRTLParser::StmtContext * /*ctx*/) override { }
 
+  virtual void enterStmtName(FIRRTLParser::StmtNameContext * /*ctx*/) override { }
+  virtual void exitStmtName(FIRRTLParser::StmtNameContext * /*ctx*/) override { }
+
   virtual void enterMemField(FIRRTLParser::MemFieldContext * /*ctx*/) override { }
   virtual void exitMemField(FIRRTLParser::MemFieldContext * /*ctx*/) override { }
 
@@ -80,6 +83,12 @@ public:
 
   virtual void enterExp(FIRRTLParser::ExpContext * /*ctx*/) override { }
   virtual void exitExp(FIRRTLParser::ExpContext * /*ctx*/) override { }
+
+  virtual void enterRef(FIRRTLParser::RefContext * /*ctx*/) override { }
+  virtual void exitRef(FIRRTLParser::RefContext * /*ctx*/) override { }
+
+  virtual void enterSubref(FIRRTLParser::SubrefContext * /*ctx*/) override { }
+  virtual void exitSubref(FIRRTLParser::SubrefContext * /*ctx*/) override { }
 
   virtual void enterId(FIRRTLParser::IdContext * /*ctx*/) override { }
   virtual void exitId(FIRRTLParser::IdContext * /*ctx*/) override { }

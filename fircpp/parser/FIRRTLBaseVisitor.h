@@ -1,5 +1,5 @@
 
-// Generated from /home/itviewer/compiled/fircpp/fircpp/FIRRTL.g4 by ANTLR 4.8
+// Generated from /media/itviewer/linux/compiled/fircpp/fircpp/FIRRTL.g4 by ANTLR 4.11.1
 
 #pragma once
 
@@ -17,119 +17,131 @@ namespace fircpp {
 class  FIRRTLBaseVisitor : public FIRRTLVisitor {
 public:
 
-  virtual antlrcpp::Any visitCircuit(FIRRTLParser::CircuitContext *ctx) override {
+  virtual std::any visitCircuit(FIRRTLParser::CircuitContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitModule(FIRRTLParser::ModuleContext *ctx) override {
+  virtual std::any visitModule(FIRRTLParser::ModuleContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitPort(FIRRTLParser::PortContext *ctx) override {
+  virtual std::any visitPort(FIRRTLParser::PortContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitDir(FIRRTLParser::DirContext *ctx) override {
+  virtual std::any visitDir(FIRRTLParser::DirContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitType(FIRRTLParser::TypeContext *ctx) override {
+  virtual std::any visitType(FIRRTLParser::TypeContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitField(FIRRTLParser::FieldContext *ctx) override {
+  virtual std::any visitField(FIRRTLParser::FieldContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitDefname(FIRRTLParser::DefnameContext *ctx) override {
+  virtual std::any visitDefname(FIRRTLParser::DefnameContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitParameter(FIRRTLParser::ParameterContext *ctx) override {
+  virtual std::any visitParameter(FIRRTLParser::ParameterContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitModuleBlock(FIRRTLParser::ModuleBlockContext *ctx) override {
+  virtual std::any visitModuleBlock(FIRRTLParser::ModuleBlockContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitSimple_reset0(FIRRTLParser::Simple_reset0Context *ctx) override {
+  virtual std::any visitSimple_reset0(FIRRTLParser::Simple_reset0Context *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitSimple_reset(FIRRTLParser::Simple_resetContext *ctx) override {
+  virtual std::any visitSimple_reset(FIRRTLParser::Simple_resetContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitReset_block(FIRRTLParser::Reset_blockContext *ctx) override {
+  virtual std::any visitReset_block(FIRRTLParser::Reset_blockContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitStmt(FIRRTLParser::StmtContext *ctx) override {
+  virtual std::any visitStmt(FIRRTLParser::StmtContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitMemField(FIRRTLParser::MemFieldContext *ctx) override {
+  virtual std::any visitStmtName(FIRRTLParser::StmtNameContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitSimple_stmt(FIRRTLParser::Simple_stmtContext *ctx) override {
+  virtual std::any visitMemField(FIRRTLParser::MemFieldContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitSuite(FIRRTLParser::SuiteContext *ctx) override {
+  virtual std::any visitSimple_stmt(FIRRTLParser::Simple_stmtContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitWhen(FIRRTLParser::WhenContext *ctx) override {
+  virtual std::any visitSuite(FIRRTLParser::SuiteContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitInfo(FIRRTLParser::InfoContext *ctx) override {
+  virtual std::any visitWhen(FIRRTLParser::WhenContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitMdir(FIRRTLParser::MdirContext *ctx) override {
+  virtual std::any visitInfo(FIRRTLParser::InfoContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitRuw(FIRRTLParser::RuwContext *ctx) override {
+  virtual std::any visitMdir(FIRRTLParser::MdirContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitExp(FIRRTLParser::ExpContext *ctx) override {
+  virtual std::any visitRuw(FIRRTLParser::RuwContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitId(FIRRTLParser::IdContext *ctx) override {
+  virtual std::any visitExp(FIRRTLParser::ExpContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitFieldId(FIRRTLParser::FieldIdContext *ctx) override {
+  virtual std::any visitRef(FIRRTLParser::RefContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitIntLit(FIRRTLParser::IntLitContext *ctx) override {
+  virtual std::any visitSubref(FIRRTLParser::SubrefContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitLowerBound(FIRRTLParser::LowerBoundContext *ctx) override {
+  virtual std::any visitId(FIRRTLParser::IdContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitUpperBound(FIRRTLParser::UpperBoundContext *ctx) override {
+  virtual std::any visitFieldId(FIRRTLParser::FieldIdContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitBoundValue(FIRRTLParser::BoundValueContext *ctx) override {
+  virtual std::any visitIntLit(FIRRTLParser::IntLitContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitKeywordAsId(FIRRTLParser::KeywordAsIdContext *ctx) override {
+  virtual std::any visitLowerBound(FIRRTLParser::LowerBoundContext *ctx) override {
     return visitChildren(ctx);
   }
 
-  virtual antlrcpp::Any visitPrimop(FIRRTLParser::PrimopContext *ctx) override {
+  virtual std::any visitUpperBound(FIRRTLParser::UpperBoundContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitBoundValue(FIRRTLParser::BoundValueContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitKeywordAsId(FIRRTLParser::KeywordAsIdContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
+  virtual std::any visitPrimop(FIRRTLParser::PrimopContext *ctx) override {
     return visitChildren(ctx);
   }
 

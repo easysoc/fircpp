@@ -1,5 +1,5 @@
 
-// Generated from /home/itviewer/compiled/fircpp/fircpp/FIRRTL.g4 by ANTLR 4.8
+// Generated from /media/itviewer/linux/compiled/fircpp/fircpp/FIRRTL.g4 by ANTLR 4.11.1
 
 
 #include "FIRRTLListener.h"
@@ -10,14 +10,348 @@
 
 using namespace antlrcpp;
 using namespace fircpp;
+
 using namespace antlr4;
 
-FIRRTLParser::FIRRTLParser(TokenStream *input) : Parser(input) {
-  _interpreter = new atn::ParserATNSimulator(this, _atn, _decisionToDFA, _sharedContextCache);
+namespace {
+
+struct FIRRTLParserStaticData final {
+  FIRRTLParserStaticData(std::vector<std::string> ruleNames,
+                        std::vector<std::string> literalNames,
+                        std::vector<std::string> symbolicNames)
+      : ruleNames(std::move(ruleNames)), literalNames(std::move(literalNames)),
+        symbolicNames(std::move(symbolicNames)),
+        vocabulary(this->literalNames, this->symbolicNames) {}
+
+  FIRRTLParserStaticData(const FIRRTLParserStaticData&) = delete;
+  FIRRTLParserStaticData(FIRRTLParserStaticData&&) = delete;
+  FIRRTLParserStaticData& operator=(const FIRRTLParserStaticData&) = delete;
+  FIRRTLParserStaticData& operator=(FIRRTLParserStaticData&&) = delete;
+
+  std::vector<antlr4::dfa::DFA> decisionToDFA;
+  antlr4::atn::PredictionContextCache sharedContextCache;
+  const std::vector<std::string> ruleNames;
+  const std::vector<std::string> literalNames;
+  const std::vector<std::string> symbolicNames;
+  const antlr4::dfa::Vocabulary vocabulary;
+  antlr4::atn::SerializedATNView serializedATN;
+  std::unique_ptr<antlr4::atn::ATN> atn;
+};
+
+::antlr4::internal::OnceFlag firrtlParserOnceFlag;
+FIRRTLParserStaticData *firrtlParserStaticData = nullptr;
+
+void firrtlParserInitialize() {
+  assert(firrtlParserStaticData == nullptr);
+  auto staticData = std::make_unique<FIRRTLParserStaticData>(
+    std::vector<std::string>{
+      "circuit", "module", "port", "dir", "type", "field", "defname", "parameter", 
+      "moduleBlock", "simple_reset0", "simple_reset", "reset_block", "stmt", 
+      "stmtName", "memField", "simple_stmt", "suite", "when", "info", "mdir", 
+      "ruw", "exp", "ref", "subref", "id", "fieldId", "intLit", "lowerBound", 
+      "upperBound", "boundValue", "keywordAsId", "primop"
+    },
+    std::vector<std::string>{
+      "", "':'", "'<'", "'>'", "'.'", "'{'", "'}'", "'['", "']'", "'defname'", 
+      "'='", "'reset'", "'=>'", "'('", "')'", "'<='", "'<-'", "'stop('", 
+      "'printf('", "'data-type'", "'read-latency'", "'write-latency'", "'read-under-write'", 
+      "'mux('", "'validif('", "'\\u003F'", "'add('", "'sub('", "'mul('", 
+      "'div('", "'rem('", "'lt('", "'leq('", "'gt('", "'geq('", "'eq('", 
+      "'neq('", "'pad('", "'asUInt('", "'asAsyncReset('", "'asSInt('", "'asClock('", 
+      "'asFixedPoint('", "'asInterval('", "'shl('", "'shr('", "'dshl('", 
+      "'dshr('", "'cvt('", "'neg('", "'not('", "'and('", "'or('", "'xor('", 
+      "'andr('", "'orr('", "'xorr('", "'cat('", "'bits('", "'head('", "'tail('", 
+      "'incp('", "'decp('", "'setp('", "'wrap('", "'clip('", "'squz('", 
+      "'addw('", "'subw('", "'dshlw('", "'circuit'", "'module'", "'extmodule'", 
+      "'parameter'", "'input'", "'output'", "'UInt'", "'SInt'", "'Clock'", 
+      "'Reset'", "'AsyncReset'", "'Analog'", "'Fixed'", "'Interval'", "'flip'", 
+      "'wire'", "'reg'", "'with'", "'mem'", "'depth'", "'reader'", "'writer'", 
+      "'readwriter'", "'inst'", "'of'", "'node'", "'is'", "'invalid'", "'when'", 
+      "'else'", "'stop'", "'printf'", "'skip'", "'old'", "'new'", "'undefined'", 
+      "'mux'", "'validif'", "'cmem'", "'smem'", "'mport'", "'infer'", "'read'", 
+      "'write'", "'rdwr'", "'attach'", "'assert'", "'assume'", "'cover'"
+    },
+    std::vector<std::string>{
+      "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
+      "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
+      "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
+      "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
+      "", "", "Key_circuit", "Key_module", "Key_extmodule", "Key_parameter", 
+      "Key_input", "Key_output", "Key_UInt", "Key_SInt", "Key_Clock", "Key_Reset", 
+      "Key_AsyncReset", "Key_Analog", "Key_Fixed", "Key_Interval", "Key_flip", 
+      "Key_wire", "Key_reg", "Key_with", "Key_mem", "Key_depth", "Key_reader", 
+      "Key_writer", "Key_readwriter", "Key_inst", "Key_of", "Key_node", 
+      "Key_is", "Key_invalid", "Key_when", "Key_else", "Key_stop", "Key_printf", 
+      "Key_skip", "Key_old", "Key_new", "Key_undefined", "Key_mux", "Key_validif", 
+      "Key_cmem", "Key_smem", "Key_mport", "Key_infer", "Key_read", "Key_write", 
+      "Key_rdwr", "Key_attach", "Key_assert", "Key_assume", "Key_cover", 
+      "UnsignedInt", "SignedInt", "HexLit", "OctalLit", "BinaryLit", "DoubleLit", 
+      "StringLit", "RawString", "FileInfo", "Id", "RelaxedId", "COMMENT", 
+      "WHITESPACE", "NEWLINE", "INDENT", "DEDENT"
+    }
+  );
+  static const int32_t serializedATNSegment[] = {
+  	4,1,134,656,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,
+  	7,7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,2,14,7,
+  	14,2,15,7,15,2,16,7,16,2,17,7,17,2,18,7,18,2,19,7,19,2,20,7,20,2,21,7,
+  	21,2,22,7,22,2,23,7,23,2,24,7,24,2,25,7,25,2,26,7,26,2,27,7,27,2,28,7,
+  	28,2,29,7,29,2,30,7,30,2,31,7,31,1,0,1,0,1,0,1,0,3,0,69,8,0,1,0,1,0,5,
+  	0,73,8,0,10,0,12,0,76,9,0,1,0,1,0,1,0,1,1,1,1,1,1,1,1,3,1,85,8,1,1,1,
+  	1,1,5,1,89,8,1,10,1,12,1,92,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,1,101,8,
+  	1,1,1,1,1,5,1,105,8,1,10,1,12,1,108,9,1,1,1,3,1,111,8,1,1,1,5,1,114,8,
+  	1,10,1,12,1,117,9,1,1,1,1,1,3,1,121,8,1,1,2,1,2,1,2,1,2,1,2,3,2,128,8,
+  	2,1,2,1,2,1,3,1,3,1,4,1,4,1,4,1,4,1,4,1,4,3,4,140,8,4,1,4,1,4,1,4,1,4,
+  	1,4,3,4,147,8,4,1,4,1,4,1,4,1,4,1,4,3,4,154,8,4,1,4,1,4,1,4,1,4,1,4,1,
+  	4,3,4,162,8,4,1,4,1,4,1,4,1,4,1,4,1,4,3,4,170,8,4,1,4,1,4,3,4,174,8,4,
+  	1,4,1,4,1,4,1,4,1,4,1,4,1,4,1,4,3,4,184,8,4,1,4,1,4,5,4,188,8,4,10,4,
+  	12,4,191,9,4,1,4,3,4,194,8,4,1,4,1,4,1,4,1,4,1,4,5,4,201,8,4,10,4,12,
+  	4,204,9,4,1,5,3,5,207,8,5,1,5,1,5,1,5,1,5,1,6,1,6,1,6,1,6,1,6,1,7,1,7,
+  	1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,7,1,
+  	7,1,7,1,7,1,7,1,7,3,7,242,8,7,1,8,5,8,245,8,8,10,8,12,8,248,9,8,1,9,1,
+  	9,1,9,1,9,1,9,1,9,1,9,1,10,1,10,1,10,1,10,1,10,3,10,262,8,10,1,11,1,11,
+  	1,11,3,11,267,8,11,1,11,1,11,1,11,1,11,1,11,1,11,3,11,275,8,11,1,12,1,
+  	12,1,12,1,12,1,12,3,12,282,8,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,
+  	12,3,12,292,8,12,1,12,3,12,295,8,12,1,12,1,12,1,12,1,12,3,12,301,8,12,
+  	1,12,1,12,5,12,305,8,12,10,12,12,12,308,9,12,1,12,1,12,1,12,1,12,1,12,
+  	1,12,1,12,3,12,317,8,12,1,12,1,12,1,12,1,12,1,12,3,12,324,8,12,1,12,3,
+  	12,327,8,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,3,12,339,
+  	8,12,1,12,1,12,1,12,1,12,1,12,3,12,346,8,12,1,12,1,12,1,12,1,12,1,12,
+  	3,12,353,8,12,1,12,1,12,1,12,1,12,3,12,359,8,12,1,12,1,12,1,12,1,12,3,
+  	12,365,8,12,1,12,1,12,1,12,1,12,3,12,371,8,12,1,12,1,12,1,12,1,12,1,12,
+  	1,12,1,12,3,12,380,8,12,1,12,3,12,383,8,12,1,12,1,12,1,12,1,12,1,12,5,
+  	12,390,8,12,10,12,12,12,393,9,12,1,12,1,12,3,12,397,8,12,1,12,3,12,400,
+  	8,12,1,12,1,12,3,12,404,8,12,1,12,1,12,1,12,4,12,409,8,12,11,12,12,12,
+  	410,1,12,1,12,3,12,415,8,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,3,
+  	12,425,8,12,1,12,3,12,428,8,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,
+  	3,12,438,8,12,1,12,3,12,441,8,12,1,12,1,12,1,12,1,12,1,12,1,12,1,12,1,
+  	12,3,12,451,8,12,1,12,3,12,454,8,12,3,12,456,8,12,1,13,1,13,1,13,1,14,
+  	1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,
+  	1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,1,14,4,14,
+  	489,8,14,11,14,12,14,490,1,14,1,14,1,14,1,14,1,14,4,14,498,8,14,11,14,
+  	12,14,499,1,14,1,14,1,14,1,14,1,14,4,14,507,8,14,11,14,12,14,508,1,14,
+  	1,14,3,14,513,8,14,1,15,1,15,3,15,517,8,15,1,16,1,16,1,16,4,16,522,8,
+  	16,11,16,12,16,523,1,16,1,16,3,16,528,8,16,1,17,1,17,1,17,1,17,3,17,534,
+  	8,17,1,17,3,17,537,8,17,1,17,1,17,1,17,1,17,3,17,543,8,17,1,17,3,17,546,
+  	8,17,3,17,548,8,17,3,17,550,8,17,1,18,1,18,1,19,1,19,1,20,1,20,1,21,1,
+  	21,1,21,1,21,1,21,3,21,563,8,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,
+  	21,1,21,3,21,574,8,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,
+  	21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,1,21,5,21,594,8,21,10,21,12,21,
+  	597,9,21,1,21,5,21,600,8,21,10,21,12,21,603,9,21,1,21,1,21,3,21,607,8,
+  	21,1,22,1,22,3,22,611,8,22,1,23,1,23,1,23,3,23,616,8,23,1,23,1,23,1,23,
+  	3,23,621,8,23,1,23,1,23,1,23,3,23,626,8,23,1,23,1,23,3,23,630,8,23,3,
+  	23,632,8,23,1,24,1,24,3,24,636,8,24,1,25,1,25,1,25,1,25,3,25,642,8,25,
+  	1,26,1,26,1,27,1,27,1,28,1,28,1,29,1,29,1,30,1,30,1,31,1,31,1,31,0,1,
+  	8,32,0,2,4,6,8,10,12,14,16,18,20,22,24,26,28,30,32,34,36,38,40,42,44,
+  	46,48,50,52,54,56,58,60,62,0,9,1,0,74,75,1,0,111,114,1,0,103,105,1,0,
+  	119,123,2,0,7,7,13,13,2,0,8,8,14,14,3,0,25,25,119,120,124,124,2,0,11,
+  	11,70,118,1,0,26,69,743,0,64,1,0,0,0,2,120,1,0,0,0,4,122,1,0,0,0,6,131,
+  	1,0,0,0,8,193,1,0,0,0,10,206,1,0,0,0,12,212,1,0,0,0,14,241,1,0,0,0,16,
+  	246,1,0,0,0,18,249,1,0,0,0,20,261,1,0,0,0,22,274,1,0,0,0,24,455,1,0,0,
+  	0,26,457,1,0,0,0,28,512,1,0,0,0,30,516,1,0,0,0,32,527,1,0,0,0,34,529,
+  	1,0,0,0,36,551,1,0,0,0,38,553,1,0,0,0,40,555,1,0,0,0,42,606,1,0,0,0,44,
+  	608,1,0,0,0,46,631,1,0,0,0,48,635,1,0,0,0,50,641,1,0,0,0,52,643,1,0,0,
+  	0,54,645,1,0,0,0,56,647,1,0,0,0,58,649,1,0,0,0,60,651,1,0,0,0,62,653,
+  	1,0,0,0,64,65,5,70,0,0,65,66,3,48,24,0,66,68,5,1,0,0,67,69,3,36,18,0,
+  	68,67,1,0,0,0,68,69,1,0,0,0,69,70,1,0,0,0,70,74,5,133,0,0,71,73,3,2,1,
+  	0,72,71,1,0,0,0,73,76,1,0,0,0,74,72,1,0,0,0,74,75,1,0,0,0,75,77,1,0,0,
+  	0,76,74,1,0,0,0,77,78,5,134,0,0,78,79,5,0,0,1,79,1,1,0,0,0,80,81,5,71,
+  	0,0,81,82,3,48,24,0,82,84,5,1,0,0,83,85,3,36,18,0,84,83,1,0,0,0,84,85,
+  	1,0,0,0,85,86,1,0,0,0,86,90,5,133,0,0,87,89,3,4,2,0,88,87,1,0,0,0,89,
+  	92,1,0,0,0,90,88,1,0,0,0,90,91,1,0,0,0,91,93,1,0,0,0,92,90,1,0,0,0,93,
+  	94,3,16,8,0,94,95,5,134,0,0,95,121,1,0,0,0,96,97,5,72,0,0,97,98,3,48,
+  	24,0,98,100,5,1,0,0,99,101,3,36,18,0,100,99,1,0,0,0,100,101,1,0,0,0,101,
+  	102,1,0,0,0,102,106,5,133,0,0,103,105,3,4,2,0,104,103,1,0,0,0,105,108,
+  	1,0,0,0,106,104,1,0,0,0,106,107,1,0,0,0,107,110,1,0,0,0,108,106,1,0,0,
+  	0,109,111,3,12,6,0,110,109,1,0,0,0,110,111,1,0,0,0,111,115,1,0,0,0,112,
+  	114,3,14,7,0,113,112,1,0,0,0,114,117,1,0,0,0,115,113,1,0,0,0,115,116,
+  	1,0,0,0,116,118,1,0,0,0,117,115,1,0,0,0,118,119,5,134,0,0,119,121,1,0,
+  	0,0,120,80,1,0,0,0,120,96,1,0,0,0,121,3,1,0,0,0,122,123,3,6,3,0,123,124,
+  	3,48,24,0,124,125,5,1,0,0,125,127,3,8,4,0,126,128,3,36,18,0,127,126,1,
+  	0,0,0,127,128,1,0,0,0,128,129,1,0,0,0,129,130,5,132,0,0,130,5,1,0,0,0,
+  	131,132,7,0,0,0,132,7,1,0,0,0,133,134,6,4,-1,0,134,139,5,76,0,0,135,136,
+  	5,2,0,0,136,137,3,52,26,0,137,138,5,3,0,0,138,140,1,0,0,0,139,135,1,0,
+  	0,0,139,140,1,0,0,0,140,194,1,0,0,0,141,146,5,77,0,0,142,143,5,2,0,0,
+  	143,144,3,52,26,0,144,145,5,3,0,0,145,147,1,0,0,0,146,142,1,0,0,0,146,
+  	147,1,0,0,0,147,194,1,0,0,0,148,153,5,82,0,0,149,150,5,2,0,0,150,151,
+  	3,52,26,0,151,152,5,3,0,0,152,154,1,0,0,0,153,149,1,0,0,0,153,154,1,0,
+  	0,0,154,161,1,0,0,0,155,156,5,2,0,0,156,157,5,2,0,0,157,158,3,52,26,0,
+  	158,159,5,3,0,0,159,160,5,3,0,0,160,162,1,0,0,0,161,155,1,0,0,0,161,162,
+  	1,0,0,0,162,194,1,0,0,0,163,169,5,83,0,0,164,165,3,54,27,0,165,166,3,
+  	58,29,0,166,167,3,58,29,0,167,168,3,56,28,0,168,170,1,0,0,0,169,164,1,
+  	0,0,0,169,170,1,0,0,0,170,173,1,0,0,0,171,172,5,4,0,0,172,174,3,52,26,
+  	0,173,171,1,0,0,0,173,174,1,0,0,0,174,194,1,0,0,0,175,194,5,78,0,0,176,
+  	194,5,80,0,0,177,194,5,79,0,0,178,183,5,81,0,0,179,180,5,2,0,0,180,181,
+  	3,52,26,0,181,182,5,3,0,0,182,184,1,0,0,0,183,179,1,0,0,0,183,184,1,0,
+  	0,0,184,194,1,0,0,0,185,189,5,5,0,0,186,188,3,10,5,0,187,186,1,0,0,0,
+  	188,191,1,0,0,0,189,187,1,0,0,0,189,190,1,0,0,0,190,192,1,0,0,0,191,189,
+  	1,0,0,0,192,194,5,6,0,0,193,133,1,0,0,0,193,141,1,0,0,0,193,148,1,0,0,
+  	0,193,163,1,0,0,0,193,175,1,0,0,0,193,176,1,0,0,0,193,177,1,0,0,0,193,
+  	178,1,0,0,0,193,185,1,0,0,0,194,202,1,0,0,0,195,196,10,1,0,0,196,197,
+  	5,7,0,0,197,198,3,52,26,0,198,199,5,8,0,0,199,201,1,0,0,0,200,195,1,0,
+  	0,0,201,204,1,0,0,0,202,200,1,0,0,0,202,203,1,0,0,0,203,9,1,0,0,0,204,
+  	202,1,0,0,0,205,207,5,84,0,0,206,205,1,0,0,0,206,207,1,0,0,0,207,208,
+  	1,0,0,0,208,209,3,50,25,0,209,210,5,1,0,0,210,211,3,8,4,0,211,11,1,0,
+  	0,0,212,213,5,9,0,0,213,214,5,10,0,0,214,215,3,48,24,0,215,216,5,132,
+  	0,0,216,13,1,0,0,0,217,218,5,73,0,0,218,219,3,48,24,0,219,220,5,10,0,
+  	0,220,221,3,52,26,0,221,222,5,132,0,0,222,242,1,0,0,0,223,224,5,73,0,
+  	0,224,225,3,48,24,0,225,226,5,10,0,0,226,227,5,125,0,0,227,228,5,132,
+  	0,0,228,242,1,0,0,0,229,230,5,73,0,0,230,231,3,48,24,0,231,232,5,10,0,
+  	0,232,233,5,124,0,0,233,234,5,132,0,0,234,242,1,0,0,0,235,236,5,73,0,
+  	0,236,237,3,48,24,0,237,238,5,10,0,0,238,239,5,126,0,0,239,240,5,132,
+  	0,0,240,242,1,0,0,0,241,217,1,0,0,0,241,223,1,0,0,0,241,229,1,0,0,0,241,
+  	235,1,0,0,0,242,15,1,0,0,0,243,245,3,30,15,0,244,243,1,0,0,0,245,248,
+  	1,0,0,0,246,244,1,0,0,0,246,247,1,0,0,0,247,17,1,0,0,0,248,246,1,0,0,
+  	0,249,250,5,11,0,0,250,251,5,12,0,0,251,252,5,13,0,0,252,253,3,42,21,
+  	0,253,254,3,42,21,0,254,255,5,14,0,0,255,19,1,0,0,0,256,262,3,18,9,0,
+  	257,258,5,13,0,0,258,259,3,18,9,0,259,260,5,14,0,0,260,262,1,0,0,0,261,
+  	256,1,0,0,0,261,257,1,0,0,0,262,21,1,0,0,0,263,264,5,133,0,0,264,266,
+  	3,20,10,0,265,267,3,36,18,0,266,265,1,0,0,0,266,267,1,0,0,0,267,268,1,
+  	0,0,0,268,269,5,134,0,0,269,275,1,0,0,0,270,271,5,13,0,0,271,272,3,20,
+  	10,0,272,273,5,14,0,0,273,275,1,0,0,0,274,263,1,0,0,0,274,270,1,0,0,0,
+  	275,23,1,0,0,0,276,277,5,85,0,0,277,278,3,48,24,0,278,279,5,1,0,0,279,
+  	281,3,8,4,0,280,282,3,36,18,0,281,280,1,0,0,0,281,282,1,0,0,0,282,456,
+  	1,0,0,0,283,284,5,86,0,0,284,285,3,48,24,0,285,286,5,1,0,0,286,287,3,
+  	8,4,0,287,291,3,42,21,0,288,289,5,87,0,0,289,290,5,1,0,0,290,292,3,22,
+  	11,0,291,288,1,0,0,0,291,292,1,0,0,0,292,294,1,0,0,0,293,295,3,36,18,
+  	0,294,293,1,0,0,0,294,295,1,0,0,0,295,456,1,0,0,0,296,297,5,88,0,0,297,
+  	298,3,48,24,0,298,300,5,1,0,0,299,301,3,36,18,0,300,299,1,0,0,0,300,301,
+  	1,0,0,0,301,302,1,0,0,0,302,306,5,133,0,0,303,305,3,28,14,0,304,303,1,
+  	0,0,0,305,308,1,0,0,0,306,304,1,0,0,0,306,307,1,0,0,0,307,309,1,0,0,0,
+  	308,306,1,0,0,0,309,310,5,134,0,0,310,456,1,0,0,0,311,312,5,108,0,0,312,
+  	313,3,48,24,0,313,314,5,1,0,0,314,316,3,8,4,0,315,317,3,36,18,0,316,315,
+  	1,0,0,0,316,317,1,0,0,0,317,456,1,0,0,0,318,319,5,109,0,0,319,320,3,48,
+  	24,0,320,321,5,1,0,0,321,323,3,8,4,0,322,324,3,40,20,0,323,322,1,0,0,
+  	0,323,324,1,0,0,0,324,326,1,0,0,0,325,327,3,36,18,0,326,325,1,0,0,0,326,
+  	327,1,0,0,0,327,456,1,0,0,0,328,329,3,38,19,0,329,330,5,110,0,0,330,331,
+  	3,48,24,0,331,332,5,10,0,0,332,333,3,48,24,0,333,334,5,7,0,0,334,335,
+  	3,42,21,0,335,336,5,8,0,0,336,338,3,42,21,0,337,339,3,36,18,0,338,337,
+  	1,0,0,0,338,339,1,0,0,0,339,456,1,0,0,0,340,341,5,93,0,0,341,342,3,48,
+  	24,0,342,343,5,94,0,0,343,345,3,48,24,0,344,346,3,36,18,0,345,344,1,0,
+  	0,0,345,346,1,0,0,0,346,456,1,0,0,0,347,348,5,95,0,0,348,349,3,48,24,
+  	0,349,350,5,10,0,0,350,352,3,42,21,0,351,353,3,36,18,0,352,351,1,0,0,
+  	0,352,353,1,0,0,0,353,456,1,0,0,0,354,355,3,44,22,0,355,356,5,15,0,0,
+  	356,358,3,42,21,0,357,359,3,36,18,0,358,357,1,0,0,0,358,359,1,0,0,0,359,
+  	456,1,0,0,0,360,361,3,44,22,0,361,362,5,16,0,0,362,364,3,42,21,0,363,
+  	365,3,36,18,0,364,363,1,0,0,0,364,365,1,0,0,0,365,456,1,0,0,0,366,367,
+  	3,44,22,0,367,368,5,96,0,0,368,370,5,97,0,0,369,371,3,36,18,0,370,369,
+  	1,0,0,0,370,371,1,0,0,0,371,456,1,0,0,0,372,456,3,34,17,0,373,374,5,17,
+  	0,0,374,375,3,42,21,0,375,376,3,42,21,0,376,377,3,52,26,0,377,379,5,14,
+  	0,0,378,380,3,26,13,0,379,378,1,0,0,0,379,380,1,0,0,0,380,382,1,0,0,0,
+  	381,383,3,36,18,0,382,381,1,0,0,0,382,383,1,0,0,0,383,456,1,0,0,0,384,
+  	385,5,18,0,0,385,386,3,42,21,0,386,387,3,42,21,0,387,391,5,125,0,0,388,
+  	390,3,42,21,0,389,388,1,0,0,0,390,393,1,0,0,0,391,389,1,0,0,0,391,392,
+  	1,0,0,0,392,394,1,0,0,0,393,391,1,0,0,0,394,396,5,14,0,0,395,397,3,26,
+  	13,0,396,395,1,0,0,0,396,397,1,0,0,0,397,399,1,0,0,0,398,400,3,36,18,
+  	0,399,398,1,0,0,0,399,400,1,0,0,0,400,456,1,0,0,0,401,403,5,102,0,0,402,
+  	404,3,36,18,0,403,402,1,0,0,0,403,404,1,0,0,0,404,456,1,0,0,0,405,406,
+  	5,115,0,0,406,408,5,13,0,0,407,409,3,42,21,0,408,407,1,0,0,0,409,410,
+  	1,0,0,0,410,408,1,0,0,0,410,411,1,0,0,0,411,412,1,0,0,0,412,414,5,14,
+  	0,0,413,415,3,36,18,0,414,413,1,0,0,0,414,415,1,0,0,0,415,456,1,0,0,0,
+  	416,417,5,116,0,0,417,418,5,13,0,0,418,419,3,42,21,0,419,420,3,42,21,
+  	0,420,421,3,42,21,0,421,422,5,125,0,0,422,424,5,14,0,0,423,425,3,26,13,
+  	0,424,423,1,0,0,0,424,425,1,0,0,0,425,427,1,0,0,0,426,428,3,36,18,0,427,
+  	426,1,0,0,0,427,428,1,0,0,0,428,456,1,0,0,0,429,430,5,117,0,0,430,431,
+  	5,13,0,0,431,432,3,42,21,0,432,433,3,42,21,0,433,434,3,42,21,0,434,435,
+  	5,125,0,0,435,437,5,14,0,0,436,438,3,26,13,0,437,436,1,0,0,0,437,438,
+  	1,0,0,0,438,440,1,0,0,0,439,441,3,36,18,0,440,439,1,0,0,0,440,441,1,0,
+  	0,0,441,456,1,0,0,0,442,443,5,118,0,0,443,444,5,13,0,0,444,445,3,42,21,
+  	0,445,446,3,42,21,0,446,447,3,42,21,0,447,448,5,125,0,0,448,450,5,14,
+  	0,0,449,451,3,26,13,0,450,449,1,0,0,0,450,451,1,0,0,0,451,453,1,0,0,0,
+  	452,454,3,36,18,0,453,452,1,0,0,0,453,454,1,0,0,0,454,456,1,0,0,0,455,
+  	276,1,0,0,0,455,283,1,0,0,0,455,296,1,0,0,0,455,311,1,0,0,0,455,318,1,
+  	0,0,0,455,328,1,0,0,0,455,340,1,0,0,0,455,347,1,0,0,0,455,354,1,0,0,0,
+  	455,360,1,0,0,0,455,366,1,0,0,0,455,372,1,0,0,0,455,373,1,0,0,0,455,384,
+  	1,0,0,0,455,401,1,0,0,0,455,405,1,0,0,0,455,416,1,0,0,0,455,429,1,0,0,
+  	0,455,442,1,0,0,0,456,25,1,0,0,0,457,458,5,1,0,0,458,459,3,48,24,0,459,
+  	27,1,0,0,0,460,461,5,19,0,0,461,462,5,12,0,0,462,463,3,8,4,0,463,464,
+  	5,132,0,0,464,513,1,0,0,0,465,466,5,89,0,0,466,467,5,12,0,0,467,468,3,
+  	52,26,0,468,469,5,132,0,0,469,513,1,0,0,0,470,471,5,20,0,0,471,472,5,
+  	12,0,0,472,473,3,52,26,0,473,474,5,132,0,0,474,513,1,0,0,0,475,476,5,
+  	21,0,0,476,477,5,12,0,0,477,478,3,52,26,0,478,479,5,132,0,0,479,513,1,
+  	0,0,0,480,481,5,22,0,0,481,482,5,12,0,0,482,483,3,40,20,0,483,484,5,132,
+  	0,0,484,513,1,0,0,0,485,486,5,90,0,0,486,488,5,12,0,0,487,489,3,48,24,
+  	0,488,487,1,0,0,0,489,490,1,0,0,0,490,488,1,0,0,0,490,491,1,0,0,0,491,
+  	492,1,0,0,0,492,493,5,132,0,0,493,513,1,0,0,0,494,495,5,91,0,0,495,497,
+  	5,12,0,0,496,498,3,48,24,0,497,496,1,0,0,0,498,499,1,0,0,0,499,497,1,
+  	0,0,0,499,500,1,0,0,0,500,501,1,0,0,0,501,502,5,132,0,0,502,513,1,0,0,
+  	0,503,504,5,92,0,0,504,506,5,12,0,0,505,507,3,48,24,0,506,505,1,0,0,0,
+  	507,508,1,0,0,0,508,506,1,0,0,0,508,509,1,0,0,0,509,510,1,0,0,0,510,511,
+  	5,132,0,0,511,513,1,0,0,0,512,460,1,0,0,0,512,465,1,0,0,0,512,470,1,0,
+  	0,0,512,475,1,0,0,0,512,480,1,0,0,0,512,485,1,0,0,0,512,494,1,0,0,0,512,
+  	503,1,0,0,0,513,29,1,0,0,0,514,517,3,24,12,0,515,517,5,132,0,0,516,514,
+  	1,0,0,0,516,515,1,0,0,0,517,31,1,0,0,0,518,528,3,30,15,0,519,521,5,133,
+  	0,0,520,522,3,30,15,0,521,520,1,0,0,0,522,523,1,0,0,0,523,521,1,0,0,0,
+  	523,524,1,0,0,0,524,525,1,0,0,0,525,526,5,134,0,0,526,528,1,0,0,0,527,
+  	518,1,0,0,0,527,519,1,0,0,0,528,33,1,0,0,0,529,530,5,98,0,0,530,531,3,
+  	42,21,0,531,533,5,1,0,0,532,534,3,36,18,0,533,532,1,0,0,0,533,534,1,0,
+  	0,0,534,536,1,0,0,0,535,537,3,32,16,0,536,535,1,0,0,0,536,537,1,0,0,0,
+  	537,549,1,0,0,0,538,547,5,99,0,0,539,548,3,34,17,0,540,542,5,1,0,0,541,
+  	543,3,36,18,0,542,541,1,0,0,0,542,543,1,0,0,0,543,545,1,0,0,0,544,546,
+  	3,32,16,0,545,544,1,0,0,0,545,546,1,0,0,0,546,548,1,0,0,0,547,539,1,0,
+  	0,0,547,540,1,0,0,0,548,550,1,0,0,0,549,538,1,0,0,0,549,550,1,0,0,0,550,
+  	35,1,0,0,0,551,552,5,127,0,0,552,37,1,0,0,0,553,554,7,1,0,0,554,39,1,
+  	0,0,0,555,556,7,2,0,0,556,41,1,0,0,0,557,562,5,76,0,0,558,559,5,2,0,0,
+  	559,560,3,52,26,0,560,561,5,3,0,0,561,563,1,0,0,0,562,558,1,0,0,0,562,
+  	563,1,0,0,0,563,564,1,0,0,0,564,565,5,13,0,0,565,566,3,52,26,0,566,567,
+  	5,14,0,0,567,607,1,0,0,0,568,573,5,77,0,0,569,570,5,2,0,0,570,571,3,52,
+  	26,0,571,572,5,3,0,0,572,574,1,0,0,0,573,569,1,0,0,0,573,574,1,0,0,0,
+  	574,575,1,0,0,0,575,576,5,13,0,0,576,577,3,52,26,0,577,578,5,14,0,0,578,
+  	607,1,0,0,0,579,607,3,44,22,0,580,581,5,23,0,0,581,582,3,42,21,0,582,
+  	583,3,42,21,0,583,584,3,42,21,0,584,585,5,14,0,0,585,607,1,0,0,0,586,
+  	587,5,24,0,0,587,588,3,42,21,0,588,589,3,42,21,0,589,590,5,14,0,0,590,
+  	607,1,0,0,0,591,595,3,62,31,0,592,594,3,42,21,0,593,592,1,0,0,0,594,597,
+  	1,0,0,0,595,593,1,0,0,0,595,596,1,0,0,0,596,601,1,0,0,0,597,595,1,0,0,
+  	0,598,600,3,52,26,0,599,598,1,0,0,0,600,603,1,0,0,0,601,599,1,0,0,0,601,
+  	602,1,0,0,0,602,604,1,0,0,0,603,601,1,0,0,0,604,605,5,14,0,0,605,607,
+  	1,0,0,0,606,557,1,0,0,0,606,568,1,0,0,0,606,579,1,0,0,0,606,580,1,0,0,
+  	0,606,586,1,0,0,0,606,591,1,0,0,0,607,43,1,0,0,0,608,610,3,48,24,0,609,
+  	611,3,46,23,0,610,609,1,0,0,0,610,611,1,0,0,0,611,45,1,0,0,0,612,613,
+  	5,4,0,0,613,615,3,50,25,0,614,616,3,46,23,0,615,614,1,0,0,0,615,616,1,
+  	0,0,0,616,632,1,0,0,0,617,618,5,4,0,0,618,620,5,124,0,0,619,621,3,46,
+  	23,0,620,619,1,0,0,0,620,621,1,0,0,0,621,632,1,0,0,0,622,625,5,7,0,0,
+  	623,626,3,52,26,0,624,626,3,42,21,0,625,623,1,0,0,0,625,624,1,0,0,0,626,
+  	627,1,0,0,0,627,629,5,8,0,0,628,630,3,46,23,0,629,628,1,0,0,0,629,630,
+  	1,0,0,0,630,632,1,0,0,0,631,612,1,0,0,0,631,617,1,0,0,0,631,622,1,0,0,
+  	0,632,47,1,0,0,0,633,636,5,128,0,0,634,636,3,60,30,0,635,633,1,0,0,0,
+  	635,634,1,0,0,0,636,49,1,0,0,0,637,642,5,128,0,0,638,642,5,129,0,0,639,
+  	642,5,119,0,0,640,642,3,60,30,0,641,637,1,0,0,0,641,638,1,0,0,0,641,639,
+  	1,0,0,0,641,640,1,0,0,0,642,51,1,0,0,0,643,644,7,3,0,0,644,53,1,0,0,0,
+  	645,646,7,4,0,0,646,55,1,0,0,0,647,648,7,5,0,0,648,57,1,0,0,0,649,650,
+  	7,6,0,0,650,59,1,0,0,0,651,652,7,7,0,0,652,61,1,0,0,0,653,654,7,8,0,0,
+  	654,63,1,0,0,0,81,68,74,84,90,100,106,110,115,120,127,139,146,153,161,
+  	169,173,183,189,193,202,206,241,246,261,266,274,281,291,294,300,306,316,
+  	323,326,338,345,352,358,364,370,379,382,391,396,399,403,410,414,424,427,
+  	437,440,450,453,455,490,499,508,512,516,523,527,533,536,542,545,547,549,
+  	562,573,595,601,606,610,615,620,625,629,631,635,641
+  };
+  staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
+
+  antlr4::atn::ATNDeserializer deserializer;
+  staticData->atn = deserializer.deserialize(staticData->serializedATN);
+
+  const size_t count = staticData->atn->getNumberOfDecisions();
+  staticData->decisionToDFA.reserve(count);
+  for (size_t i = 0; i < count; i++) { 
+    staticData->decisionToDFA.emplace_back(staticData->atn->getDecisionState(i), i);
+  }
+  firrtlParserStaticData = staticData.release();
+}
+
+}
+
+FIRRTLParser::FIRRTLParser(TokenStream *input) : FIRRTLParser(input, antlr4::atn::ParserATNSimulatorOptions()) {}
+
+FIRRTLParser::FIRRTLParser(TokenStream *input, const antlr4::atn::ParserATNSimulatorOptions &options) : Parser(input) {
+  FIRRTLParser::initialize();
+  _interpreter = new atn::ParserATNSimulator(this, *firrtlParserStaticData->atn, firrtlParserStaticData->decisionToDFA, firrtlParserStaticData->sharedContextCache, options);
 }
 
 FIRRTLParser::~FIRRTLParser() {
   delete _interpreter;
+}
+
+const atn::ATN& FIRRTLParser::getATN() const {
+  return *firrtlParserStaticData->atn;
 }
 
 std::string FIRRTLParser::getGrammarFileName() const {
@@ -25,11 +359,15 @@ std::string FIRRTLParser::getGrammarFileName() const {
 }
 
 const std::vector<std::string>& FIRRTLParser::getRuleNames() const {
-  return _ruleNames;
+  return firrtlParserStaticData->ruleNames;
 }
 
-dfa::Vocabulary& FIRRTLParser::getVocabulary() const {
-  return _vocabulary;
+const dfa::Vocabulary& FIRRTLParser::getVocabulary() const {
+  return firrtlParserStaticData->vocabulary;
+}
+
+antlr4::atn::SerializedATNView FIRRTLParser::getSerializedATN() const {
+  return firrtlParserStaticData->serializedATN;
 }
 
 
@@ -89,7 +427,7 @@ void FIRRTLParser::CircuitContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::CircuitContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::CircuitContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitCircuit(this);
   else
@@ -101,42 +439,46 @@ FIRRTLParser::CircuitContext* FIRRTLParser::circuit() {
   enterRule(_localctx, 0, FIRRTLParser::RuleCircuit);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(58);
+    setState(64);
     match(FIRRTLParser::Key_circuit);
-    setState(59);
+    setState(65);
     id();
-    setState(60);
+    setState(66);
     match(FIRRTLParser::T__0);
-    setState(62);
+    setState(68);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == FIRRTLParser::FileInfo) {
-      setState(61);
+      setState(67);
       info();
     }
-    setState(64);
+    setState(70);
     match(FIRRTLParser::INDENT);
-    setState(68);
+    setState(74);
     _errHandler->sync(this);
     _la = _input->LA(1);
     while (_la == FIRRTLParser::Key_module
 
     || _la == FIRRTLParser::Key_extmodule) {
-      setState(65);
+      setState(71);
       module();
-      setState(70);
+      setState(76);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
-    setState(71);
+    setState(77);
     match(FIRRTLParser::DEDENT);
-    setState(72);
+    setState(78);
     match(FIRRTLParser::EOF);
    
   }
@@ -221,7 +563,7 @@ void FIRRTLParser::ModuleContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::ModuleContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::ModuleContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitModule(this);
   else
@@ -233,100 +575,104 @@ FIRRTLParser::ModuleContext* FIRRTLParser::module() {
   enterRule(_localctx, 2, FIRRTLParser::RuleModule);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     size_t alt;
-    setState(114);
+    setState(120);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case FIRRTLParser::Key_module: {
         enterOuterAlt(_localctx, 1);
-        setState(74);
+        setState(80);
         match(FIRRTLParser::Key_module);
-        setState(75);
+        setState(81);
         id();
-        setState(76);
+        setState(82);
         match(FIRRTLParser::T__0);
-        setState(78);
+        setState(84);
         _errHandler->sync(this);
 
         _la = _input->LA(1);
         if (_la == FIRRTLParser::FileInfo) {
-          setState(77);
+          setState(83);
           info();
         }
-        setState(80);
+        setState(86);
         match(FIRRTLParser::INDENT);
-        setState(84);
+        setState(90);
         _errHandler->sync(this);
         alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx);
         while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
           if (alt == 1) {
-            setState(81);
+            setState(87);
             port(); 
           }
-          setState(86);
+          setState(92);
           _errHandler->sync(this);
           alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx);
         }
-        setState(87);
+        setState(93);
         moduleBlock();
-        setState(88);
+        setState(94);
         match(FIRRTLParser::DEDENT);
         break;
       }
 
       case FIRRTLParser::Key_extmodule: {
         enterOuterAlt(_localctx, 2);
-        setState(90);
+        setState(96);
         match(FIRRTLParser::Key_extmodule);
-        setState(91);
+        setState(97);
         id();
-        setState(92);
+        setState(98);
         match(FIRRTLParser::T__0);
-        setState(94);
+        setState(100);
         _errHandler->sync(this);
 
         _la = _input->LA(1);
         if (_la == FIRRTLParser::FileInfo) {
-          setState(93);
+          setState(99);
           info();
         }
-        setState(96);
+        setState(102);
         match(FIRRTLParser::INDENT);
-        setState(100);
+        setState(106);
         _errHandler->sync(this);
         _la = _input->LA(1);
         while (_la == FIRRTLParser::Key_input
 
         || _la == FIRRTLParser::Key_output) {
-          setState(97);
+          setState(103);
           port();
-          setState(102);
+          setState(108);
           _errHandler->sync(this);
           _la = _input->LA(1);
         }
-        setState(104);
+        setState(110);
         _errHandler->sync(this);
 
         _la = _input->LA(1);
-        if (_la == FIRRTLParser::T__11) {
-          setState(103);
+        if (_la == FIRRTLParser::T__8) {
+          setState(109);
           defname();
         }
-        setState(109);
+        setState(115);
         _errHandler->sync(this);
         _la = _input->LA(1);
         while (_la == FIRRTLParser::Key_parameter) {
-          setState(106);
+          setState(112);
           parameter();
-          setState(111);
+          setState(117);
           _errHandler->sync(this);
           _la = _input->LA(1);
         }
-        setState(112);
+        setState(118);
         match(FIRRTLParser::DEDENT);
         break;
       }
@@ -389,7 +735,7 @@ void FIRRTLParser::PortContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::PortContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::PortContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitPort(this);
   else
@@ -401,28 +747,32 @@ FIRRTLParser::PortContext* FIRRTLParser::port() {
   enterRule(_localctx, 4, FIRRTLParser::RulePort);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(116);
+    setState(122);
     dir();
-    setState(117);
+    setState(123);
     id();
-    setState(118);
+    setState(124);
     match(FIRRTLParser::T__0);
-    setState(119);
+    setState(125);
     type(0);
-    setState(121);
+    setState(127);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == FIRRTLParser::FileInfo) {
-      setState(120);
+      setState(126);
       info();
     }
-    setState(123);
+    setState(129);
     match(FIRRTLParser::NEWLINE);
    
   }
@@ -467,7 +817,7 @@ void FIRRTLParser::DirContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::DirContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::DirContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitDir(this);
   else
@@ -479,12 +829,16 @@ FIRRTLParser::DirContext* FIRRTLParser::dir() {
   enterRule(_localctx, 6, FIRRTLParser::RuleDir);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(125);
+    setState(131);
     _la = _input->LA(1);
     if (!(_la == FIRRTLParser::Key_input
 
@@ -532,6 +886,10 @@ tree::TerminalNode* FIRRTLParser::TypeContext::Key_Fixed() {
   return getToken(FIRRTLParser::Key_Fixed, 0);
 }
 
+tree::TerminalNode* FIRRTLParser::TypeContext::Key_Interval() {
+  return getToken(FIRRTLParser::Key_Interval, 0);
+}
+
 FIRRTLParser::LowerBoundContext* FIRRTLParser::TypeContext::lowerBound() {
   return getRuleContext<FIRRTLParser::LowerBoundContext>(0);
 }
@@ -550,6 +908,14 @@ FIRRTLParser::UpperBoundContext* FIRRTLParser::TypeContext::upperBound() {
 
 tree::TerminalNode* FIRRTLParser::TypeContext::Key_Clock() {
   return getToken(FIRRTLParser::Key_Clock, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::TypeContext::Key_AsyncReset() {
+  return getToken(FIRRTLParser::Key_AsyncReset, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::TypeContext::Key_Reset() {
+  return getToken(FIRRTLParser::Key_Reset, 0);
 }
 
 tree::TerminalNode* FIRRTLParser::TypeContext::Key_Analog() {
@@ -586,7 +952,7 @@ void FIRRTLParser::TypeContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::TypeContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::TypeContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitType(this);
   else
@@ -609,232 +975,206 @@ FIRRTLParser::TypeContext* FIRRTLParser::type(int precedence) {
 
     size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     unrollRecursionContexts(parentContext);
   });
   try {
     size_t alt;
     enterOuterAlt(_localctx, 1);
-    setState(187);
+    setState(193);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case FIRRTLParser::Key_UInt: {
-        setState(128);
+        setState(134);
         match(FIRRTLParser::Key_UInt);
-        setState(133);
+        setState(139);
         _errHandler->sync(this);
 
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 10, _ctx)) {
         case 1: {
-          setState(129);
+          setState(135);
           match(FIRRTLParser::T__1);
-          setState(130);
+          setState(136);
           intLit();
-          setState(131);
+          setState(137);
           match(FIRRTLParser::T__2);
           break;
         }
 
+        default:
+          break;
         }
         break;
       }
 
       case FIRRTLParser::Key_SInt: {
-        setState(135);
+        setState(141);
         match(FIRRTLParser::Key_SInt);
-        setState(140);
+        setState(146);
         _errHandler->sync(this);
 
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 11, _ctx)) {
         case 1: {
-          setState(136);
+          setState(142);
           match(FIRRTLParser::T__1);
-          setState(137);
+          setState(143);
           intLit();
-          setState(138);
+          setState(144);
           match(FIRRTLParser::T__2);
           break;
         }
 
+        default:
+          break;
         }
         break;
       }
 
       case FIRRTLParser::Key_Fixed: {
-        setState(142);
+        setState(148);
         match(FIRRTLParser::Key_Fixed);
-        setState(147);
+        setState(153);
         _errHandler->sync(this);
 
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 12, _ctx)) {
         case 1: {
-          setState(143);
+          setState(149);
           match(FIRRTLParser::T__1);
-          setState(144);
+          setState(150);
           intLit();
-          setState(145);
+          setState(151);
           match(FIRRTLParser::T__2);
           break;
         }
 
+        default:
+          break;
         }
-        setState(155);
+        setState(161);
         _errHandler->sync(this);
 
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 13, _ctx)) {
         case 1: {
-          setState(149);
+          setState(155);
           match(FIRRTLParser::T__1);
-          setState(150);
+          setState(156);
           match(FIRRTLParser::T__1);
-          setState(151);
+          setState(157);
           intLit();
-          setState(152);
+          setState(158);
           match(FIRRTLParser::T__2);
-          setState(153);
+          setState(159);
           match(FIRRTLParser::T__2);
           break;
         }
 
+        default:
+          break;
         }
         break;
       }
 
-      case FIRRTLParser::T__3: {
-        setState(157);
-        match(FIRRTLParser::T__3);
+      case FIRRTLParser::Key_Interval: {
         setState(163);
+        match(FIRRTLParser::Key_Interval);
+        setState(169);
         _errHandler->sync(this);
 
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 14, _ctx)) {
         case 1: {
-          setState(158);
+          setState(164);
           lowerBound();
-          setState(159);
+          setState(165);
           boundValue();
-          setState(160);
+          setState(166);
           boundValue();
-          setState(161);
+          setState(167);
           upperBound();
           break;
         }
 
+        default:
+          break;
         }
-        setState(167);
+        setState(173);
         _errHandler->sync(this);
 
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 15, _ctx)) {
         case 1: {
-          setState(165);
-          match(FIRRTLParser::T__4);
-          setState(166);
+          setState(171);
+          match(FIRRTLParser::T__3);
+          setState(172);
           intLit();
           break;
         }
 
+        default:
+          break;
         }
         break;
       }
 
       case FIRRTLParser::Key_Clock: {
-        setState(169);
+        setState(175);
         match(FIRRTLParser::Key_Clock);
         break;
       }
 
-      case FIRRTLParser::T__5: {
-        setState(170);
-        match(FIRRTLParser::T__5);
+      case FIRRTLParser::Key_AsyncReset: {
+        setState(176);
+        match(FIRRTLParser::Key_AsyncReset);
         break;
       }
 
-      case FIRRTLParser::T__6: {
-        setState(171);
-        match(FIRRTLParser::T__6);
+      case FIRRTLParser::Key_Reset: {
+        setState(177);
+        match(FIRRTLParser::Key_Reset);
         break;
       }
 
       case FIRRTLParser::Key_Analog: {
-        setState(172);
+        setState(178);
         match(FIRRTLParser::Key_Analog);
-        setState(177);
+        setState(183);
         _errHandler->sync(this);
 
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 16, _ctx)) {
         case 1: {
-          setState(173);
+          setState(179);
           match(FIRRTLParser::T__1);
-          setState(174);
+          setState(180);
           intLit();
-          setState(175);
+          setState(181);
           match(FIRRTLParser::T__2);
           break;
         }
 
+        default:
+          break;
         }
         break;
       }
 
-      case FIRRTLParser::T__7: {
-        setState(179);
-        match(FIRRTLParser::T__7);
-        setState(183);
+      case FIRRTLParser::T__4: {
+        setState(185);
+        match(FIRRTLParser::T__4);
+        setState(189);
         _errHandler->sync(this);
         _la = _input->LA(1);
-        while (_la == FIRRTLParser::T__13 || ((((_la - 71) & ~ 0x3fULL) == 0) &&
-          ((1ULL << (_la - 71)) & ((1ULL << (FIRRTLParser::Key_circuit - 71))
-          | (1ULL << (FIRRTLParser::Key_module - 71))
-          | (1ULL << (FIRRTLParser::Key_extmodule - 71))
-          | (1ULL << (FIRRTLParser::Key_parameter - 71))
-          | (1ULL << (FIRRTLParser::Key_input - 71))
-          | (1ULL << (FIRRTLParser::Key_output - 71))
-          | (1ULL << (FIRRTLParser::Key_UInt - 71))
-          | (1ULL << (FIRRTLParser::Key_SInt - 71))
-          | (1ULL << (FIRRTLParser::Key_Clock - 71))
-          | (1ULL << (FIRRTLParser::Key_Analog - 71))
-          | (1ULL << (FIRRTLParser::Key_Fixed - 71))
-          | (1ULL << (FIRRTLParser::Key_flip - 71))
-          | (1ULL << (FIRRTLParser::Key_wire - 71))
-          | (1ULL << (FIRRTLParser::Key_reg - 71))
-          | (1ULL << (FIRRTLParser::Key_with - 71))
-          | (1ULL << (FIRRTLParser::Key_mem - 71))
-          | (1ULL << (FIRRTLParser::Key_depth - 71))
-          | (1ULL << (FIRRTLParser::Key_reader - 71))
-          | (1ULL << (FIRRTLParser::Key_writer - 71))
-          | (1ULL << (FIRRTLParser::Key_readwriter - 71))
-          | (1ULL << (FIRRTLParser::Key_inst - 71))
-          | (1ULL << (FIRRTLParser::Key_of - 71))
-          | (1ULL << (FIRRTLParser::Key_node - 71))
-          | (1ULL << (FIRRTLParser::Key_is - 71))
-          | (1ULL << (FIRRTLParser::Key_invalid - 71))
-          | (1ULL << (FIRRTLParser::Key_when - 71))
-          | (1ULL << (FIRRTLParser::Key_else - 71))
-          | (1ULL << (FIRRTLParser::Key_stop - 71))
-          | (1ULL << (FIRRTLParser::Key_printf - 71))
-          | (1ULL << (FIRRTLParser::Key_skip - 71))
-          | (1ULL << (FIRRTLParser::Key_old - 71))
-          | (1ULL << (FIRRTLParser::Key_new - 71))
-          | (1ULL << (FIRRTLParser::Key_undefined - 71))
-          | (1ULL << (FIRRTLParser::Key_mux - 71))
-          | (1ULL << (FIRRTLParser::Key_validif - 71))
-          | (1ULL << (FIRRTLParser::Key_cmem - 71))
-          | (1ULL << (FIRRTLParser::Key_smem - 71))
-          | (1ULL << (FIRRTLParser::Key_mport - 71))
-          | (1ULL << (FIRRTLParser::Key_infer - 71))
-          | (1ULL << (FIRRTLParser::Key_read - 71))
-          | (1ULL << (FIRRTLParser::Key_write - 71))
-          | (1ULL << (FIRRTLParser::Key_rdwr - 71))
-          | (1ULL << (FIRRTLParser::UnsignedInt - 71))
-          | (1ULL << (FIRRTLParser::Id - 71))
-          | (1ULL << (FIRRTLParser::RelaxedId - 71)))) != 0)) {
-          setState(180);
+        while (_la == FIRRTLParser::T__10 || (((_la - 70) & ~ 0x3fULL) == 0) &&
+          ((1ULL << (_la - 70)) & 865817028361977855) != 0) {
+          setState(186);
           field();
-          setState(185);
+          setState(191);
           _errHandler->sync(this);
           _la = _input->LA(1);
         }
-        setState(186);
-        match(FIRRTLParser::T__8);
+        setState(192);
+        match(FIRRTLParser::T__5);
         break;
       }
 
@@ -842,7 +1182,7 @@ FIRRTLParser::TypeContext* FIRRTLParser::type(int precedence) {
       throw NoViableAltException(this);
     }
     _ctx->stop = _input->LT(-1);
-    setState(196);
+    setState(202);
     _errHandler->sync(this);
     alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 19, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
@@ -852,17 +1192,17 @@ FIRRTLParser::TypeContext* FIRRTLParser::type(int precedence) {
         previousContext = _localctx;
         _localctx = _tracker.createInstance<TypeContext>(parentContext, parentState);
         pushNewRecursionContext(_localctx, startState, RuleType);
-        setState(189);
+        setState(195);
 
         if (!(precpred(_ctx, 1))) throw FailedPredicateException(this, "precpred(_ctx, 1)");
-        setState(190);
-        match(FIRRTLParser::T__9);
-        setState(191);
+        setState(196);
+        match(FIRRTLParser::T__6);
+        setState(197);
         intLit();
-        setState(192);
-        match(FIRRTLParser::T__10); 
+        setState(198);
+        match(FIRRTLParser::T__7); 
       }
-      setState(198);
+      setState(204);
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 19, _ctx);
     }
@@ -911,7 +1251,7 @@ void FIRRTLParser::FieldContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::FieldContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::FieldContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitField(this);
   else
@@ -922,27 +1262,33 @@ FIRRTLParser::FieldContext* FIRRTLParser::field() {
   FieldContext *_localctx = _tracker.createInstance<FieldContext>(_ctx, getState());
   enterRule(_localctx, 10, FIRRTLParser::RuleField);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(200);
+    setState(206);
     _errHandler->sync(this);
 
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 20, _ctx)) {
     case 1: {
-      setState(199);
+      setState(205);
       match(FIRRTLParser::Key_flip);
       break;
     }
 
+    default:
+      break;
     }
-    setState(202);
+    setState(208);
     fieldId();
-    setState(203);
+    setState(209);
     match(FIRRTLParser::T__0);
-    setState(204);
+    setState(210);
     type(0);
    
   }
@@ -987,7 +1333,7 @@ void FIRRTLParser::DefnameContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::DefnameContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::DefnameContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitDefname(this);
   else
@@ -998,18 +1344,22 @@ FIRRTLParser::DefnameContext* FIRRTLParser::defname() {
   DefnameContext *_localctx = _tracker.createInstance<DefnameContext>(_ctx, getState());
   enterRule(_localctx, 12, FIRRTLParser::RuleDefname);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(206);
-    match(FIRRTLParser::T__11);
-    setState(207);
-    match(FIRRTLParser::T__12);
-    setState(208);
+    setState(212);
+    match(FIRRTLParser::T__8);
+    setState(213);
+    match(FIRRTLParser::T__9);
+    setState(214);
     id();
-    setState(209);
+    setState(215);
     match(FIRRTLParser::NEWLINE);
    
   }
@@ -1074,7 +1424,7 @@ void FIRRTLParser::ParameterContext::exitRule(tree::ParseTreeListener *listener)
 }
 
 
-antlrcpp::Any FIRRTLParser::ParameterContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::ParameterContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitParameter(this);
   else
@@ -1085,73 +1435,79 @@ FIRRTLParser::ParameterContext* FIRRTLParser::parameter() {
   ParameterContext *_localctx = _tracker.createInstance<ParameterContext>(_ctx, getState());
   enterRule(_localctx, 14, FIRRTLParser::RuleParameter);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
-    setState(235);
+    setState(241);
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 21, _ctx)) {
     case 1: {
       enterOuterAlt(_localctx, 1);
-      setState(211);
+      setState(217);
       match(FIRRTLParser::Key_parameter);
-      setState(212);
+      setState(218);
       id();
-      setState(213);
-      match(FIRRTLParser::T__12);
-      setState(214);
+      setState(219);
+      match(FIRRTLParser::T__9);
+      setState(220);
       intLit();
-      setState(215);
+      setState(221);
       match(FIRRTLParser::NEWLINE);
       break;
     }
 
     case 2: {
       enterOuterAlt(_localctx, 2);
-      setState(217);
+      setState(223);
       match(FIRRTLParser::Key_parameter);
-      setState(218);
+      setState(224);
       id();
-      setState(219);
-      match(FIRRTLParser::T__12);
-      setState(220);
+      setState(225);
+      match(FIRRTLParser::T__9);
+      setState(226);
       match(FIRRTLParser::StringLit);
-      setState(221);
+      setState(227);
       match(FIRRTLParser::NEWLINE);
       break;
     }
 
     case 3: {
       enterOuterAlt(_localctx, 3);
-      setState(223);
+      setState(229);
       match(FIRRTLParser::Key_parameter);
-      setState(224);
+      setState(230);
       id();
-      setState(225);
-      match(FIRRTLParser::T__12);
-      setState(226);
+      setState(231);
+      match(FIRRTLParser::T__9);
+      setState(232);
       match(FIRRTLParser::DoubleLit);
-      setState(227);
+      setState(233);
       match(FIRRTLParser::NEWLINE);
       break;
     }
 
     case 4: {
       enterOuterAlt(_localctx, 4);
-      setState(229);
+      setState(235);
       match(FIRRTLParser::Key_parameter);
-      setState(230);
+      setState(236);
       id();
-      setState(231);
-      match(FIRRTLParser::T__12);
-      setState(232);
+      setState(237);
+      match(FIRRTLParser::T__9);
+      setState(238);
       match(FIRRTLParser::RawString);
-      setState(233);
+      setState(239);
       match(FIRRTLParser::NEWLINE);
       break;
     }
 
+    default:
+      break;
     }
    
   }
@@ -1196,7 +1552,7 @@ void FIRRTLParser::ModuleBlockContext::exitRule(tree::ParseTreeListener *listene
 }
 
 
-antlrcpp::Any FIRRTLParser::ModuleBlockContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::ModuleBlockContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitModuleBlock(this);
   else
@@ -1208,109 +1564,24 @@ FIRRTLParser::ModuleBlockContext* FIRRTLParser::moduleBlock() {
   enterRule(_localctx, 16, FIRRTLParser::RuleModuleBlock);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(240);
+    setState(246);
     _errHandler->sync(this);
     _la = _input->LA(1);
-    while ((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & ((1ULL << FIRRTLParser::T__13)
-      | (1ULL << FIRRTLParser::T__19)
-      | (1ULL << FIRRTLParser::T__20)
-      | (1ULL << FIRRTLParser::T__21)
-      | (1ULL << FIRRTLParser::T__26)
-      | (1ULL << FIRRTLParser::T__27)
-      | (1ULL << FIRRTLParser::T__29)
-      | (1ULL << FIRRTLParser::T__30)
-      | (1ULL << FIRRTLParser::T__31)
-      | (1ULL << FIRRTLParser::T__32)
-      | (1ULL << FIRRTLParser::T__33)
-      | (1ULL << FIRRTLParser::T__34)
-      | (1ULL << FIRRTLParser::T__35)
-      | (1ULL << FIRRTLParser::T__36)
-      | (1ULL << FIRRTLParser::T__37)
-      | (1ULL << FIRRTLParser::T__38)
-      | (1ULL << FIRRTLParser::T__39)
-      | (1ULL << FIRRTLParser::T__40)
-      | (1ULL << FIRRTLParser::T__41)
-      | (1ULL << FIRRTLParser::T__42)
-      | (1ULL << FIRRTLParser::T__43)
-      | (1ULL << FIRRTLParser::T__44)
-      | (1ULL << FIRRTLParser::T__45)
-      | (1ULL << FIRRTLParser::T__46)
-      | (1ULL << FIRRTLParser::T__47)
-      | (1ULL << FIRRTLParser::T__48)
-      | (1ULL << FIRRTLParser::T__49)
-      | (1ULL << FIRRTLParser::T__50)
-      | (1ULL << FIRRTLParser::T__51)
-      | (1ULL << FIRRTLParser::T__52)
-      | (1ULL << FIRRTLParser::T__53)
-      | (1ULL << FIRRTLParser::T__54)
-      | (1ULL << FIRRTLParser::T__55)
-      | (1ULL << FIRRTLParser::T__56)
-      | (1ULL << FIRRTLParser::T__57)
-      | (1ULL << FIRRTLParser::T__58)
-      | (1ULL << FIRRTLParser::T__59)
-      | (1ULL << FIRRTLParser::T__60)
-      | (1ULL << FIRRTLParser::T__61)
-      | (1ULL << FIRRTLParser::T__62))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
-      ((1ULL << (_la - 64)) & ((1ULL << (FIRRTLParser::T__63 - 64))
-      | (1ULL << (FIRRTLParser::T__64 - 64))
-      | (1ULL << (FIRRTLParser::T__65 - 64))
-      | (1ULL << (FIRRTLParser::T__66 - 64))
-      | (1ULL << (FIRRTLParser::T__67 - 64))
-      | (1ULL << (FIRRTLParser::T__68 - 64))
-      | (1ULL << (FIRRTLParser::T__69 - 64))
-      | (1ULL << (FIRRTLParser::Key_circuit - 64))
-      | (1ULL << (FIRRTLParser::Key_module - 64))
-      | (1ULL << (FIRRTLParser::Key_extmodule - 64))
-      | (1ULL << (FIRRTLParser::Key_parameter - 64))
-      | (1ULL << (FIRRTLParser::Key_input - 64))
-      | (1ULL << (FIRRTLParser::Key_output - 64))
-      | (1ULL << (FIRRTLParser::Key_UInt - 64))
-      | (1ULL << (FIRRTLParser::Key_SInt - 64))
-      | (1ULL << (FIRRTLParser::Key_Clock - 64))
-      | (1ULL << (FIRRTLParser::Key_Analog - 64))
-      | (1ULL << (FIRRTLParser::Key_Fixed - 64))
-      | (1ULL << (FIRRTLParser::Key_flip - 64))
-      | (1ULL << (FIRRTLParser::Key_wire - 64))
-      | (1ULL << (FIRRTLParser::Key_reg - 64))
-      | (1ULL << (FIRRTLParser::Key_with - 64))
-      | (1ULL << (FIRRTLParser::Key_mem - 64))
-      | (1ULL << (FIRRTLParser::Key_depth - 64))
-      | (1ULL << (FIRRTLParser::Key_reader - 64))
-      | (1ULL << (FIRRTLParser::Key_writer - 64))
-      | (1ULL << (FIRRTLParser::Key_readwriter - 64))
-      | (1ULL << (FIRRTLParser::Key_inst - 64))
-      | (1ULL << (FIRRTLParser::Key_of - 64))
-      | (1ULL << (FIRRTLParser::Key_node - 64))
-      | (1ULL << (FIRRTLParser::Key_is - 64))
-      | (1ULL << (FIRRTLParser::Key_invalid - 64))
-      | (1ULL << (FIRRTLParser::Key_when - 64))
-      | (1ULL << (FIRRTLParser::Key_else - 64))
-      | (1ULL << (FIRRTLParser::Key_stop - 64))
-      | (1ULL << (FIRRTLParser::Key_printf - 64))
-      | (1ULL << (FIRRTLParser::Key_skip - 64))
-      | (1ULL << (FIRRTLParser::Key_old - 64))
-      | (1ULL << (FIRRTLParser::Key_new - 64))
-      | (1ULL << (FIRRTLParser::Key_undefined - 64))
-      | (1ULL << (FIRRTLParser::Key_mux - 64))
-      | (1ULL << (FIRRTLParser::Key_validif - 64))
-      | (1ULL << (FIRRTLParser::Key_cmem - 64))
-      | (1ULL << (FIRRTLParser::Key_smem - 64))
-      | (1ULL << (FIRRTLParser::Key_mport - 64))
-      | (1ULL << (FIRRTLParser::Key_infer - 64))
-      | (1ULL << (FIRRTLParser::Key_read - 64))
-      | (1ULL << (FIRRTLParser::Key_write - 64))
-      | (1ULL << (FIRRTLParser::Key_rdwr - 64))
-      | (1ULL << (FIRRTLParser::Id - 64))
-      | (1ULL << (FIRRTLParser::NEWLINE - 64)))) != 0)) {
-      setState(237);
+    while (((_la & ~ 0x3fULL) == 0) &&
+      ((1ULL << _la) & 395264) != 0 || (((_la - 70) & ~ 0x3fULL) == 0) &&
+      ((1ULL << (_la - 70)) & 4900479344532520959) != 0) {
+      setState(243);
       simple_stmt();
-      setState(242);
+      setState(248);
       _errHandler->sync(this);
       _la = _input->LA(1);
     }
@@ -1357,7 +1628,7 @@ void FIRRTLParser::Simple_reset0Context::exitRule(tree::ParseTreeListener *liste
 }
 
 
-antlrcpp::Any FIRRTLParser::Simple_reset0Context::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::Simple_reset0Context::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitSimple_reset0(this);
   else
@@ -1368,23 +1639,27 @@ FIRRTLParser::Simple_reset0Context* FIRRTLParser::simple_reset0() {
   Simple_reset0Context *_localctx = _tracker.createInstance<Simple_reset0Context>(_ctx, getState());
   enterRule(_localctx, 18, FIRRTLParser::RuleSimple_reset0);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(243);
+    setState(249);
+    match(FIRRTLParser::T__10);
+    setState(250);
+    match(FIRRTLParser::T__11);
+    setState(251);
+    match(FIRRTLParser::T__12);
+    setState(252);
+    exp();
+    setState(253);
+    exp();
+    setState(254);
     match(FIRRTLParser::T__13);
-    setState(244);
-    match(FIRRTLParser::T__14);
-    setState(245);
-    match(FIRRTLParser::T__15);
-    setState(246);
-    exp(0);
-    setState(247);
-    exp(0);
-    setState(248);
-    match(FIRRTLParser::T__16);
    
   }
   catch (RecognitionException &e) {
@@ -1424,7 +1699,7 @@ void FIRRTLParser::Simple_resetContext::exitRule(tree::ParseTreeListener *listen
 }
 
 
-antlrcpp::Any FIRRTLParser::Simple_resetContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::Simple_resetContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitSimple_reset(this);
   else
@@ -1435,28 +1710,32 @@ FIRRTLParser::Simple_resetContext* FIRRTLParser::simple_reset() {
   Simple_resetContext *_localctx = _tracker.createInstance<Simple_resetContext>(_ctx, getState());
   enterRule(_localctx, 20, FIRRTLParser::RuleSimple_reset);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
-    setState(255);
+    setState(261);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case FIRRTLParser::T__13: {
+      case FIRRTLParser::T__10: {
         enterOuterAlt(_localctx, 1);
-        setState(250);
+        setState(256);
         simple_reset0();
         break;
       }
 
-      case FIRRTLParser::T__15: {
+      case FIRRTLParser::T__12: {
         enterOuterAlt(_localctx, 2);
-        setState(251);
-        match(FIRRTLParser::T__15);
-        setState(252);
+        setState(257);
+        match(FIRRTLParser::T__12);
+        setState(258);
         simple_reset0();
-        setState(253);
-        match(FIRRTLParser::T__16);
+        setState(259);
+        match(FIRRTLParser::T__13);
         break;
       }
 
@@ -1514,7 +1793,7 @@ void FIRRTLParser::Reset_blockContext::exitRule(tree::ParseTreeListener *listene
 }
 
 
-antlrcpp::Any FIRRTLParser::Reset_blockContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::Reset_blockContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitReset_block(this);
   else
@@ -1526,40 +1805,44 @@ FIRRTLParser::Reset_blockContext* FIRRTLParser::reset_block() {
   enterRule(_localctx, 22, FIRRTLParser::RuleReset_block);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
-    setState(268);
+    setState(274);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case FIRRTLParser::INDENT: {
         enterOuterAlt(_localctx, 1);
-        setState(257);
+        setState(263);
         match(FIRRTLParser::INDENT);
-        setState(258);
+        setState(264);
         simple_reset();
-        setState(260);
+        setState(266);
         _errHandler->sync(this);
 
         _la = _input->LA(1);
         if (_la == FIRRTLParser::FileInfo) {
-          setState(259);
+          setState(265);
           info();
         }
-        setState(262);
+        setState(268);
         match(FIRRTLParser::DEDENT);
         break;
       }
 
-      case FIRRTLParser::T__15: {
+      case FIRRTLParser::T__12: {
         enterOuterAlt(_localctx, 2);
-        setState(264);
-        match(FIRRTLParser::T__15);
-        setState(265);
+        setState(270);
+        match(FIRRTLParser::T__12);
+        setState(271);
         simple_reset();
-        setState(266);
-        match(FIRRTLParser::T__16);
+        setState(272);
+        match(FIRRTLParser::T__13);
         break;
       }
 
@@ -1675,6 +1958,10 @@ tree::TerminalNode* FIRRTLParser::StmtContext::Key_node() {
   return getToken(FIRRTLParser::Key_node, 0);
 }
 
+FIRRTLParser::RefContext* FIRRTLParser::StmtContext::ref() {
+  return getRuleContext<FIRRTLParser::RefContext>(0);
+}
+
 tree::TerminalNode* FIRRTLParser::StmtContext::Key_is() {
   return getToken(FIRRTLParser::Key_is, 0);
 }
@@ -1691,12 +1978,32 @@ FIRRTLParser::IntLitContext* FIRRTLParser::StmtContext::intLit() {
   return getRuleContext<FIRRTLParser::IntLitContext>(0);
 }
 
+FIRRTLParser::StmtNameContext* FIRRTLParser::StmtContext::stmtName() {
+  return getRuleContext<FIRRTLParser::StmtNameContext>(0);
+}
+
 tree::TerminalNode* FIRRTLParser::StmtContext::StringLit() {
   return getToken(FIRRTLParser::StringLit, 0);
 }
 
 tree::TerminalNode* FIRRTLParser::StmtContext::Key_skip() {
   return getToken(FIRRTLParser::Key_skip, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::StmtContext::Key_attach() {
+  return getToken(FIRRTLParser::Key_attach, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::StmtContext::Key_assert() {
+  return getToken(FIRRTLParser::Key_assert, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::StmtContext::Key_assume() {
+  return getToken(FIRRTLParser::Key_assume, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::StmtContext::Key_cover() {
+  return getToken(FIRRTLParser::Key_cover, 0);
 }
 
 
@@ -1717,7 +2024,7 @@ void FIRRTLParser::StmtContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::StmtContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::StmtContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitStmt(this);
   else
@@ -1729,29 +2036,33 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
   enterRule(_localctx, 24, FIRRTLParser::RuleStmt);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
-    setState(404);
+    setState(455);
     _errHandler->sync(this);
-    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 46, _ctx)) {
+    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 54, _ctx)) {
     case 1: {
       enterOuterAlt(_localctx, 1);
-      setState(270);
+      setState(276);
       match(FIRRTLParser::Key_wire);
-      setState(271);
+      setState(277);
       id();
-      setState(272);
+      setState(278);
       match(FIRRTLParser::T__0);
-      setState(273);
+      setState(279);
       type(0);
-      setState(275);
+      setState(281);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::FileInfo) {
-        setState(274);
+        setState(280);
         info();
       }
       break;
@@ -1759,50 +2070,33 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
 
     case 2: {
       enterOuterAlt(_localctx, 2);
-      setState(277);
+      setState(283);
       match(FIRRTLParser::Key_reg);
-      setState(278);
+      setState(284);
       id();
-      setState(279);
-      match(FIRRTLParser::T__0);
-      setState(280);
-      type(0);
-      setState(281);
-      exp(0);
       setState(285);
+      match(FIRRTLParser::T__0);
+      setState(286);
+      type(0);
+      setState(287);
+      exp();
+      setState(291);
       _errHandler->sync(this);
 
       switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 27, _ctx)) {
       case 1: {
-        setState(282);
+        setState(288);
         match(FIRRTLParser::Key_with);
-        setState(283);
+        setState(289);
         match(FIRRTLParser::T__0);
-        setState(284);
+        setState(290);
         reset_block();
         break;
       }
 
+      default:
+        break;
       }
-      setState(288);
-      _errHandler->sync(this);
-
-      _la = _input->LA(1);
-      if (_la == FIRRTLParser::FileInfo) {
-        setState(287);
-        info();
-      }
-      break;
-    }
-
-    case 3: {
-      enterOuterAlt(_localctx, 3);
-      setState(290);
-      match(FIRRTLParser::Key_mem);
-      setState(291);
-      id();
-      setState(292);
-      match(FIRRTLParser::T__0);
       setState(294);
       _errHandler->sync(this);
 
@@ -1811,47 +2105,60 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
         setState(293);
         info();
       }
+      break;
+    }
+
+    case 3: {
+      enterOuterAlt(_localctx, 3);
       setState(296);
-      match(FIRRTLParser::INDENT);
+      match(FIRRTLParser::Key_mem);
+      setState(297);
+      id();
+      setState(298);
+      match(FIRRTLParser::T__0);
       setState(300);
       _errHandler->sync(this);
+
       _la = _input->LA(1);
-      while ((((_la & ~ 0x3fULL) == 0) &&
-        ((1ULL << _la) & ((1ULL << FIRRTLParser::T__22)
-        | (1ULL << FIRRTLParser::T__23)
-        | (1ULL << FIRRTLParser::T__24)
-        | (1ULL << FIRRTLParser::T__25))) != 0) || ((((_la - 87) & ~ 0x3fULL) == 0) &&
-        ((1ULL << (_la - 87)) & ((1ULL << (FIRRTLParser::Key_depth - 87))
-        | (1ULL << (FIRRTLParser::Key_reader - 87))
-        | (1ULL << (FIRRTLParser::Key_writer - 87))
-        | (1ULL << (FIRRTLParser::Key_readwriter - 87)))) != 0)) {
-        setState(297);
+      if (_la == FIRRTLParser::FileInfo) {
+        setState(299);
+        info();
+      }
+      setState(302);
+      match(FIRRTLParser::INDENT);
+      setState(306);
+      _errHandler->sync(this);
+      _la = _input->LA(1);
+      while (((_la & ~ 0x3fULL) == 0) &&
+        ((1ULL << _la) & 7864320) != 0 || (((_la - 89) & ~ 0x3fULL) == 0) &&
+        ((1ULL << (_la - 89)) & 15) != 0) {
+        setState(303);
         memField();
-        setState(302);
+        setState(308);
         _errHandler->sync(this);
         _la = _input->LA(1);
       }
-      setState(303);
+      setState(309);
       match(FIRRTLParser::DEDENT);
       break;
     }
 
     case 4: {
       enterOuterAlt(_localctx, 4);
-      setState(305);
+      setState(311);
       match(FIRRTLParser::Key_cmem);
-      setState(306);
+      setState(312);
       id();
-      setState(307);
+      setState(313);
       match(FIRRTLParser::T__0);
-      setState(308);
+      setState(314);
       type(0);
-      setState(310);
+      setState(316);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::FileInfo) {
-        setState(309);
+        setState(315);
         info();
       }
       break;
@@ -1859,31 +2166,33 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
 
     case 5: {
       enterOuterAlt(_localctx, 5);
-      setState(312);
+      setState(318);
       match(FIRRTLParser::Key_smem);
-      setState(313);
+      setState(319);
       id();
-      setState(314);
+      setState(320);
       match(FIRRTLParser::T__0);
-      setState(315);
+      setState(321);
       type(0);
-      setState(317);
+      setState(323);
       _errHandler->sync(this);
 
       switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 32, _ctx)) {
       case 1: {
-        setState(316);
+        setState(322);
         ruw();
         break;
       }
 
+      default:
+        break;
       }
-      setState(320);
+      setState(326);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::FileInfo) {
-        setState(319);
+        setState(325);
         info();
       }
       break;
@@ -1891,30 +2200,30 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
 
     case 6: {
       enterOuterAlt(_localctx, 6);
-      setState(322);
-      mdir();
-      setState(323);
-      match(FIRRTLParser::Key_mport);
-      setState(324);
-      id();
-      setState(325);
-      match(FIRRTLParser::T__12);
-      setState(326);
-      id();
-      setState(327);
-      match(FIRRTLParser::T__9);
       setState(328);
-      exp(0);
+      mdir();
       setState(329);
-      match(FIRRTLParser::T__10);
+      match(FIRRTLParser::Key_mport);
       setState(330);
-      exp(0);
+      id();
+      setState(331);
+      match(FIRRTLParser::T__9);
       setState(332);
+      id();
+      setState(333);
+      match(FIRRTLParser::T__6);
+      setState(334);
+      exp();
+      setState(335);
+      match(FIRRTLParser::T__7);
+      setState(336);
+      exp();
+      setState(338);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::FileInfo) {
-        setState(331);
+        setState(337);
         info();
       }
       break;
@@ -1922,20 +2231,20 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
 
     case 7: {
       enterOuterAlt(_localctx, 7);
-      setState(334);
+      setState(340);
       match(FIRRTLParser::Key_inst);
-      setState(335);
+      setState(341);
       id();
-      setState(336);
+      setState(342);
       match(FIRRTLParser::Key_of);
-      setState(337);
+      setState(343);
       id();
-      setState(339);
+      setState(345);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::FileInfo) {
-        setState(338);
+        setState(344);
         info();
       }
       break;
@@ -1943,33 +2252,14 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
 
     case 8: {
       enterOuterAlt(_localctx, 8);
-      setState(341);
+      setState(347);
       match(FIRRTLParser::Key_node);
-      setState(342);
-      id();
-      setState(343);
-      match(FIRRTLParser::T__12);
-      setState(344);
-      exp(0);
-      setState(346);
-      _errHandler->sync(this);
-
-      _la = _input->LA(1);
-      if (_la == FIRRTLParser::FileInfo) {
-        setState(345);
-        info();
-      }
-      break;
-    }
-
-    case 9: {
-      enterOuterAlt(_localctx, 9);
       setState(348);
-      exp(0);
+      id();
       setState(349);
-      match(FIRRTLParser::T__17);
+      match(FIRRTLParser::T__9);
       setState(350);
-      exp(0);
+      exp();
       setState(352);
       _errHandler->sync(this);
 
@@ -1981,14 +2271,14 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
       break;
     }
 
-    case 10: {
-      enterOuterAlt(_localctx, 10);
+    case 9: {
+      enterOuterAlt(_localctx, 9);
       setState(354);
-      exp(0);
+      ref();
       setState(355);
-      match(FIRRTLParser::T__18);
+      match(FIRRTLParser::T__14);
       setState(356);
-      exp(0);
+      exp();
       setState(358);
       _errHandler->sync(this);
 
@@ -2000,14 +2290,14 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
       break;
     }
 
-    case 11: {
-      enterOuterAlt(_localctx, 11);
+    case 10: {
+      enterOuterAlt(_localctx, 10);
       setState(360);
-      exp(0);
+      ref();
       setState(361);
-      match(FIRRTLParser::Key_is);
+      match(FIRRTLParser::T__15);
       setState(362);
-      match(FIRRTLParser::Key_invalid);
+      exp();
       setState(364);
       _errHandler->sync(this);
 
@@ -2019,31 +2309,58 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
       break;
     }
 
+    case 11: {
+      enterOuterAlt(_localctx, 11);
+      setState(366);
+      ref();
+      setState(367);
+      match(FIRRTLParser::Key_is);
+      setState(368);
+      match(FIRRTLParser::Key_invalid);
+      setState(370);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::FileInfo) {
+        setState(369);
+        info();
+      }
+      break;
+    }
+
     case 12: {
       enterOuterAlt(_localctx, 12);
-      setState(366);
+      setState(372);
       when();
       break;
     }
 
     case 13: {
       enterOuterAlt(_localctx, 13);
-      setState(367);
-      match(FIRRTLParser::T__19);
-      setState(368);
-      exp(0);
-      setState(369);
-      exp(0);
-      setState(370);
-      intLit();
-      setState(371);
-      match(FIRRTLParser::T__16);
       setState(373);
+      match(FIRRTLParser::T__16);
+      setState(374);
+      exp();
+      setState(375);
+      exp();
+      setState(376);
+      intLit();
+      setState(377);
+      match(FIRRTLParser::T__13);
+      setState(379);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::T__0) {
+        setState(378);
+        stmtName();
+      }
+      setState(382);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::FileInfo) {
-        setState(372);
+        setState(381);
         info();
       }
       break;
@@ -2051,119 +2368,42 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
 
     case 14: {
       enterOuterAlt(_localctx, 14);
-      setState(375);
-      match(FIRRTLParser::T__20);
-      setState(376);
-      exp(0);
-      setState(377);
-      exp(0);
-      setState(378);
+      setState(384);
+      match(FIRRTLParser::T__17);
+      setState(385);
+      exp();
+      setState(386);
+      exp();
+      setState(387);
       match(FIRRTLParser::StringLit);
-      setState(382);
+      setState(391);
       _errHandler->sync(this);
       _la = _input->LA(1);
-      while ((((_la & ~ 0x3fULL) == 0) &&
-        ((1ULL << _la) & ((1ULL << FIRRTLParser::T__13)
-        | (1ULL << FIRRTLParser::T__26)
-        | (1ULL << FIRRTLParser::T__27)
-        | (1ULL << FIRRTLParser::T__29)
-        | (1ULL << FIRRTLParser::T__30)
-        | (1ULL << FIRRTLParser::T__31)
-        | (1ULL << FIRRTLParser::T__32)
-        | (1ULL << FIRRTLParser::T__33)
-        | (1ULL << FIRRTLParser::T__34)
-        | (1ULL << FIRRTLParser::T__35)
-        | (1ULL << FIRRTLParser::T__36)
-        | (1ULL << FIRRTLParser::T__37)
-        | (1ULL << FIRRTLParser::T__38)
-        | (1ULL << FIRRTLParser::T__39)
-        | (1ULL << FIRRTLParser::T__40)
-        | (1ULL << FIRRTLParser::T__41)
-        | (1ULL << FIRRTLParser::T__42)
-        | (1ULL << FIRRTLParser::T__43)
-        | (1ULL << FIRRTLParser::T__44)
-        | (1ULL << FIRRTLParser::T__45)
-        | (1ULL << FIRRTLParser::T__46)
-        | (1ULL << FIRRTLParser::T__47)
-        | (1ULL << FIRRTLParser::T__48)
-        | (1ULL << FIRRTLParser::T__49)
-        | (1ULL << FIRRTLParser::T__50)
-        | (1ULL << FIRRTLParser::T__51)
-        | (1ULL << FIRRTLParser::T__52)
-        | (1ULL << FIRRTLParser::T__53)
-        | (1ULL << FIRRTLParser::T__54)
-        | (1ULL << FIRRTLParser::T__55)
-        | (1ULL << FIRRTLParser::T__56)
-        | (1ULL << FIRRTLParser::T__57)
-        | (1ULL << FIRRTLParser::T__58)
-        | (1ULL << FIRRTLParser::T__59)
-        | (1ULL << FIRRTLParser::T__60)
-        | (1ULL << FIRRTLParser::T__61)
-        | (1ULL << FIRRTLParser::T__62))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
-        ((1ULL << (_la - 64)) & ((1ULL << (FIRRTLParser::T__63 - 64))
-        | (1ULL << (FIRRTLParser::T__64 - 64))
-        | (1ULL << (FIRRTLParser::T__65 - 64))
-        | (1ULL << (FIRRTLParser::T__66 - 64))
-        | (1ULL << (FIRRTLParser::T__67 - 64))
-        | (1ULL << (FIRRTLParser::T__68 - 64))
-        | (1ULL << (FIRRTLParser::T__69 - 64))
-        | (1ULL << (FIRRTLParser::Key_circuit - 64))
-        | (1ULL << (FIRRTLParser::Key_module - 64))
-        | (1ULL << (FIRRTLParser::Key_extmodule - 64))
-        | (1ULL << (FIRRTLParser::Key_parameter - 64))
-        | (1ULL << (FIRRTLParser::Key_input - 64))
-        | (1ULL << (FIRRTLParser::Key_output - 64))
-        | (1ULL << (FIRRTLParser::Key_UInt - 64))
-        | (1ULL << (FIRRTLParser::Key_SInt - 64))
-        | (1ULL << (FIRRTLParser::Key_Clock - 64))
-        | (1ULL << (FIRRTLParser::Key_Analog - 64))
-        | (1ULL << (FIRRTLParser::Key_Fixed - 64))
-        | (1ULL << (FIRRTLParser::Key_flip - 64))
-        | (1ULL << (FIRRTLParser::Key_wire - 64))
-        | (1ULL << (FIRRTLParser::Key_reg - 64))
-        | (1ULL << (FIRRTLParser::Key_with - 64))
-        | (1ULL << (FIRRTLParser::Key_mem - 64))
-        | (1ULL << (FIRRTLParser::Key_depth - 64))
-        | (1ULL << (FIRRTLParser::Key_reader - 64))
-        | (1ULL << (FIRRTLParser::Key_writer - 64))
-        | (1ULL << (FIRRTLParser::Key_readwriter - 64))
-        | (1ULL << (FIRRTLParser::Key_inst - 64))
-        | (1ULL << (FIRRTLParser::Key_of - 64))
-        | (1ULL << (FIRRTLParser::Key_node - 64))
-        | (1ULL << (FIRRTLParser::Key_is - 64))
-        | (1ULL << (FIRRTLParser::Key_invalid - 64))
-        | (1ULL << (FIRRTLParser::Key_when - 64))
-        | (1ULL << (FIRRTLParser::Key_else - 64))
-        | (1ULL << (FIRRTLParser::Key_stop - 64))
-        | (1ULL << (FIRRTLParser::Key_printf - 64))
-        | (1ULL << (FIRRTLParser::Key_skip - 64))
-        | (1ULL << (FIRRTLParser::Key_old - 64))
-        | (1ULL << (FIRRTLParser::Key_new - 64))
-        | (1ULL << (FIRRTLParser::Key_undefined - 64))
-        | (1ULL << (FIRRTLParser::Key_mux - 64))
-        | (1ULL << (FIRRTLParser::Key_validif - 64))
-        | (1ULL << (FIRRTLParser::Key_cmem - 64))
-        | (1ULL << (FIRRTLParser::Key_smem - 64))
-        | (1ULL << (FIRRTLParser::Key_mport - 64))
-        | (1ULL << (FIRRTLParser::Key_infer - 64))
-        | (1ULL << (FIRRTLParser::Key_read - 64))
-        | (1ULL << (FIRRTLParser::Key_write - 64))
-        | (1ULL << (FIRRTLParser::Key_rdwr - 64))
-        | (1ULL << (FIRRTLParser::Id - 64)))) != 0)) {
-        setState(379);
-        exp(0);
-        setState(384);
+      while ((((_la - 11) & ~ 0x3fULL) == 0) &&
+        ((1ULL << (_la - 11)) & -20479) != 0 || (((_la - 75) & ~ 0x3fULL) == 0) &&
+        ((1ULL << (_la - 75)) & 9024791440785407) != 0) {
+        setState(388);
+        exp();
+        setState(393);
         _errHandler->sync(this);
         _la = _input->LA(1);
       }
-      setState(385);
-      match(FIRRTLParser::T__16);
-      setState(387);
+      setState(394);
+      match(FIRRTLParser::T__13);
+      setState(396);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::T__0) {
+        setState(395);
+        stmtName();
+      }
+      setState(399);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::FileInfo) {
-        setState(386);
+        setState(398);
         info();
       }
       break;
@@ -2171,14 +2411,14 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
 
     case 15: {
       enterOuterAlt(_localctx, 15);
-      setState(389);
+      setState(401);
       match(FIRRTLParser::Key_skip);
-      setState(391);
+      setState(403);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::FileInfo) {
-        setState(390);
+        setState(402);
         info();
       }
       break;
@@ -2186,121 +2426,206 @@ FIRRTLParser::StmtContext* FIRRTLParser::stmt() {
 
     case 16: {
       enterOuterAlt(_localctx, 16);
-      setState(393);
-      match(FIRRTLParser::T__21);
-      setState(394);
-      match(FIRRTLParser::T__15);
-      setState(396); 
+      setState(405);
+      match(FIRRTLParser::Key_attach);
+      setState(406);
+      match(FIRRTLParser::T__12);
+      setState(408); 
       _errHandler->sync(this);
       _la = _input->LA(1);
       do {
-        setState(395);
-        exp(0);
-        setState(398); 
+        setState(407);
+        exp();
+        setState(410); 
         _errHandler->sync(this);
         _la = _input->LA(1);
-      } while ((((_la & ~ 0x3fULL) == 0) &&
-        ((1ULL << _la) & ((1ULL << FIRRTLParser::T__13)
-        | (1ULL << FIRRTLParser::T__26)
-        | (1ULL << FIRRTLParser::T__27)
-        | (1ULL << FIRRTLParser::T__29)
-        | (1ULL << FIRRTLParser::T__30)
-        | (1ULL << FIRRTLParser::T__31)
-        | (1ULL << FIRRTLParser::T__32)
-        | (1ULL << FIRRTLParser::T__33)
-        | (1ULL << FIRRTLParser::T__34)
-        | (1ULL << FIRRTLParser::T__35)
-        | (1ULL << FIRRTLParser::T__36)
-        | (1ULL << FIRRTLParser::T__37)
-        | (1ULL << FIRRTLParser::T__38)
-        | (1ULL << FIRRTLParser::T__39)
-        | (1ULL << FIRRTLParser::T__40)
-        | (1ULL << FIRRTLParser::T__41)
-        | (1ULL << FIRRTLParser::T__42)
-        | (1ULL << FIRRTLParser::T__43)
-        | (1ULL << FIRRTLParser::T__44)
-        | (1ULL << FIRRTLParser::T__45)
-        | (1ULL << FIRRTLParser::T__46)
-        | (1ULL << FIRRTLParser::T__47)
-        | (1ULL << FIRRTLParser::T__48)
-        | (1ULL << FIRRTLParser::T__49)
-        | (1ULL << FIRRTLParser::T__50)
-        | (1ULL << FIRRTLParser::T__51)
-        | (1ULL << FIRRTLParser::T__52)
-        | (1ULL << FIRRTLParser::T__53)
-        | (1ULL << FIRRTLParser::T__54)
-        | (1ULL << FIRRTLParser::T__55)
-        | (1ULL << FIRRTLParser::T__56)
-        | (1ULL << FIRRTLParser::T__57)
-        | (1ULL << FIRRTLParser::T__58)
-        | (1ULL << FIRRTLParser::T__59)
-        | (1ULL << FIRRTLParser::T__60)
-        | (1ULL << FIRRTLParser::T__61)
-        | (1ULL << FIRRTLParser::T__62))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
-        ((1ULL << (_la - 64)) & ((1ULL << (FIRRTLParser::T__63 - 64))
-        | (1ULL << (FIRRTLParser::T__64 - 64))
-        | (1ULL << (FIRRTLParser::T__65 - 64))
-        | (1ULL << (FIRRTLParser::T__66 - 64))
-        | (1ULL << (FIRRTLParser::T__67 - 64))
-        | (1ULL << (FIRRTLParser::T__68 - 64))
-        | (1ULL << (FIRRTLParser::T__69 - 64))
-        | (1ULL << (FIRRTLParser::Key_circuit - 64))
-        | (1ULL << (FIRRTLParser::Key_module - 64))
-        | (1ULL << (FIRRTLParser::Key_extmodule - 64))
-        | (1ULL << (FIRRTLParser::Key_parameter - 64))
-        | (1ULL << (FIRRTLParser::Key_input - 64))
-        | (1ULL << (FIRRTLParser::Key_output - 64))
-        | (1ULL << (FIRRTLParser::Key_UInt - 64))
-        | (1ULL << (FIRRTLParser::Key_SInt - 64))
-        | (1ULL << (FIRRTLParser::Key_Clock - 64))
-        | (1ULL << (FIRRTLParser::Key_Analog - 64))
-        | (1ULL << (FIRRTLParser::Key_Fixed - 64))
-        | (1ULL << (FIRRTLParser::Key_flip - 64))
-        | (1ULL << (FIRRTLParser::Key_wire - 64))
-        | (1ULL << (FIRRTLParser::Key_reg - 64))
-        | (1ULL << (FIRRTLParser::Key_with - 64))
-        | (1ULL << (FIRRTLParser::Key_mem - 64))
-        | (1ULL << (FIRRTLParser::Key_depth - 64))
-        | (1ULL << (FIRRTLParser::Key_reader - 64))
-        | (1ULL << (FIRRTLParser::Key_writer - 64))
-        | (1ULL << (FIRRTLParser::Key_readwriter - 64))
-        | (1ULL << (FIRRTLParser::Key_inst - 64))
-        | (1ULL << (FIRRTLParser::Key_of - 64))
-        | (1ULL << (FIRRTLParser::Key_node - 64))
-        | (1ULL << (FIRRTLParser::Key_is - 64))
-        | (1ULL << (FIRRTLParser::Key_invalid - 64))
-        | (1ULL << (FIRRTLParser::Key_when - 64))
-        | (1ULL << (FIRRTLParser::Key_else - 64))
-        | (1ULL << (FIRRTLParser::Key_stop - 64))
-        | (1ULL << (FIRRTLParser::Key_printf - 64))
-        | (1ULL << (FIRRTLParser::Key_skip - 64))
-        | (1ULL << (FIRRTLParser::Key_old - 64))
-        | (1ULL << (FIRRTLParser::Key_new - 64))
-        | (1ULL << (FIRRTLParser::Key_undefined - 64))
-        | (1ULL << (FIRRTLParser::Key_mux - 64))
-        | (1ULL << (FIRRTLParser::Key_validif - 64))
-        | (1ULL << (FIRRTLParser::Key_cmem - 64))
-        | (1ULL << (FIRRTLParser::Key_smem - 64))
-        | (1ULL << (FIRRTLParser::Key_mport - 64))
-        | (1ULL << (FIRRTLParser::Key_infer - 64))
-        | (1ULL << (FIRRTLParser::Key_read - 64))
-        | (1ULL << (FIRRTLParser::Key_write - 64))
-        | (1ULL << (FIRRTLParser::Key_rdwr - 64))
-        | (1ULL << (FIRRTLParser::Id - 64)))) != 0));
-      setState(400);
-      match(FIRRTLParser::T__16);
-      setState(402);
+      } while ((((_la - 11) & ~ 0x3fULL) == 0) &&
+        ((1ULL << (_la - 11)) & -20479) != 0 || (((_la - 75) & ~ 0x3fULL) == 0) &&
+        ((1ULL << (_la - 75)) & 9024791440785407) != 0);
+      setState(412);
+      match(FIRRTLParser::T__13);
+      setState(414);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::FileInfo) {
-        setState(401);
+        setState(413);
         info();
       }
       break;
     }
 
+    case 17: {
+      enterOuterAlt(_localctx, 17);
+      setState(416);
+      match(FIRRTLParser::Key_assert);
+      setState(417);
+      match(FIRRTLParser::T__12);
+      setState(418);
+      exp();
+      setState(419);
+      exp();
+      setState(420);
+      exp();
+      setState(421);
+      match(FIRRTLParser::StringLit);
+      setState(422);
+      match(FIRRTLParser::T__13);
+      setState(424);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::T__0) {
+        setState(423);
+        stmtName();
+      }
+      setState(427);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::FileInfo) {
+        setState(426);
+        info();
+      }
+      break;
     }
+
+    case 18: {
+      enterOuterAlt(_localctx, 18);
+      setState(429);
+      match(FIRRTLParser::Key_assume);
+      setState(430);
+      match(FIRRTLParser::T__12);
+      setState(431);
+      exp();
+      setState(432);
+      exp();
+      setState(433);
+      exp();
+      setState(434);
+      match(FIRRTLParser::StringLit);
+      setState(435);
+      match(FIRRTLParser::T__13);
+      setState(437);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::T__0) {
+        setState(436);
+        stmtName();
+      }
+      setState(440);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::FileInfo) {
+        setState(439);
+        info();
+      }
+      break;
+    }
+
+    case 19: {
+      enterOuterAlt(_localctx, 19);
+      setState(442);
+      match(FIRRTLParser::Key_cover);
+      setState(443);
+      match(FIRRTLParser::T__12);
+      setState(444);
+      exp();
+      setState(445);
+      exp();
+      setState(446);
+      exp();
+      setState(447);
+      match(FIRRTLParser::StringLit);
+      setState(448);
+      match(FIRRTLParser::T__13);
+      setState(450);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::T__0) {
+        setState(449);
+        stmtName();
+      }
+      setState(453);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::FileInfo) {
+        setState(452);
+        info();
+      }
+      break;
+    }
+
+    default:
+      break;
+    }
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- StmtNameContext ------------------------------------------------------------------
+
+FIRRTLParser::StmtNameContext::StmtNameContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+FIRRTLParser::IdContext* FIRRTLParser::StmtNameContext::id() {
+  return getRuleContext<FIRRTLParser::IdContext>(0);
+}
+
+
+size_t FIRRTLParser::StmtNameContext::getRuleIndex() const {
+  return FIRRTLParser::RuleStmtName;
+}
+
+void FIRRTLParser::StmtNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<FIRRTLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterStmtName(this);
+}
+
+void FIRRTLParser::StmtNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<FIRRTLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitStmtName(this);
+}
+
+
+std::any FIRRTLParser::StmtNameContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
+    return parserVisitor->visitStmtName(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+FIRRTLParser::StmtNameContext* FIRRTLParser::stmtName() {
+  StmtNameContext *_localctx = _tracker.createInstance<StmtNameContext>(_ctx, getState());
+  enterRule(_localctx, 26, FIRRTLParser::RuleStmtName);
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(457);
+    match(FIRRTLParser::T__0);
+    setState(458);
+    id();
    
   }
   catch (RecognitionException &e) {
@@ -2376,7 +2701,7 @@ void FIRRTLParser::MemFieldContext::exitRule(tree::ParseTreeListener *listener) 
 }
 
 
-antlrcpp::Any FIRRTLParser::MemFieldContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::MemFieldContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitMemField(this);
   else
@@ -2385,269 +2710,147 @@ antlrcpp::Any FIRRTLParser::MemFieldContext::accept(tree::ParseTreeVisitor *visi
 
 FIRRTLParser::MemFieldContext* FIRRTLParser::memField() {
   MemFieldContext *_localctx = _tracker.createInstance<MemFieldContext>(_ctx, getState());
-  enterRule(_localctx, 26, FIRRTLParser::RuleMemField);
+  enterRule(_localctx, 28, FIRRTLParser::RuleMemField);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
-    setState(458);
+    setState(512);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case FIRRTLParser::T__22: {
+      case FIRRTLParser::T__18: {
         enterOuterAlt(_localctx, 1);
-        setState(406);
-        match(FIRRTLParser::T__22);
-        setState(407);
-        match(FIRRTLParser::T__14);
-        setState(408);
+        setState(460);
+        match(FIRRTLParser::T__18);
+        setState(461);
+        match(FIRRTLParser::T__11);
+        setState(462);
         type(0);
-        setState(409);
+        setState(463);
         match(FIRRTLParser::NEWLINE);
         break;
       }
 
       case FIRRTLParser::Key_depth: {
         enterOuterAlt(_localctx, 2);
-        setState(411);
+        setState(465);
         match(FIRRTLParser::Key_depth);
-        setState(412);
-        match(FIRRTLParser::T__14);
-        setState(413);
+        setState(466);
+        match(FIRRTLParser::T__11);
+        setState(467);
         intLit();
-        setState(414);
+        setState(468);
         match(FIRRTLParser::NEWLINE);
         break;
       }
 
-      case FIRRTLParser::T__23: {
+      case FIRRTLParser::T__19: {
         enterOuterAlt(_localctx, 3);
-        setState(416);
-        match(FIRRTLParser::T__23);
-        setState(417);
-        match(FIRRTLParser::T__14);
-        setState(418);
+        setState(470);
+        match(FIRRTLParser::T__19);
+        setState(471);
+        match(FIRRTLParser::T__11);
+        setState(472);
         intLit();
-        setState(419);
+        setState(473);
         match(FIRRTLParser::NEWLINE);
         break;
       }
 
-      case FIRRTLParser::T__24: {
+      case FIRRTLParser::T__20: {
         enterOuterAlt(_localctx, 4);
-        setState(421);
-        match(FIRRTLParser::T__24);
-        setState(422);
-        match(FIRRTLParser::T__14);
-        setState(423);
+        setState(475);
+        match(FIRRTLParser::T__20);
+        setState(476);
+        match(FIRRTLParser::T__11);
+        setState(477);
         intLit();
-        setState(424);
+        setState(478);
         match(FIRRTLParser::NEWLINE);
         break;
       }
 
-      case FIRRTLParser::T__25: {
+      case FIRRTLParser::T__21: {
         enterOuterAlt(_localctx, 5);
-        setState(426);
-        match(FIRRTLParser::T__25);
-        setState(427);
-        match(FIRRTLParser::T__14);
-        setState(428);
+        setState(480);
+        match(FIRRTLParser::T__21);
+        setState(481);
+        match(FIRRTLParser::T__11);
+        setState(482);
         ruw();
-        setState(429);
+        setState(483);
         match(FIRRTLParser::NEWLINE);
         break;
       }
 
       case FIRRTLParser::Key_reader: {
         enterOuterAlt(_localctx, 6);
-        setState(431);
+        setState(485);
         match(FIRRTLParser::Key_reader);
-        setState(432);
-        match(FIRRTLParser::T__14);
-        setState(434); 
+        setState(486);
+        match(FIRRTLParser::T__11);
+        setState(488); 
         _errHandler->sync(this);
         _la = _input->LA(1);
         do {
-          setState(433);
+          setState(487);
           id();
-          setState(436); 
+          setState(490); 
           _errHandler->sync(this);
           _la = _input->LA(1);
-        } while (_la == FIRRTLParser::T__13 || ((((_la - 71) & ~ 0x3fULL) == 0) &&
-          ((1ULL << (_la - 71)) & ((1ULL << (FIRRTLParser::Key_circuit - 71))
-          | (1ULL << (FIRRTLParser::Key_module - 71))
-          | (1ULL << (FIRRTLParser::Key_extmodule - 71))
-          | (1ULL << (FIRRTLParser::Key_parameter - 71))
-          | (1ULL << (FIRRTLParser::Key_input - 71))
-          | (1ULL << (FIRRTLParser::Key_output - 71))
-          | (1ULL << (FIRRTLParser::Key_UInt - 71))
-          | (1ULL << (FIRRTLParser::Key_SInt - 71))
-          | (1ULL << (FIRRTLParser::Key_Clock - 71))
-          | (1ULL << (FIRRTLParser::Key_Analog - 71))
-          | (1ULL << (FIRRTLParser::Key_Fixed - 71))
-          | (1ULL << (FIRRTLParser::Key_flip - 71))
-          | (1ULL << (FIRRTLParser::Key_wire - 71))
-          | (1ULL << (FIRRTLParser::Key_reg - 71))
-          | (1ULL << (FIRRTLParser::Key_with - 71))
-          | (1ULL << (FIRRTLParser::Key_mem - 71))
-          | (1ULL << (FIRRTLParser::Key_depth - 71))
-          | (1ULL << (FIRRTLParser::Key_reader - 71))
-          | (1ULL << (FIRRTLParser::Key_writer - 71))
-          | (1ULL << (FIRRTLParser::Key_readwriter - 71))
-          | (1ULL << (FIRRTLParser::Key_inst - 71))
-          | (1ULL << (FIRRTLParser::Key_of - 71))
-          | (1ULL << (FIRRTLParser::Key_node - 71))
-          | (1ULL << (FIRRTLParser::Key_is - 71))
-          | (1ULL << (FIRRTLParser::Key_invalid - 71))
-          | (1ULL << (FIRRTLParser::Key_when - 71))
-          | (1ULL << (FIRRTLParser::Key_else - 71))
-          | (1ULL << (FIRRTLParser::Key_stop - 71))
-          | (1ULL << (FIRRTLParser::Key_printf - 71))
-          | (1ULL << (FIRRTLParser::Key_skip - 71))
-          | (1ULL << (FIRRTLParser::Key_old - 71))
-          | (1ULL << (FIRRTLParser::Key_new - 71))
-          | (1ULL << (FIRRTLParser::Key_undefined - 71))
-          | (1ULL << (FIRRTLParser::Key_mux - 71))
-          | (1ULL << (FIRRTLParser::Key_validif - 71))
-          | (1ULL << (FIRRTLParser::Key_cmem - 71))
-          | (1ULL << (FIRRTLParser::Key_smem - 71))
-          | (1ULL << (FIRRTLParser::Key_mport - 71))
-          | (1ULL << (FIRRTLParser::Key_infer - 71))
-          | (1ULL << (FIRRTLParser::Key_read - 71))
-          | (1ULL << (FIRRTLParser::Key_write - 71))
-          | (1ULL << (FIRRTLParser::Key_rdwr - 71))
-          | (1ULL << (FIRRTLParser::Id - 71)))) != 0));
-        setState(438);
+        } while (_la == FIRRTLParser::T__10 || (((_la - 70) & ~ 0x3fULL) == 0) &&
+          ((1ULL << (_la - 70)) & 288793326105133055) != 0);
+        setState(492);
         match(FIRRTLParser::NEWLINE);
         break;
       }
 
       case FIRRTLParser::Key_writer: {
         enterOuterAlt(_localctx, 7);
-        setState(440);
+        setState(494);
         match(FIRRTLParser::Key_writer);
-        setState(441);
-        match(FIRRTLParser::T__14);
-        setState(443); 
+        setState(495);
+        match(FIRRTLParser::T__11);
+        setState(497); 
         _errHandler->sync(this);
         _la = _input->LA(1);
         do {
-          setState(442);
+          setState(496);
           id();
-          setState(445); 
+          setState(499); 
           _errHandler->sync(this);
           _la = _input->LA(1);
-        } while (_la == FIRRTLParser::T__13 || ((((_la - 71) & ~ 0x3fULL) == 0) &&
-          ((1ULL << (_la - 71)) & ((1ULL << (FIRRTLParser::Key_circuit - 71))
-          | (1ULL << (FIRRTLParser::Key_module - 71))
-          | (1ULL << (FIRRTLParser::Key_extmodule - 71))
-          | (1ULL << (FIRRTLParser::Key_parameter - 71))
-          | (1ULL << (FIRRTLParser::Key_input - 71))
-          | (1ULL << (FIRRTLParser::Key_output - 71))
-          | (1ULL << (FIRRTLParser::Key_UInt - 71))
-          | (1ULL << (FIRRTLParser::Key_SInt - 71))
-          | (1ULL << (FIRRTLParser::Key_Clock - 71))
-          | (1ULL << (FIRRTLParser::Key_Analog - 71))
-          | (1ULL << (FIRRTLParser::Key_Fixed - 71))
-          | (1ULL << (FIRRTLParser::Key_flip - 71))
-          | (1ULL << (FIRRTLParser::Key_wire - 71))
-          | (1ULL << (FIRRTLParser::Key_reg - 71))
-          | (1ULL << (FIRRTLParser::Key_with - 71))
-          | (1ULL << (FIRRTLParser::Key_mem - 71))
-          | (1ULL << (FIRRTLParser::Key_depth - 71))
-          | (1ULL << (FIRRTLParser::Key_reader - 71))
-          | (1ULL << (FIRRTLParser::Key_writer - 71))
-          | (1ULL << (FIRRTLParser::Key_readwriter - 71))
-          | (1ULL << (FIRRTLParser::Key_inst - 71))
-          | (1ULL << (FIRRTLParser::Key_of - 71))
-          | (1ULL << (FIRRTLParser::Key_node - 71))
-          | (1ULL << (FIRRTLParser::Key_is - 71))
-          | (1ULL << (FIRRTLParser::Key_invalid - 71))
-          | (1ULL << (FIRRTLParser::Key_when - 71))
-          | (1ULL << (FIRRTLParser::Key_else - 71))
-          | (1ULL << (FIRRTLParser::Key_stop - 71))
-          | (1ULL << (FIRRTLParser::Key_printf - 71))
-          | (1ULL << (FIRRTLParser::Key_skip - 71))
-          | (1ULL << (FIRRTLParser::Key_old - 71))
-          | (1ULL << (FIRRTLParser::Key_new - 71))
-          | (1ULL << (FIRRTLParser::Key_undefined - 71))
-          | (1ULL << (FIRRTLParser::Key_mux - 71))
-          | (1ULL << (FIRRTLParser::Key_validif - 71))
-          | (1ULL << (FIRRTLParser::Key_cmem - 71))
-          | (1ULL << (FIRRTLParser::Key_smem - 71))
-          | (1ULL << (FIRRTLParser::Key_mport - 71))
-          | (1ULL << (FIRRTLParser::Key_infer - 71))
-          | (1ULL << (FIRRTLParser::Key_read - 71))
-          | (1ULL << (FIRRTLParser::Key_write - 71))
-          | (1ULL << (FIRRTLParser::Key_rdwr - 71))
-          | (1ULL << (FIRRTLParser::Id - 71)))) != 0));
-        setState(447);
+        } while (_la == FIRRTLParser::T__10 || (((_la - 70) & ~ 0x3fULL) == 0) &&
+          ((1ULL << (_la - 70)) & 288793326105133055) != 0);
+        setState(501);
         match(FIRRTLParser::NEWLINE);
         break;
       }
 
       case FIRRTLParser::Key_readwriter: {
         enterOuterAlt(_localctx, 8);
-        setState(449);
+        setState(503);
         match(FIRRTLParser::Key_readwriter);
-        setState(450);
-        match(FIRRTLParser::T__14);
-        setState(452); 
+        setState(504);
+        match(FIRRTLParser::T__11);
+        setState(506); 
         _errHandler->sync(this);
         _la = _input->LA(1);
         do {
-          setState(451);
+          setState(505);
           id();
-          setState(454); 
+          setState(508); 
           _errHandler->sync(this);
           _la = _input->LA(1);
-        } while (_la == FIRRTLParser::T__13 || ((((_la - 71) & ~ 0x3fULL) == 0) &&
-          ((1ULL << (_la - 71)) & ((1ULL << (FIRRTLParser::Key_circuit - 71))
-          | (1ULL << (FIRRTLParser::Key_module - 71))
-          | (1ULL << (FIRRTLParser::Key_extmodule - 71))
-          | (1ULL << (FIRRTLParser::Key_parameter - 71))
-          | (1ULL << (FIRRTLParser::Key_input - 71))
-          | (1ULL << (FIRRTLParser::Key_output - 71))
-          | (1ULL << (FIRRTLParser::Key_UInt - 71))
-          | (1ULL << (FIRRTLParser::Key_SInt - 71))
-          | (1ULL << (FIRRTLParser::Key_Clock - 71))
-          | (1ULL << (FIRRTLParser::Key_Analog - 71))
-          | (1ULL << (FIRRTLParser::Key_Fixed - 71))
-          | (1ULL << (FIRRTLParser::Key_flip - 71))
-          | (1ULL << (FIRRTLParser::Key_wire - 71))
-          | (1ULL << (FIRRTLParser::Key_reg - 71))
-          | (1ULL << (FIRRTLParser::Key_with - 71))
-          | (1ULL << (FIRRTLParser::Key_mem - 71))
-          | (1ULL << (FIRRTLParser::Key_depth - 71))
-          | (1ULL << (FIRRTLParser::Key_reader - 71))
-          | (1ULL << (FIRRTLParser::Key_writer - 71))
-          | (1ULL << (FIRRTLParser::Key_readwriter - 71))
-          | (1ULL << (FIRRTLParser::Key_inst - 71))
-          | (1ULL << (FIRRTLParser::Key_of - 71))
-          | (1ULL << (FIRRTLParser::Key_node - 71))
-          | (1ULL << (FIRRTLParser::Key_is - 71))
-          | (1ULL << (FIRRTLParser::Key_invalid - 71))
-          | (1ULL << (FIRRTLParser::Key_when - 71))
-          | (1ULL << (FIRRTLParser::Key_else - 71))
-          | (1ULL << (FIRRTLParser::Key_stop - 71))
-          | (1ULL << (FIRRTLParser::Key_printf - 71))
-          | (1ULL << (FIRRTLParser::Key_skip - 71))
-          | (1ULL << (FIRRTLParser::Key_old - 71))
-          | (1ULL << (FIRRTLParser::Key_new - 71))
-          | (1ULL << (FIRRTLParser::Key_undefined - 71))
-          | (1ULL << (FIRRTLParser::Key_mux - 71))
-          | (1ULL << (FIRRTLParser::Key_validif - 71))
-          | (1ULL << (FIRRTLParser::Key_cmem - 71))
-          | (1ULL << (FIRRTLParser::Key_smem - 71))
-          | (1ULL << (FIRRTLParser::Key_mport - 71))
-          | (1ULL << (FIRRTLParser::Key_infer - 71))
-          | (1ULL << (FIRRTLParser::Key_read - 71))
-          | (1ULL << (FIRRTLParser::Key_write - 71))
-          | (1ULL << (FIRRTLParser::Key_rdwr - 71))
-          | (1ULL << (FIRRTLParser::Id - 71)))) != 0));
-        setState(456);
+        } while (_la == FIRRTLParser::T__10 || (((_la - 70) & ~ 0x3fULL) == 0) &&
+          ((1ULL << (_la - 70)) & 288793326105133055) != 0);
+        setState(510);
         match(FIRRTLParser::NEWLINE);
         break;
       }
@@ -2698,7 +2901,7 @@ void FIRRTLParser::Simple_stmtContext::exitRule(tree::ParseTreeListener *listene
 }
 
 
-antlrcpp::Any FIRRTLParser::Simple_stmtContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::Simple_stmtContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitSimple_stmt(this);
   else
@@ -2707,62 +2910,22 @@ antlrcpp::Any FIRRTLParser::Simple_stmtContext::accept(tree::ParseTreeVisitor *v
 
 FIRRTLParser::Simple_stmtContext* FIRRTLParser::simple_stmt() {
   Simple_stmtContext *_localctx = _tracker.createInstance<Simple_stmtContext>(_ctx, getState());
-  enterRule(_localctx, 28, FIRRTLParser::RuleSimple_stmt);
+  enterRule(_localctx, 30, FIRRTLParser::RuleSimple_stmt);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
-    setState(462);
+    setState(516);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case FIRRTLParser::T__13:
-      case FIRRTLParser::T__19:
-      case FIRRTLParser::T__20:
-      case FIRRTLParser::T__21:
-      case FIRRTLParser::T__26:
-      case FIRRTLParser::T__27:
-      case FIRRTLParser::T__29:
-      case FIRRTLParser::T__30:
-      case FIRRTLParser::T__31:
-      case FIRRTLParser::T__32:
-      case FIRRTLParser::T__33:
-      case FIRRTLParser::T__34:
-      case FIRRTLParser::T__35:
-      case FIRRTLParser::T__36:
-      case FIRRTLParser::T__37:
-      case FIRRTLParser::T__38:
-      case FIRRTLParser::T__39:
-      case FIRRTLParser::T__40:
-      case FIRRTLParser::T__41:
-      case FIRRTLParser::T__42:
-      case FIRRTLParser::T__43:
-      case FIRRTLParser::T__44:
-      case FIRRTLParser::T__45:
-      case FIRRTLParser::T__46:
-      case FIRRTLParser::T__47:
-      case FIRRTLParser::T__48:
-      case FIRRTLParser::T__49:
-      case FIRRTLParser::T__50:
-      case FIRRTLParser::T__51:
-      case FIRRTLParser::T__52:
-      case FIRRTLParser::T__53:
-      case FIRRTLParser::T__54:
-      case FIRRTLParser::T__55:
-      case FIRRTLParser::T__56:
-      case FIRRTLParser::T__57:
-      case FIRRTLParser::T__58:
-      case FIRRTLParser::T__59:
-      case FIRRTLParser::T__60:
-      case FIRRTLParser::T__61:
-      case FIRRTLParser::T__62:
-      case FIRRTLParser::T__63:
-      case FIRRTLParser::T__64:
-      case FIRRTLParser::T__65:
-      case FIRRTLParser::T__66:
-      case FIRRTLParser::T__67:
-      case FIRRTLParser::T__68:
-      case FIRRTLParser::T__69:
+      case FIRRTLParser::T__10:
+      case FIRRTLParser::T__16:
+      case FIRRTLParser::T__17:
       case FIRRTLParser::Key_circuit:
       case FIRRTLParser::Key_module:
       case FIRRTLParser::Key_extmodule:
@@ -2772,8 +2935,11 @@ FIRRTLParser::Simple_stmtContext* FIRRTLParser::simple_stmt() {
       case FIRRTLParser::Key_UInt:
       case FIRRTLParser::Key_SInt:
       case FIRRTLParser::Key_Clock:
+      case FIRRTLParser::Key_Reset:
+      case FIRRTLParser::Key_AsyncReset:
       case FIRRTLParser::Key_Analog:
       case FIRRTLParser::Key_Fixed:
+      case FIRRTLParser::Key_Interval:
       case FIRRTLParser::Key_flip:
       case FIRRTLParser::Key_wire:
       case FIRRTLParser::Key_reg:
@@ -2805,16 +2971,20 @@ FIRRTLParser::Simple_stmtContext* FIRRTLParser::simple_stmt() {
       case FIRRTLParser::Key_read:
       case FIRRTLParser::Key_write:
       case FIRRTLParser::Key_rdwr:
+      case FIRRTLParser::Key_attach:
+      case FIRRTLParser::Key_assert:
+      case FIRRTLParser::Key_assume:
+      case FIRRTLParser::Key_cover:
       case FIRRTLParser::Id: {
         enterOuterAlt(_localctx, 1);
-        setState(460);
+        setState(514);
         stmt();
         break;
       }
 
       case FIRRTLParser::NEWLINE: {
         enterOuterAlt(_localctx, 2);
-        setState(461);
+        setState(515);
         match(FIRRTLParser::NEWLINE);
         break;
       }
@@ -2873,7 +3043,7 @@ void FIRRTLParser::SuiteContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::SuiteContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::SuiteContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitSuite(this);
   else
@@ -2882,63 +3052,23 @@ antlrcpp::Any FIRRTLParser::SuiteContext::accept(tree::ParseTreeVisitor *visitor
 
 FIRRTLParser::SuiteContext* FIRRTLParser::suite() {
   SuiteContext *_localctx = _tracker.createInstance<SuiteContext>(_ctx, getState());
-  enterRule(_localctx, 30, FIRRTLParser::RuleSuite);
+  enterRule(_localctx, 32, FIRRTLParser::RuleSuite);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
-    setState(473);
+    setState(527);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case FIRRTLParser::T__13:
-      case FIRRTLParser::T__19:
-      case FIRRTLParser::T__20:
-      case FIRRTLParser::T__21:
-      case FIRRTLParser::T__26:
-      case FIRRTLParser::T__27:
-      case FIRRTLParser::T__29:
-      case FIRRTLParser::T__30:
-      case FIRRTLParser::T__31:
-      case FIRRTLParser::T__32:
-      case FIRRTLParser::T__33:
-      case FIRRTLParser::T__34:
-      case FIRRTLParser::T__35:
-      case FIRRTLParser::T__36:
-      case FIRRTLParser::T__37:
-      case FIRRTLParser::T__38:
-      case FIRRTLParser::T__39:
-      case FIRRTLParser::T__40:
-      case FIRRTLParser::T__41:
-      case FIRRTLParser::T__42:
-      case FIRRTLParser::T__43:
-      case FIRRTLParser::T__44:
-      case FIRRTLParser::T__45:
-      case FIRRTLParser::T__46:
-      case FIRRTLParser::T__47:
-      case FIRRTLParser::T__48:
-      case FIRRTLParser::T__49:
-      case FIRRTLParser::T__50:
-      case FIRRTLParser::T__51:
-      case FIRRTLParser::T__52:
-      case FIRRTLParser::T__53:
-      case FIRRTLParser::T__54:
-      case FIRRTLParser::T__55:
-      case FIRRTLParser::T__56:
-      case FIRRTLParser::T__57:
-      case FIRRTLParser::T__58:
-      case FIRRTLParser::T__59:
-      case FIRRTLParser::T__60:
-      case FIRRTLParser::T__61:
-      case FIRRTLParser::T__62:
-      case FIRRTLParser::T__63:
-      case FIRRTLParser::T__64:
-      case FIRRTLParser::T__65:
-      case FIRRTLParser::T__66:
-      case FIRRTLParser::T__67:
-      case FIRRTLParser::T__68:
-      case FIRRTLParser::T__69:
+      case FIRRTLParser::T__10:
+      case FIRRTLParser::T__16:
+      case FIRRTLParser::T__17:
       case FIRRTLParser::Key_circuit:
       case FIRRTLParser::Key_module:
       case FIRRTLParser::Key_extmodule:
@@ -2948,8 +3078,11 @@ FIRRTLParser::SuiteContext* FIRRTLParser::suite() {
       case FIRRTLParser::Key_UInt:
       case FIRRTLParser::Key_SInt:
       case FIRRTLParser::Key_Clock:
+      case FIRRTLParser::Key_Reset:
+      case FIRRTLParser::Key_AsyncReset:
       case FIRRTLParser::Key_Analog:
       case FIRRTLParser::Key_Fixed:
+      case FIRRTLParser::Key_Interval:
       case FIRRTLParser::Key_flip:
       case FIRRTLParser::Key_wire:
       case FIRRTLParser::Key_reg:
@@ -2981,120 +3114,35 @@ FIRRTLParser::SuiteContext* FIRRTLParser::suite() {
       case FIRRTLParser::Key_read:
       case FIRRTLParser::Key_write:
       case FIRRTLParser::Key_rdwr:
+      case FIRRTLParser::Key_attach:
+      case FIRRTLParser::Key_assert:
+      case FIRRTLParser::Key_assume:
+      case FIRRTLParser::Key_cover:
       case FIRRTLParser::Id:
       case FIRRTLParser::NEWLINE: {
         enterOuterAlt(_localctx, 1);
-        setState(464);
+        setState(518);
         simple_stmt();
         break;
       }
 
       case FIRRTLParser::INDENT: {
         enterOuterAlt(_localctx, 2);
-        setState(465);
+        setState(519);
         match(FIRRTLParser::INDENT);
-        setState(467); 
+        setState(521); 
         _errHandler->sync(this);
         _la = _input->LA(1);
         do {
-          setState(466);
+          setState(520);
           simple_stmt();
-          setState(469); 
+          setState(523); 
           _errHandler->sync(this);
           _la = _input->LA(1);
-        } while ((((_la & ~ 0x3fULL) == 0) &&
-          ((1ULL << _la) & ((1ULL << FIRRTLParser::T__13)
-          | (1ULL << FIRRTLParser::T__19)
-          | (1ULL << FIRRTLParser::T__20)
-          | (1ULL << FIRRTLParser::T__21)
-          | (1ULL << FIRRTLParser::T__26)
-          | (1ULL << FIRRTLParser::T__27)
-          | (1ULL << FIRRTLParser::T__29)
-          | (1ULL << FIRRTLParser::T__30)
-          | (1ULL << FIRRTLParser::T__31)
-          | (1ULL << FIRRTLParser::T__32)
-          | (1ULL << FIRRTLParser::T__33)
-          | (1ULL << FIRRTLParser::T__34)
-          | (1ULL << FIRRTLParser::T__35)
-          | (1ULL << FIRRTLParser::T__36)
-          | (1ULL << FIRRTLParser::T__37)
-          | (1ULL << FIRRTLParser::T__38)
-          | (1ULL << FIRRTLParser::T__39)
-          | (1ULL << FIRRTLParser::T__40)
-          | (1ULL << FIRRTLParser::T__41)
-          | (1ULL << FIRRTLParser::T__42)
-          | (1ULL << FIRRTLParser::T__43)
-          | (1ULL << FIRRTLParser::T__44)
-          | (1ULL << FIRRTLParser::T__45)
-          | (1ULL << FIRRTLParser::T__46)
-          | (1ULL << FIRRTLParser::T__47)
-          | (1ULL << FIRRTLParser::T__48)
-          | (1ULL << FIRRTLParser::T__49)
-          | (1ULL << FIRRTLParser::T__50)
-          | (1ULL << FIRRTLParser::T__51)
-          | (1ULL << FIRRTLParser::T__52)
-          | (1ULL << FIRRTLParser::T__53)
-          | (1ULL << FIRRTLParser::T__54)
-          | (1ULL << FIRRTLParser::T__55)
-          | (1ULL << FIRRTLParser::T__56)
-          | (1ULL << FIRRTLParser::T__57)
-          | (1ULL << FIRRTLParser::T__58)
-          | (1ULL << FIRRTLParser::T__59)
-          | (1ULL << FIRRTLParser::T__60)
-          | (1ULL << FIRRTLParser::T__61)
-          | (1ULL << FIRRTLParser::T__62))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
-          ((1ULL << (_la - 64)) & ((1ULL << (FIRRTLParser::T__63 - 64))
-          | (1ULL << (FIRRTLParser::T__64 - 64))
-          | (1ULL << (FIRRTLParser::T__65 - 64))
-          | (1ULL << (FIRRTLParser::T__66 - 64))
-          | (1ULL << (FIRRTLParser::T__67 - 64))
-          | (1ULL << (FIRRTLParser::T__68 - 64))
-          | (1ULL << (FIRRTLParser::T__69 - 64))
-          | (1ULL << (FIRRTLParser::Key_circuit - 64))
-          | (1ULL << (FIRRTLParser::Key_module - 64))
-          | (1ULL << (FIRRTLParser::Key_extmodule - 64))
-          | (1ULL << (FIRRTLParser::Key_parameter - 64))
-          | (1ULL << (FIRRTLParser::Key_input - 64))
-          | (1ULL << (FIRRTLParser::Key_output - 64))
-          | (1ULL << (FIRRTLParser::Key_UInt - 64))
-          | (1ULL << (FIRRTLParser::Key_SInt - 64))
-          | (1ULL << (FIRRTLParser::Key_Clock - 64))
-          | (1ULL << (FIRRTLParser::Key_Analog - 64))
-          | (1ULL << (FIRRTLParser::Key_Fixed - 64))
-          | (1ULL << (FIRRTLParser::Key_flip - 64))
-          | (1ULL << (FIRRTLParser::Key_wire - 64))
-          | (1ULL << (FIRRTLParser::Key_reg - 64))
-          | (1ULL << (FIRRTLParser::Key_with - 64))
-          | (1ULL << (FIRRTLParser::Key_mem - 64))
-          | (1ULL << (FIRRTLParser::Key_depth - 64))
-          | (1ULL << (FIRRTLParser::Key_reader - 64))
-          | (1ULL << (FIRRTLParser::Key_writer - 64))
-          | (1ULL << (FIRRTLParser::Key_readwriter - 64))
-          | (1ULL << (FIRRTLParser::Key_inst - 64))
-          | (1ULL << (FIRRTLParser::Key_of - 64))
-          | (1ULL << (FIRRTLParser::Key_node - 64))
-          | (1ULL << (FIRRTLParser::Key_is - 64))
-          | (1ULL << (FIRRTLParser::Key_invalid - 64))
-          | (1ULL << (FIRRTLParser::Key_when - 64))
-          | (1ULL << (FIRRTLParser::Key_else - 64))
-          | (1ULL << (FIRRTLParser::Key_stop - 64))
-          | (1ULL << (FIRRTLParser::Key_printf - 64))
-          | (1ULL << (FIRRTLParser::Key_skip - 64))
-          | (1ULL << (FIRRTLParser::Key_old - 64))
-          | (1ULL << (FIRRTLParser::Key_new - 64))
-          | (1ULL << (FIRRTLParser::Key_undefined - 64))
-          | (1ULL << (FIRRTLParser::Key_mux - 64))
-          | (1ULL << (FIRRTLParser::Key_validif - 64))
-          | (1ULL << (FIRRTLParser::Key_cmem - 64))
-          | (1ULL << (FIRRTLParser::Key_smem - 64))
-          | (1ULL << (FIRRTLParser::Key_mport - 64))
-          | (1ULL << (FIRRTLParser::Key_infer - 64))
-          | (1ULL << (FIRRTLParser::Key_read - 64))
-          | (1ULL << (FIRRTLParser::Key_write - 64))
-          | (1ULL << (FIRRTLParser::Key_rdwr - 64))
-          | (1ULL << (FIRRTLParser::Id - 64))
-          | (1ULL << (FIRRTLParser::NEWLINE - 64)))) != 0));
-        setState(471);
+        } while (((_la & ~ 0x3fULL) == 0) &&
+          ((1ULL << _la) & 395264) != 0 || (((_la - 70) & ~ 0x3fULL) == 0) &&
+          ((1ULL << (_la - 70)) & 4900479344532520959) != 0);
+        setState(525);
         match(FIRRTLParser::DEDENT);
         break;
       }
@@ -3169,7 +3217,7 @@ void FIRRTLParser::WhenContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::WhenContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::WhenContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitWhen(this);
   else
@@ -3178,76 +3226,84 @@ antlrcpp::Any FIRRTLParser::WhenContext::accept(tree::ParseTreeVisitor *visitor)
 
 FIRRTLParser::WhenContext* FIRRTLParser::when() {
   WhenContext *_localctx = _tracker.createInstance<WhenContext>(_ctx, getState());
-  enterRule(_localctx, 32, FIRRTLParser::RuleWhen);
+  enterRule(_localctx, 34, FIRRTLParser::RuleWhen);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(475);
+    setState(529);
     match(FIRRTLParser::Key_when);
-    setState(476);
-    exp(0);
-    setState(477);
+    setState(530);
+    exp();
+    setState(531);
     match(FIRRTLParser::T__0);
-    setState(479);
+    setState(533);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
     if (_la == FIRRTLParser::FileInfo) {
-      setState(478);
+      setState(532);
       info();
     }
-    setState(482);
+    setState(536);
     _errHandler->sync(this);
 
-    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 55, _ctx)) {
+    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 63, _ctx)) {
     case 1: {
-      setState(481);
+      setState(535);
       suite();
       break;
     }
 
+    default:
+      break;
     }
-    setState(495);
+    setState(549);
     _errHandler->sync(this);
 
-    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 59, _ctx)) {
+    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 67, _ctx)) {
     case 1: {
-      setState(484);
+      setState(538);
       match(FIRRTLParser::Key_else);
-      setState(493);
+      setState(547);
       _errHandler->sync(this);
       switch (_input->LA(1)) {
         case FIRRTLParser::Key_when: {
-          setState(485);
+          setState(539);
           when();
           break;
         }
 
         case FIRRTLParser::T__0: {
-          setState(486);
+          setState(540);
           match(FIRRTLParser::T__0);
-          setState(488);
+          setState(542);
           _errHandler->sync(this);
 
           _la = _input->LA(1);
           if (_la == FIRRTLParser::FileInfo) {
-            setState(487);
+            setState(541);
             info();
           }
-          setState(491);
+          setState(545);
           _errHandler->sync(this);
 
-          switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 57, _ctx)) {
+          switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 65, _ctx)) {
           case 1: {
-            setState(490);
+            setState(544);
             suite();
             break;
           }
 
+          default:
+            break;
           }
           break;
         }
@@ -3258,6 +3314,8 @@ FIRRTLParser::WhenContext* FIRRTLParser::when() {
       break;
     }
 
+    default:
+      break;
     }
    
   }
@@ -3298,7 +3356,7 @@ void FIRRTLParser::InfoContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::InfoContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::InfoContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitInfo(this);
   else
@@ -3307,14 +3365,18 @@ antlrcpp::Any FIRRTLParser::InfoContext::accept(tree::ParseTreeVisitor *visitor)
 
 FIRRTLParser::InfoContext* FIRRTLParser::info() {
   InfoContext *_localctx = _tracker.createInstance<InfoContext>(_ctx, getState());
-  enterRule(_localctx, 34, FIRRTLParser::RuleInfo);
+  enterRule(_localctx, 36, FIRRTLParser::RuleInfo);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(497);
+    setState(551);
     match(FIRRTLParser::FileInfo);
    
   }
@@ -3367,7 +3429,7 @@ void FIRRTLParser::MdirContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::MdirContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::MdirContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitMdir(this);
   else
@@ -3376,21 +3438,22 @@ antlrcpp::Any FIRRTLParser::MdirContext::accept(tree::ParseTreeVisitor *visitor)
 
 FIRRTLParser::MdirContext* FIRRTLParser::mdir() {
   MdirContext *_localctx = _tracker.createInstance<MdirContext>(_ctx, getState());
-  enterRule(_localctx, 36, FIRRTLParser::RuleMdir);
+  enterRule(_localctx, 38, FIRRTLParser::RuleMdir);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(499);
+    setState(553);
     _la = _input->LA(1);
-    if (!(((((_la - 109) & ~ 0x3fULL) == 0) &&
-      ((1ULL << (_la - 109)) & ((1ULL << (FIRRTLParser::Key_infer - 109))
-      | (1ULL << (FIRRTLParser::Key_read - 109))
-      | (1ULL << (FIRRTLParser::Key_write - 109))
-      | (1ULL << (FIRRTLParser::Key_rdwr - 109)))) != 0))) {
+    if (!((((_la - 111) & ~ 0x3fULL) == 0) &&
+      ((1ULL << (_la - 111)) & 15) != 0)) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -3444,7 +3507,7 @@ void FIRRTLParser::RuwContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::RuwContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::RuwContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitRuw(this);
   else
@@ -3453,20 +3516,22 @@ antlrcpp::Any FIRRTLParser::RuwContext::accept(tree::ParseTreeVisitor *visitor) 
 
 FIRRTLParser::RuwContext* FIRRTLParser::ruw() {
   RuwContext *_localctx = _tracker.createInstance<RuwContext>(_ctx, getState());
-  enterRule(_localctx, 38, FIRRTLParser::RuleRuw);
+  enterRule(_localctx, 40, FIRRTLParser::RuleRuw);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(501);
+    setState(555);
     _la = _input->LA(1);
-    if (!(((((_la - 101) & ~ 0x3fULL) == 0) &&
-      ((1ULL << (_la - 101)) & ((1ULL << (FIRRTLParser::Key_old - 101))
-      | (1ULL << (FIRRTLParser::Key_new - 101))
-      | (1ULL << (FIRRTLParser::Key_undefined - 101)))) != 0))) {
+    if (!((((_la - 103) & ~ 0x3fULL) == 0) &&
+      ((1ULL << (_la - 103)) & 7) != 0)) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -3506,8 +3571,8 @@ tree::TerminalNode* FIRRTLParser::ExpContext::Key_SInt() {
   return getToken(FIRRTLParser::Key_SInt, 0);
 }
 
-FIRRTLParser::IdContext* FIRRTLParser::ExpContext::id() {
-  return getRuleContext<FIRRTLParser::IdContext>(0);
+FIRRTLParser::RefContext* FIRRTLParser::ExpContext::ref() {
+  return getRuleContext<FIRRTLParser::RefContext>(0);
 }
 
 std::vector<FIRRTLParser::ExpContext *> FIRRTLParser::ExpContext::exp() {
@@ -3520,14 +3585,6 @@ FIRRTLParser::ExpContext* FIRRTLParser::ExpContext::exp(size_t i) {
 
 FIRRTLParser::PrimopContext* FIRRTLParser::ExpContext::primop() {
   return getRuleContext<FIRRTLParser::PrimopContext>(0);
-}
-
-FIRRTLParser::FieldIdContext* FIRRTLParser::ExpContext::fieldId() {
-  return getRuleContext<FIRRTLParser::FieldIdContext>(0);
-}
-
-tree::TerminalNode* FIRRTLParser::ExpContext::DoubleLit() {
-  return getToken(FIRRTLParser::DoubleLit, 0);
 }
 
 
@@ -3548,319 +3605,489 @@ void FIRRTLParser::ExpContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::ExpContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::ExpContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitExp(this);
   else
     return visitor->visitChildren(this);
 }
 
-
 FIRRTLParser::ExpContext* FIRRTLParser::exp() {
-   return exp(0);
-}
+  ExpContext *_localctx = _tracker.createInstance<ExpContext>(_ctx, getState());
+  enterRule(_localctx, 42, FIRRTLParser::RuleExp);
+  size_t _la = 0;
 
-FIRRTLParser::ExpContext* FIRRTLParser::exp(int precedence) {
-  ParserRuleContext *parentContext = _ctx;
-  size_t parentState = getState();
-  FIRRTLParser::ExpContext *_localctx = _tracker.createInstance<ExpContext>(_ctx, parentState);
-  FIRRTLParser::ExpContext *previousContext = _localctx;
-  (void)previousContext; // Silence compiler, in case the context is not used by generated code.
-  size_t startState = 40;
-  enterRecursionRule(_localctx, 40, FIRRTLParser::RuleExp, precedence);
-
-    size_t _la = 0;
-
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
-    unrollRecursionContexts(parentContext);
+#endif
+    exitRule();
   });
   try {
-    size_t alt;
-    enterOuterAlt(_localctx, 1);
-    setState(553);
+    setState(606);
     _errHandler->sync(this);
-    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 64, _ctx)) {
+    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 72, _ctx)) {
     case 1: {
-      setState(504);
+      enterOuterAlt(_localctx, 1);
+      setState(557);
       match(FIRRTLParser::Key_UInt);
-      setState(509);
+      setState(562);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::T__1) {
-        setState(505);
+        setState(558);
         match(FIRRTLParser::T__1);
-        setState(506);
+        setState(559);
         intLit();
-        setState(507);
+        setState(560);
         match(FIRRTLParser::T__2);
       }
-      setState(511);
-      match(FIRRTLParser::T__15);
-      setState(512);
+      setState(564);
+      match(FIRRTLParser::T__12);
+      setState(565);
       intLit();
-      setState(513);
-      match(FIRRTLParser::T__16);
+      setState(566);
+      match(FIRRTLParser::T__13);
       break;
     }
 
     case 2: {
-      setState(515);
+      enterOuterAlt(_localctx, 2);
+      setState(568);
       match(FIRRTLParser::Key_SInt);
-      setState(520);
+      setState(573);
       _errHandler->sync(this);
 
       _la = _input->LA(1);
       if (_la == FIRRTLParser::T__1) {
-        setState(516);
+        setState(569);
         match(FIRRTLParser::T__1);
-        setState(517);
+        setState(570);
         intLit();
-        setState(518);
+        setState(571);
         match(FIRRTLParser::T__2);
       }
-      setState(522);
-      match(FIRRTLParser::T__15);
-      setState(523);
+      setState(575);
+      match(FIRRTLParser::T__12);
+      setState(576);
       intLit();
-      setState(524);
-      match(FIRRTLParser::T__16);
+      setState(577);
+      match(FIRRTLParser::T__13);
       break;
     }
 
     case 3: {
-      setState(526);
-      id();
+      enterOuterAlt(_localctx, 3);
+      setState(579);
+      ref();
       break;
     }
 
     case 4: {
-      setState(527);
-      match(FIRRTLParser::T__26);
-      setState(528);
-      exp(0);
-      setState(529);
-      exp(0);
-      setState(530);
-      exp(0);
-      setState(531);
-      match(FIRRTLParser::T__16);
+      enterOuterAlt(_localctx, 4);
+      setState(580);
+      match(FIRRTLParser::T__22);
+      setState(581);
+      exp();
+      setState(582);
+      exp();
+      setState(583);
+      exp();
+      setState(584);
+      match(FIRRTLParser::T__13);
       break;
     }
 
     case 5: {
-      setState(533);
-      match(FIRRTLParser::T__27);
-      setState(534);
-      exp(0);
-      setState(535);
-      exp(0);
-      setState(536);
-      match(FIRRTLParser::T__16);
+      enterOuterAlt(_localctx, 5);
+      setState(586);
+      match(FIRRTLParser::T__23);
+      setState(587);
+      exp();
+      setState(588);
+      exp();
+      setState(589);
+      match(FIRRTLParser::T__13);
       break;
     }
 
     case 6: {
-      setState(538);
+      enterOuterAlt(_localctx, 6);
+      setState(591);
       primop();
-      setState(542);
+      setState(595);
       _errHandler->sync(this);
       _la = _input->LA(1);
-      while ((((_la & ~ 0x3fULL) == 0) &&
-        ((1ULL << _la) & ((1ULL << FIRRTLParser::T__13)
-        | (1ULL << FIRRTLParser::T__26)
-        | (1ULL << FIRRTLParser::T__27)
-        | (1ULL << FIRRTLParser::T__29)
-        | (1ULL << FIRRTLParser::T__30)
-        | (1ULL << FIRRTLParser::T__31)
-        | (1ULL << FIRRTLParser::T__32)
-        | (1ULL << FIRRTLParser::T__33)
-        | (1ULL << FIRRTLParser::T__34)
-        | (1ULL << FIRRTLParser::T__35)
-        | (1ULL << FIRRTLParser::T__36)
-        | (1ULL << FIRRTLParser::T__37)
-        | (1ULL << FIRRTLParser::T__38)
-        | (1ULL << FIRRTLParser::T__39)
-        | (1ULL << FIRRTLParser::T__40)
-        | (1ULL << FIRRTLParser::T__41)
-        | (1ULL << FIRRTLParser::T__42)
-        | (1ULL << FIRRTLParser::T__43)
-        | (1ULL << FIRRTLParser::T__44)
-        | (1ULL << FIRRTLParser::T__45)
-        | (1ULL << FIRRTLParser::T__46)
-        | (1ULL << FIRRTLParser::T__47)
-        | (1ULL << FIRRTLParser::T__48)
-        | (1ULL << FIRRTLParser::T__49)
-        | (1ULL << FIRRTLParser::T__50)
-        | (1ULL << FIRRTLParser::T__51)
-        | (1ULL << FIRRTLParser::T__52)
-        | (1ULL << FIRRTLParser::T__53)
-        | (1ULL << FIRRTLParser::T__54)
-        | (1ULL << FIRRTLParser::T__55)
-        | (1ULL << FIRRTLParser::T__56)
-        | (1ULL << FIRRTLParser::T__57)
-        | (1ULL << FIRRTLParser::T__58)
-        | (1ULL << FIRRTLParser::T__59)
-        | (1ULL << FIRRTLParser::T__60)
-        | (1ULL << FIRRTLParser::T__61)
-        | (1ULL << FIRRTLParser::T__62))) != 0) || ((((_la - 64) & ~ 0x3fULL) == 0) &&
-        ((1ULL << (_la - 64)) & ((1ULL << (FIRRTLParser::T__63 - 64))
-        | (1ULL << (FIRRTLParser::T__64 - 64))
-        | (1ULL << (FIRRTLParser::T__65 - 64))
-        | (1ULL << (FIRRTLParser::T__66 - 64))
-        | (1ULL << (FIRRTLParser::T__67 - 64))
-        | (1ULL << (FIRRTLParser::T__68 - 64))
-        | (1ULL << (FIRRTLParser::T__69 - 64))
-        | (1ULL << (FIRRTLParser::Key_circuit - 64))
-        | (1ULL << (FIRRTLParser::Key_module - 64))
-        | (1ULL << (FIRRTLParser::Key_extmodule - 64))
-        | (1ULL << (FIRRTLParser::Key_parameter - 64))
-        | (1ULL << (FIRRTLParser::Key_input - 64))
-        | (1ULL << (FIRRTLParser::Key_output - 64))
-        | (1ULL << (FIRRTLParser::Key_UInt - 64))
-        | (1ULL << (FIRRTLParser::Key_SInt - 64))
-        | (1ULL << (FIRRTLParser::Key_Clock - 64))
-        | (1ULL << (FIRRTLParser::Key_Analog - 64))
-        | (1ULL << (FIRRTLParser::Key_Fixed - 64))
-        | (1ULL << (FIRRTLParser::Key_flip - 64))
-        | (1ULL << (FIRRTLParser::Key_wire - 64))
-        | (1ULL << (FIRRTLParser::Key_reg - 64))
-        | (1ULL << (FIRRTLParser::Key_with - 64))
-        | (1ULL << (FIRRTLParser::Key_mem - 64))
-        | (1ULL << (FIRRTLParser::Key_depth - 64))
-        | (1ULL << (FIRRTLParser::Key_reader - 64))
-        | (1ULL << (FIRRTLParser::Key_writer - 64))
-        | (1ULL << (FIRRTLParser::Key_readwriter - 64))
-        | (1ULL << (FIRRTLParser::Key_inst - 64))
-        | (1ULL << (FIRRTLParser::Key_of - 64))
-        | (1ULL << (FIRRTLParser::Key_node - 64))
-        | (1ULL << (FIRRTLParser::Key_is - 64))
-        | (1ULL << (FIRRTLParser::Key_invalid - 64))
-        | (1ULL << (FIRRTLParser::Key_when - 64))
-        | (1ULL << (FIRRTLParser::Key_else - 64))
-        | (1ULL << (FIRRTLParser::Key_stop - 64))
-        | (1ULL << (FIRRTLParser::Key_printf - 64))
-        | (1ULL << (FIRRTLParser::Key_skip - 64))
-        | (1ULL << (FIRRTLParser::Key_old - 64))
-        | (1ULL << (FIRRTLParser::Key_new - 64))
-        | (1ULL << (FIRRTLParser::Key_undefined - 64))
-        | (1ULL << (FIRRTLParser::Key_mux - 64))
-        | (1ULL << (FIRRTLParser::Key_validif - 64))
-        | (1ULL << (FIRRTLParser::Key_cmem - 64))
-        | (1ULL << (FIRRTLParser::Key_smem - 64))
-        | (1ULL << (FIRRTLParser::Key_mport - 64))
-        | (1ULL << (FIRRTLParser::Key_infer - 64))
-        | (1ULL << (FIRRTLParser::Key_read - 64))
-        | (1ULL << (FIRRTLParser::Key_write - 64))
-        | (1ULL << (FIRRTLParser::Key_rdwr - 64))
-        | (1ULL << (FIRRTLParser::Id - 64)))) != 0)) {
-        setState(539);
-        exp(0);
-        setState(544);
+      while ((((_la - 11) & ~ 0x3fULL) == 0) &&
+        ((1ULL << (_la - 11)) & -20479) != 0 || (((_la - 75) & ~ 0x3fULL) == 0) &&
+        ((1ULL << (_la - 75)) & 9024791440785407) != 0) {
+        setState(592);
+        exp();
+        setState(597);
         _errHandler->sync(this);
         _la = _input->LA(1);
       }
-      setState(548);
+      setState(601);
       _errHandler->sync(this);
       _la = _input->LA(1);
-      while (((((_la - 113) & ~ 0x3fULL) == 0) &&
-        ((1ULL << (_la - 113)) & ((1ULL << (FIRRTLParser::UnsignedInt - 113))
-        | (1ULL << (FIRRTLParser::SignedInt - 113))
-        | (1ULL << (FIRRTLParser::HexLit - 113))
-        | (1ULL << (FIRRTLParser::OctalLit - 113))
-        | (1ULL << (FIRRTLParser::BinaryLit - 113)))) != 0)) {
-        setState(545);
+      while ((((_la - 119) & ~ 0x3fULL) == 0) &&
+        ((1ULL << (_la - 119)) & 31) != 0) {
+        setState(598);
         intLit();
-        setState(550);
+        setState(603);
         _errHandler->sync(this);
         _la = _input->LA(1);
       }
-      setState(551);
-      match(FIRRTLParser::T__16);
+      setState(604);
+      match(FIRRTLParser::T__13);
       break;
     }
 
+    default:
+      break;
     }
-    _ctx->stop = _input->LT(-1);
-    setState(573);
-    _errHandler->sync(this);
-    alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 66, _ctx);
-    while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
-      if (alt == 1) {
-        if (!_parseListeners.empty())
-          triggerExitRuleEvent();
-        previousContext = _localctx;
-        setState(571);
-        _errHandler->sync(this);
-        switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 65, _ctx)) {
-        case 1: {
-          _localctx = _tracker.createInstance<ExpContext>(parentContext, parentState);
-          pushNewRecursionContext(_localctx, startState, RuleExp);
-          setState(555);
-
-          if (!(precpred(_ctx, 7))) throw FailedPredicateException(this, "precpred(_ctx, 7)");
-          setState(556);
-          match(FIRRTLParser::T__4);
-          setState(557);
-          fieldId();
-          break;
-        }
-
-        case 2: {
-          _localctx = _tracker.createInstance<ExpContext>(parentContext, parentState);
-          pushNewRecursionContext(_localctx, startState, RuleExp);
-          setState(558);
-
-          if (!(precpred(_ctx, 6))) throw FailedPredicateException(this, "precpred(_ctx, 6)");
-          setState(559);
-          match(FIRRTLParser::T__4);
-          setState(560);
-          match(FIRRTLParser::DoubleLit);
-          break;
-        }
-
-        case 3: {
-          _localctx = _tracker.createInstance<ExpContext>(parentContext, parentState);
-          pushNewRecursionContext(_localctx, startState, RuleExp);
-          setState(561);
-
-          if (!(precpred(_ctx, 5))) throw FailedPredicateException(this, "precpred(_ctx, 5)");
-          setState(562);
-          match(FIRRTLParser::T__9);
-          setState(563);
-          intLit();
-          setState(564);
-          match(FIRRTLParser::T__10);
-          break;
-        }
-
-        case 4: {
-          _localctx = _tracker.createInstance<ExpContext>(parentContext, parentState);
-          pushNewRecursionContext(_localctx, startState, RuleExp);
-          setState(566);
-
-          if (!(precpred(_ctx, 4))) throw FailedPredicateException(this, "precpred(_ctx, 4)");
-          setState(567);
-          match(FIRRTLParser::T__9);
-          setState(568);
-          exp(0);
-          setState(569);
-          match(FIRRTLParser::T__10);
-          break;
-        }
-
-        } 
-      }
-      setState(575);
-      _errHandler->sync(this);
-      alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 66, _ctx);
-    }
+   
   }
   catch (RecognitionException &e) {
     _errHandler->reportError(this, e);
     _localctx->exception = std::current_exception();
     _errHandler->recover(this, _localctx->exception);
   }
+
+  return _localctx;
+}
+
+//----------------- RefContext ------------------------------------------------------------------
+
+FIRRTLParser::RefContext::RefContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+FIRRTLParser::IdContext* FIRRTLParser::RefContext::id() {
+  return getRuleContext<FIRRTLParser::IdContext>(0);
+}
+
+FIRRTLParser::SubrefContext* FIRRTLParser::RefContext::subref() {
+  return getRuleContext<FIRRTLParser::SubrefContext>(0);
+}
+
+
+size_t FIRRTLParser::RefContext::getRuleIndex() const {
+  return FIRRTLParser::RuleRef;
+}
+
+void FIRRTLParser::RefContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<FIRRTLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterRef(this);
+}
+
+void FIRRTLParser::RefContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<FIRRTLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitRef(this);
+}
+
+
+std::any FIRRTLParser::RefContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
+    return parserVisitor->visitRef(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+FIRRTLParser::RefContext* FIRRTLParser::ref() {
+  RefContext *_localctx = _tracker.createInstance<RefContext>(_ctx, getState());
+  enterRule(_localctx, 44, FIRRTLParser::RuleRef);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    enterOuterAlt(_localctx, 1);
+    setState(608);
+    id();
+    setState(610);
+    _errHandler->sync(this);
+
+    _la = _input->LA(1);
+    if (_la == FIRRTLParser::T__3
+
+    || _la == FIRRTLParser::T__6) {
+      setState(609);
+      subref();
+    }
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
+  return _localctx;
+}
+
+//----------------- SubrefContext ------------------------------------------------------------------
+
+FIRRTLParser::SubrefContext::SubrefContext(ParserRuleContext *parent, size_t invokingState)
+  : ParserRuleContext(parent, invokingState) {
+}
+
+FIRRTLParser::FieldIdContext* FIRRTLParser::SubrefContext::fieldId() {
+  return getRuleContext<FIRRTLParser::FieldIdContext>(0);
+}
+
+FIRRTLParser::SubrefContext* FIRRTLParser::SubrefContext::subref() {
+  return getRuleContext<FIRRTLParser::SubrefContext>(0);
+}
+
+tree::TerminalNode* FIRRTLParser::SubrefContext::DoubleLit() {
+  return getToken(FIRRTLParser::DoubleLit, 0);
+}
+
+FIRRTLParser::IntLitContext* FIRRTLParser::SubrefContext::intLit() {
+  return getRuleContext<FIRRTLParser::IntLitContext>(0);
+}
+
+FIRRTLParser::ExpContext* FIRRTLParser::SubrefContext::exp() {
+  return getRuleContext<FIRRTLParser::ExpContext>(0);
+}
+
+
+size_t FIRRTLParser::SubrefContext::getRuleIndex() const {
+  return FIRRTLParser::RuleSubref;
+}
+
+void FIRRTLParser::SubrefContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<FIRRTLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->enterSubref(this);
+}
+
+void FIRRTLParser::SubrefContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<FIRRTLListener *>(listener);
+  if (parserListener != nullptr)
+    parserListener->exitSubref(this);
+}
+
+
+std::any FIRRTLParser::SubrefContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
+    return parserVisitor->visitSubref(this);
+  else
+    return visitor->visitChildren(this);
+}
+
+FIRRTLParser::SubrefContext* FIRRTLParser::subref() {
+  SubrefContext *_localctx = _tracker.createInstance<SubrefContext>(_ctx, getState());
+  enterRule(_localctx, 46, FIRRTLParser::RuleSubref);
+  size_t _la = 0;
+
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
+  auto onExit = finally([=] {
+#endif
+    exitRule();
+  });
+  try {
+    setState(631);
+    _errHandler->sync(this);
+    switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 78, _ctx)) {
+    case 1: {
+      enterOuterAlt(_localctx, 1);
+      setState(612);
+      match(FIRRTLParser::T__3);
+      setState(613);
+      fieldId();
+      setState(615);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::T__3
+
+      || _la == FIRRTLParser::T__6) {
+        setState(614);
+        subref();
+      }
+      break;
+    }
+
+    case 2: {
+      enterOuterAlt(_localctx, 2);
+      setState(617);
+      match(FIRRTLParser::T__3);
+      setState(618);
+      match(FIRRTLParser::DoubleLit);
+      setState(620);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::T__3
+
+      || _la == FIRRTLParser::T__6) {
+        setState(619);
+        subref();
+      }
+      break;
+    }
+
+    case 3: {
+      enterOuterAlt(_localctx, 3);
+      setState(622);
+      match(FIRRTLParser::T__6);
+      setState(625);
+      _errHandler->sync(this);
+      switch (_input->LA(1)) {
+        case FIRRTLParser::UnsignedInt:
+        case FIRRTLParser::SignedInt:
+        case FIRRTLParser::HexLit:
+        case FIRRTLParser::OctalLit:
+        case FIRRTLParser::BinaryLit: {
+          setState(623);
+          intLit();
+          break;
+        }
+
+        case FIRRTLParser::T__10:
+        case FIRRTLParser::T__22:
+        case FIRRTLParser::T__23:
+        case FIRRTLParser::T__25:
+        case FIRRTLParser::T__26:
+        case FIRRTLParser::T__27:
+        case FIRRTLParser::T__28:
+        case FIRRTLParser::T__29:
+        case FIRRTLParser::T__30:
+        case FIRRTLParser::T__31:
+        case FIRRTLParser::T__32:
+        case FIRRTLParser::T__33:
+        case FIRRTLParser::T__34:
+        case FIRRTLParser::T__35:
+        case FIRRTLParser::T__36:
+        case FIRRTLParser::T__37:
+        case FIRRTLParser::T__38:
+        case FIRRTLParser::T__39:
+        case FIRRTLParser::T__40:
+        case FIRRTLParser::T__41:
+        case FIRRTLParser::T__42:
+        case FIRRTLParser::T__43:
+        case FIRRTLParser::T__44:
+        case FIRRTLParser::T__45:
+        case FIRRTLParser::T__46:
+        case FIRRTLParser::T__47:
+        case FIRRTLParser::T__48:
+        case FIRRTLParser::T__49:
+        case FIRRTLParser::T__50:
+        case FIRRTLParser::T__51:
+        case FIRRTLParser::T__52:
+        case FIRRTLParser::T__53:
+        case FIRRTLParser::T__54:
+        case FIRRTLParser::T__55:
+        case FIRRTLParser::T__56:
+        case FIRRTLParser::T__57:
+        case FIRRTLParser::T__58:
+        case FIRRTLParser::T__59:
+        case FIRRTLParser::T__60:
+        case FIRRTLParser::T__61:
+        case FIRRTLParser::T__62:
+        case FIRRTLParser::T__63:
+        case FIRRTLParser::T__64:
+        case FIRRTLParser::T__65:
+        case FIRRTLParser::T__66:
+        case FIRRTLParser::T__67:
+        case FIRRTLParser::T__68:
+        case FIRRTLParser::Key_circuit:
+        case FIRRTLParser::Key_module:
+        case FIRRTLParser::Key_extmodule:
+        case FIRRTLParser::Key_parameter:
+        case FIRRTLParser::Key_input:
+        case FIRRTLParser::Key_output:
+        case FIRRTLParser::Key_UInt:
+        case FIRRTLParser::Key_SInt:
+        case FIRRTLParser::Key_Clock:
+        case FIRRTLParser::Key_Reset:
+        case FIRRTLParser::Key_AsyncReset:
+        case FIRRTLParser::Key_Analog:
+        case FIRRTLParser::Key_Fixed:
+        case FIRRTLParser::Key_Interval:
+        case FIRRTLParser::Key_flip:
+        case FIRRTLParser::Key_wire:
+        case FIRRTLParser::Key_reg:
+        case FIRRTLParser::Key_with:
+        case FIRRTLParser::Key_mem:
+        case FIRRTLParser::Key_depth:
+        case FIRRTLParser::Key_reader:
+        case FIRRTLParser::Key_writer:
+        case FIRRTLParser::Key_readwriter:
+        case FIRRTLParser::Key_inst:
+        case FIRRTLParser::Key_of:
+        case FIRRTLParser::Key_node:
+        case FIRRTLParser::Key_is:
+        case FIRRTLParser::Key_invalid:
+        case FIRRTLParser::Key_when:
+        case FIRRTLParser::Key_else:
+        case FIRRTLParser::Key_stop:
+        case FIRRTLParser::Key_printf:
+        case FIRRTLParser::Key_skip:
+        case FIRRTLParser::Key_old:
+        case FIRRTLParser::Key_new:
+        case FIRRTLParser::Key_undefined:
+        case FIRRTLParser::Key_mux:
+        case FIRRTLParser::Key_validif:
+        case FIRRTLParser::Key_cmem:
+        case FIRRTLParser::Key_smem:
+        case FIRRTLParser::Key_mport:
+        case FIRRTLParser::Key_infer:
+        case FIRRTLParser::Key_read:
+        case FIRRTLParser::Key_write:
+        case FIRRTLParser::Key_rdwr:
+        case FIRRTLParser::Key_attach:
+        case FIRRTLParser::Key_assert:
+        case FIRRTLParser::Key_assume:
+        case FIRRTLParser::Key_cover:
+        case FIRRTLParser::Id: {
+          setState(624);
+          exp();
+          break;
+        }
+
+      default:
+        throw NoViableAltException(this);
+      }
+      setState(627);
+      match(FIRRTLParser::T__7);
+      setState(629);
+      _errHandler->sync(this);
+
+      _la = _input->LA(1);
+      if (_la == FIRRTLParser::T__3
+
+      || _la == FIRRTLParser::T__6) {
+        setState(628);
+        subref();
+      }
+      break;
+    }
+
+    default:
+      break;
+    }
+   
+  }
+  catch (RecognitionException &e) {
+    _errHandler->reportError(this, e);
+    _localctx->exception = std::current_exception();
+    _errHandler->recover(this, _localctx->exception);
+  }
+
   return _localctx;
 }
 
@@ -3896,7 +4123,7 @@ void FIRRTLParser::IdContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::IdContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::IdContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitId(this);
   else
@@ -3905,23 +4132,27 @@ antlrcpp::Any FIRRTLParser::IdContext::accept(tree::ParseTreeVisitor *visitor) {
 
 FIRRTLParser::IdContext* FIRRTLParser::id() {
   IdContext *_localctx = _tracker.createInstance<IdContext>(_ctx, getState());
-  enterRule(_localctx, 42, FIRRTLParser::RuleId);
+  enterRule(_localctx, 48, FIRRTLParser::RuleId);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
-    setState(578);
+    setState(635);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case FIRRTLParser::Id: {
         enterOuterAlt(_localctx, 1);
-        setState(576);
+        setState(633);
         match(FIRRTLParser::Id);
         break;
       }
 
-      case FIRRTLParser::T__13:
+      case FIRRTLParser::T__10:
       case FIRRTLParser::Key_circuit:
       case FIRRTLParser::Key_module:
       case FIRRTLParser::Key_extmodule:
@@ -3931,8 +4162,11 @@ FIRRTLParser::IdContext* FIRRTLParser::id() {
       case FIRRTLParser::Key_UInt:
       case FIRRTLParser::Key_SInt:
       case FIRRTLParser::Key_Clock:
+      case FIRRTLParser::Key_Reset:
+      case FIRRTLParser::Key_AsyncReset:
       case FIRRTLParser::Key_Analog:
       case FIRRTLParser::Key_Fixed:
+      case FIRRTLParser::Key_Interval:
       case FIRRTLParser::Key_flip:
       case FIRRTLParser::Key_wire:
       case FIRRTLParser::Key_reg:
@@ -3963,9 +4197,13 @@ FIRRTLParser::IdContext* FIRRTLParser::id() {
       case FIRRTLParser::Key_infer:
       case FIRRTLParser::Key_read:
       case FIRRTLParser::Key_write:
-      case FIRRTLParser::Key_rdwr: {
+      case FIRRTLParser::Key_rdwr:
+      case FIRRTLParser::Key_attach:
+      case FIRRTLParser::Key_assert:
+      case FIRRTLParser::Key_assume:
+      case FIRRTLParser::Key_cover: {
         enterOuterAlt(_localctx, 2);
-        setState(577);
+        setState(634);
         keywordAsId();
         break;
       }
@@ -4024,7 +4262,7 @@ void FIRRTLParser::FieldIdContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::FieldIdContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::FieldIdContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitFieldId(this);
   else
@@ -4033,37 +4271,41 @@ antlrcpp::Any FIRRTLParser::FieldIdContext::accept(tree::ParseTreeVisitor *visit
 
 FIRRTLParser::FieldIdContext* FIRRTLParser::fieldId() {
   FieldIdContext *_localctx = _tracker.createInstance<FieldIdContext>(_ctx, getState());
-  enterRule(_localctx, 44, FIRRTLParser::RuleFieldId);
+  enterRule(_localctx, 50, FIRRTLParser::RuleFieldId);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
-    setState(584);
+    setState(641);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
       case FIRRTLParser::Id: {
         enterOuterAlt(_localctx, 1);
-        setState(580);
+        setState(637);
         match(FIRRTLParser::Id);
         break;
       }
 
       case FIRRTLParser::RelaxedId: {
         enterOuterAlt(_localctx, 2);
-        setState(581);
+        setState(638);
         match(FIRRTLParser::RelaxedId);
         break;
       }
 
       case FIRRTLParser::UnsignedInt: {
         enterOuterAlt(_localctx, 3);
-        setState(582);
+        setState(639);
         match(FIRRTLParser::UnsignedInt);
         break;
       }
 
-      case FIRRTLParser::T__13:
+      case FIRRTLParser::T__10:
       case FIRRTLParser::Key_circuit:
       case FIRRTLParser::Key_module:
       case FIRRTLParser::Key_extmodule:
@@ -4073,8 +4315,11 @@ FIRRTLParser::FieldIdContext* FIRRTLParser::fieldId() {
       case FIRRTLParser::Key_UInt:
       case FIRRTLParser::Key_SInt:
       case FIRRTLParser::Key_Clock:
+      case FIRRTLParser::Key_Reset:
+      case FIRRTLParser::Key_AsyncReset:
       case FIRRTLParser::Key_Analog:
       case FIRRTLParser::Key_Fixed:
+      case FIRRTLParser::Key_Interval:
       case FIRRTLParser::Key_flip:
       case FIRRTLParser::Key_wire:
       case FIRRTLParser::Key_reg:
@@ -4105,9 +4350,13 @@ FIRRTLParser::FieldIdContext* FIRRTLParser::fieldId() {
       case FIRRTLParser::Key_infer:
       case FIRRTLParser::Key_read:
       case FIRRTLParser::Key_write:
-      case FIRRTLParser::Key_rdwr: {
+      case FIRRTLParser::Key_rdwr:
+      case FIRRTLParser::Key_attach:
+      case FIRRTLParser::Key_assert:
+      case FIRRTLParser::Key_assume:
+      case FIRRTLParser::Key_cover: {
         enterOuterAlt(_localctx, 4);
-        setState(583);
+        setState(640);
         keywordAsId();
         break;
       }
@@ -4170,7 +4419,7 @@ void FIRRTLParser::IntLitContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::IntLitContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::IntLitContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitIntLit(this);
   else
@@ -4179,22 +4428,22 @@ antlrcpp::Any FIRRTLParser::IntLitContext::accept(tree::ParseTreeVisitor *visito
 
 FIRRTLParser::IntLitContext* FIRRTLParser::intLit() {
   IntLitContext *_localctx = _tracker.createInstance<IntLitContext>(_ctx, getState());
-  enterRule(_localctx, 46, FIRRTLParser::RuleIntLit);
+  enterRule(_localctx, 52, FIRRTLParser::RuleIntLit);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(586);
+    setState(643);
     _la = _input->LA(1);
-    if (!(((((_la - 113) & ~ 0x3fULL) == 0) &&
-      ((1ULL << (_la - 113)) & ((1ULL << (FIRRTLParser::UnsignedInt - 113))
-      | (1ULL << (FIRRTLParser::SignedInt - 113))
-      | (1ULL << (FIRRTLParser::HexLit - 113))
-      | (1ULL << (FIRRTLParser::OctalLit - 113))
-      | (1ULL << (FIRRTLParser::BinaryLit - 113)))) != 0))) {
+    if (!((((_la - 119) & ~ 0x3fULL) == 0) &&
+      ((1ULL << (_la - 119)) & 31) != 0)) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -4236,7 +4485,7 @@ void FIRRTLParser::LowerBoundContext::exitRule(tree::ParseTreeListener *listener
 }
 
 
-antlrcpp::Any FIRRTLParser::LowerBoundContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::LowerBoundContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitLowerBound(this);
   else
@@ -4245,19 +4494,23 @@ antlrcpp::Any FIRRTLParser::LowerBoundContext::accept(tree::ParseTreeVisitor *vi
 
 FIRRTLParser::LowerBoundContext* FIRRTLParser::lowerBound() {
   LowerBoundContext *_localctx = _tracker.createInstance<LowerBoundContext>(_ctx, getState());
-  enterRule(_localctx, 48, FIRRTLParser::RuleLowerBound);
+  enterRule(_localctx, 54, FIRRTLParser::RuleLowerBound);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(588);
+    setState(645);
     _la = _input->LA(1);
-    if (!(_la == FIRRTLParser::T__9
+    if (!(_la == FIRRTLParser::T__6
 
-    || _la == FIRRTLParser::T__15)) {
+    || _la == FIRRTLParser::T__12)) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -4299,7 +4552,7 @@ void FIRRTLParser::UpperBoundContext::exitRule(tree::ParseTreeListener *listener
 }
 
 
-antlrcpp::Any FIRRTLParser::UpperBoundContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::UpperBoundContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitUpperBound(this);
   else
@@ -4308,19 +4561,23 @@ antlrcpp::Any FIRRTLParser::UpperBoundContext::accept(tree::ParseTreeVisitor *vi
 
 FIRRTLParser::UpperBoundContext* FIRRTLParser::upperBound() {
   UpperBoundContext *_localctx = _tracker.createInstance<UpperBoundContext>(_ctx, getState());
-  enterRule(_localctx, 50, FIRRTLParser::RuleUpperBound);
+  enterRule(_localctx, 56, FIRRTLParser::RuleUpperBound);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(590);
+    setState(647);
     _la = _input->LA(1);
-    if (!(_la == FIRRTLParser::T__10
+    if (!(_la == FIRRTLParser::T__7
 
-    || _la == FIRRTLParser::T__16)) {
+    || _la == FIRRTLParser::T__13)) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -4374,7 +4631,7 @@ void FIRRTLParser::BoundValueContext::exitRule(tree::ParseTreeListener *listener
 }
 
 
-antlrcpp::Any FIRRTLParser::BoundValueContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::BoundValueContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitBoundValue(this);
   else
@@ -4383,20 +4640,22 @@ antlrcpp::Any FIRRTLParser::BoundValueContext::accept(tree::ParseTreeVisitor *vi
 
 FIRRTLParser::BoundValueContext* FIRRTLParser::boundValue() {
   BoundValueContext *_localctx = _tracker.createInstance<BoundValueContext>(_ctx, getState());
-  enterRule(_localctx, 52, FIRRTLParser::RuleBoundValue);
+  enterRule(_localctx, 58, FIRRTLParser::RuleBoundValue);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(592);
+    setState(649);
     _la = _input->LA(1);
-    if (!(_la == FIRRTLParser::T__28 || ((((_la - 113) & ~ 0x3fULL) == 0) &&
-      ((1ULL << (_la - 113)) & ((1ULL << (FIRRTLParser::UnsignedInt - 113))
-      | (1ULL << (FIRRTLParser::SignedInt - 113))
-      | (1ULL << (FIRRTLParser::DoubleLit - 113)))) != 0))) {
+    if (!(_la == FIRRTLParser::T__24 || (((_la - 119) & ~ 0x3fULL) == 0) &&
+      ((1ULL << (_la - 119)) & 35) != 0)) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -4456,12 +4715,24 @@ tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_Clock() {
   return getToken(FIRRTLParser::Key_Clock, 0);
 }
 
+tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_Reset() {
+  return getToken(FIRRTLParser::Key_Reset, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_AsyncReset() {
+  return getToken(FIRRTLParser::Key_AsyncReset, 0);
+}
+
 tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_Analog() {
   return getToken(FIRRTLParser::Key_Analog, 0);
 }
 
 tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_Fixed() {
   return getToken(FIRRTLParser::Key_Fixed, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_Interval() {
+  return getToken(FIRRTLParser::Key_Interval, 0);
 }
 
 tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_flip() {
@@ -4588,6 +4859,22 @@ tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_rdwr() {
   return getToken(FIRRTLParser::Key_rdwr, 0);
 }
 
+tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_attach() {
+  return getToken(FIRRTLParser::Key_attach, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_assert() {
+  return getToken(FIRRTLParser::Key_assert, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_assume() {
+  return getToken(FIRRTLParser::Key_assume, 0);
+}
+
+tree::TerminalNode* FIRRTLParser::KeywordAsIdContext::Key_cover() {
+  return getToken(FIRRTLParser::Key_cover, 0);
+}
+
 
 size_t FIRRTLParser::KeywordAsIdContext::getRuleIndex() const {
   return FIRRTLParser::RuleKeywordAsId;
@@ -4606,7 +4893,7 @@ void FIRRTLParser::KeywordAsIdContext::exitRule(tree::ParseTreeListener *listene
 }
 
 
-antlrcpp::Any FIRRTLParser::KeywordAsIdContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::KeywordAsIdContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitKeywordAsId(this);
   else
@@ -4615,59 +4902,22 @@ antlrcpp::Any FIRRTLParser::KeywordAsIdContext::accept(tree::ParseTreeVisitor *v
 
 FIRRTLParser::KeywordAsIdContext* FIRRTLParser::keywordAsId() {
   KeywordAsIdContext *_localctx = _tracker.createInstance<KeywordAsIdContext>(_ctx, getState());
-  enterRule(_localctx, 54, FIRRTLParser::RuleKeywordAsId);
+  enterRule(_localctx, 60, FIRRTLParser::RuleKeywordAsId);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(594);
+    setState(651);
     _la = _input->LA(1);
-    if (!(_la == FIRRTLParser::T__13 || ((((_la - 71) & ~ 0x3fULL) == 0) &&
-      ((1ULL << (_la - 71)) & ((1ULL << (FIRRTLParser::Key_circuit - 71))
-      | (1ULL << (FIRRTLParser::Key_module - 71))
-      | (1ULL << (FIRRTLParser::Key_extmodule - 71))
-      | (1ULL << (FIRRTLParser::Key_parameter - 71))
-      | (1ULL << (FIRRTLParser::Key_input - 71))
-      | (1ULL << (FIRRTLParser::Key_output - 71))
-      | (1ULL << (FIRRTLParser::Key_UInt - 71))
-      | (1ULL << (FIRRTLParser::Key_SInt - 71))
-      | (1ULL << (FIRRTLParser::Key_Clock - 71))
-      | (1ULL << (FIRRTLParser::Key_Analog - 71))
-      | (1ULL << (FIRRTLParser::Key_Fixed - 71))
-      | (1ULL << (FIRRTLParser::Key_flip - 71))
-      | (1ULL << (FIRRTLParser::Key_wire - 71))
-      | (1ULL << (FIRRTLParser::Key_reg - 71))
-      | (1ULL << (FIRRTLParser::Key_with - 71))
-      | (1ULL << (FIRRTLParser::Key_mem - 71))
-      | (1ULL << (FIRRTLParser::Key_depth - 71))
-      | (1ULL << (FIRRTLParser::Key_reader - 71))
-      | (1ULL << (FIRRTLParser::Key_writer - 71))
-      | (1ULL << (FIRRTLParser::Key_readwriter - 71))
-      | (1ULL << (FIRRTLParser::Key_inst - 71))
-      | (1ULL << (FIRRTLParser::Key_of - 71))
-      | (1ULL << (FIRRTLParser::Key_node - 71))
-      | (1ULL << (FIRRTLParser::Key_is - 71))
-      | (1ULL << (FIRRTLParser::Key_invalid - 71))
-      | (1ULL << (FIRRTLParser::Key_when - 71))
-      | (1ULL << (FIRRTLParser::Key_else - 71))
-      | (1ULL << (FIRRTLParser::Key_stop - 71))
-      | (1ULL << (FIRRTLParser::Key_printf - 71))
-      | (1ULL << (FIRRTLParser::Key_skip - 71))
-      | (1ULL << (FIRRTLParser::Key_old - 71))
-      | (1ULL << (FIRRTLParser::Key_new - 71))
-      | (1ULL << (FIRRTLParser::Key_undefined - 71))
-      | (1ULL << (FIRRTLParser::Key_mux - 71))
-      | (1ULL << (FIRRTLParser::Key_validif - 71))
-      | (1ULL << (FIRRTLParser::Key_cmem - 71))
-      | (1ULL << (FIRRTLParser::Key_smem - 71))
-      | (1ULL << (FIRRTLParser::Key_mport - 71))
-      | (1ULL << (FIRRTLParser::Key_infer - 71))
-      | (1ULL << (FIRRTLParser::Key_read - 71))
-      | (1ULL << (FIRRTLParser::Key_write - 71))
-      | (1ULL << (FIRRTLParser::Key_rdwr - 71)))) != 0))) {
+    if (!(_la == FIRRTLParser::T__10 || (((_la - 70) & ~ 0x3fULL) == 0) &&
+      ((1ULL << (_la - 70)) & 562949953421311) != 0)) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -4709,7 +4959,7 @@ void FIRRTLParser::PrimopContext::exitRule(tree::ParseTreeListener *listener) {
 }
 
 
-antlrcpp::Any FIRRTLParser::PrimopContext::accept(tree::ParseTreeVisitor *visitor) {
+std::any FIRRTLParser::PrimopContext::accept(tree::ParseTreeVisitor *visitor) {
   if (auto parserVisitor = dynamic_cast<FIRRTLVisitor*>(visitor))
     return parserVisitor->visitPrimop(this);
   else
@@ -4718,58 +4968,22 @@ antlrcpp::Any FIRRTLParser::PrimopContext::accept(tree::ParseTreeVisitor *visito
 
 FIRRTLParser::PrimopContext* FIRRTLParser::primop() {
   PrimopContext *_localctx = _tracker.createInstance<PrimopContext>(_ctx, getState());
-  enterRule(_localctx, 56, FIRRTLParser::RulePrimop);
+  enterRule(_localctx, 62, FIRRTLParser::RulePrimop);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
     enterOuterAlt(_localctx, 1);
-    setState(596);
+    setState(653);
     _la = _input->LA(1);
-    if (!(((((_la - 30) & ~ 0x3fULL) == 0) &&
-      ((1ULL << (_la - 30)) & ((1ULL << (FIRRTLParser::T__29 - 30))
-      | (1ULL << (FIRRTLParser::T__30 - 30))
-      | (1ULL << (FIRRTLParser::T__31 - 30))
-      | (1ULL << (FIRRTLParser::T__32 - 30))
-      | (1ULL << (FIRRTLParser::T__33 - 30))
-      | (1ULL << (FIRRTLParser::T__34 - 30))
-      | (1ULL << (FIRRTLParser::T__35 - 30))
-      | (1ULL << (FIRRTLParser::T__36 - 30))
-      | (1ULL << (FIRRTLParser::T__37 - 30))
-      | (1ULL << (FIRRTLParser::T__38 - 30))
-      | (1ULL << (FIRRTLParser::T__39 - 30))
-      | (1ULL << (FIRRTLParser::T__40 - 30))
-      | (1ULL << (FIRRTLParser::T__41 - 30))
-      | (1ULL << (FIRRTLParser::T__42 - 30))
-      | (1ULL << (FIRRTLParser::T__43 - 30))
-      | (1ULL << (FIRRTLParser::T__44 - 30))
-      | (1ULL << (FIRRTLParser::T__45 - 30))
-      | (1ULL << (FIRRTLParser::T__46 - 30))
-      | (1ULL << (FIRRTLParser::T__47 - 30))
-      | (1ULL << (FIRRTLParser::T__48 - 30))
-      | (1ULL << (FIRRTLParser::T__49 - 30))
-      | (1ULL << (FIRRTLParser::T__50 - 30))
-      | (1ULL << (FIRRTLParser::T__51 - 30))
-      | (1ULL << (FIRRTLParser::T__52 - 30))
-      | (1ULL << (FIRRTLParser::T__53 - 30))
-      | (1ULL << (FIRRTLParser::T__54 - 30))
-      | (1ULL << (FIRRTLParser::T__55 - 30))
-      | (1ULL << (FIRRTLParser::T__56 - 30))
-      | (1ULL << (FIRRTLParser::T__57 - 30))
-      | (1ULL << (FIRRTLParser::T__58 - 30))
-      | (1ULL << (FIRRTLParser::T__59 - 30))
-      | (1ULL << (FIRRTLParser::T__60 - 30))
-      | (1ULL << (FIRRTLParser::T__61 - 30))
-      | (1ULL << (FIRRTLParser::T__62 - 30))
-      | (1ULL << (FIRRTLParser::T__63 - 30))
-      | (1ULL << (FIRRTLParser::T__64 - 30))
-      | (1ULL << (FIRRTLParser::T__65 - 30))
-      | (1ULL << (FIRRTLParser::T__66 - 30))
-      | (1ULL << (FIRRTLParser::T__67 - 30))
-      | (1ULL << (FIRRTLParser::T__68 - 30))
-      | (1ULL << (FIRRTLParser::T__69 - 30)))) != 0))) {
+    if (!((((_la - 26) & ~ 0x3fULL) == 0) &&
+      ((1ULL << (_la - 26)) & 17592186044415) != 0)) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -4789,8 +5003,7 @@ FIRRTLParser::PrimopContext* FIRRTLParser::primop() {
 
 bool FIRRTLParser::sempred(RuleContext *context, size_t ruleIndex, size_t predicateIndex) {
   switch (ruleIndex) {
-    case 4: return typeSempred(dynamic_cast<TypeContext *>(context), predicateIndex);
-    case 20: return expSempred(dynamic_cast<ExpContext *>(context), predicateIndex);
+    case 4: return typeSempred(antlrcpp::downCast<TypeContext *>(context), predicateIndex);
 
   default:
     break;
@@ -4808,537 +5021,6 @@ bool FIRRTLParser::typeSempred(TypeContext *_localctx, size_t predicateIndex) {
   return true;
 }
 
-bool FIRRTLParser::expSempred(ExpContext *_localctx, size_t predicateIndex) {
-  switch (predicateIndex) {
-    case 1: return precpred(_ctx, 7);
-    case 2: return precpred(_ctx, 6);
-    case 3: return precpred(_ctx, 5);
-    case 4: return precpred(_ctx, 4);
-
-  default:
-    break;
-  }
-  return true;
+void FIRRTLParser::initialize() {
+  ::antlr4::internal::call_once(firrtlParserOnceFlag, firrtlParserInitialize);
 }
-
-// Static vars and initialization.
-std::vector<dfa::DFA> FIRRTLParser::_decisionToDFA;
-atn::PredictionContextCache FIRRTLParser::_sharedContextCache;
-
-// We own the ATN which in turn owns the ATN states.
-atn::ATN FIRRTLParser::_atn;
-std::vector<uint16_t> FIRRTLParser::_serializedATN;
-
-std::vector<std::string> FIRRTLParser::_ruleNames = {
-  "circuit", "module", "port", "dir", "type", "field", "defname", "parameter", 
-  "moduleBlock", "simple_reset0", "simple_reset", "reset_block", "stmt", 
-  "memField", "simple_stmt", "suite", "when", "info", "mdir", "ruw", "exp", 
-  "id", "fieldId", "intLit", "lowerBound", "upperBound", "boundValue", "keywordAsId", 
-  "primop"
-};
-
-std::vector<std::string> FIRRTLParser::_literalNames = {
-  "", "':'", "'<'", "'>'", "'Interval'", "'.'", "'AsyncReset'", "'Reset'", 
-  "'{'", "'}'", "'['", "']'", "'defname'", "'='", "'reset'", "'=>'", "'('", 
-  "')'", "'<='", "'<-'", "'stop('", "'printf('", "'attach'", "'data-type'", 
-  "'read-latency'", "'write-latency'", "'read-under-write'", "'mux('", "'validif('", 
-  "'?'", "'add('", "'sub('", "'mul('", "'div('", "'rem('", "'lt('", "'leq('", 
-  "'gt('", "'geq('", "'eq('", "'neq('", "'pad('", "'asUInt('", "'asAsyncReset('", 
-  "'asSInt('", "'asClock('", "'asFixedPoint('", "'asInterval('", "'shl('", 
-  "'shr('", "'dshl('", "'dshr('", "'cvt('", "'neg('", "'not('", "'and('", 
-  "'or('", "'xor('", "'andr('", "'orr('", "'xorr('", "'cat('", "'bits('", 
-  "'head('", "'tail('", "'incp('", "'decp('", "'setp('", "'wrap('", "'clip('", 
-  "'squz('", "'circuit'", "'module'", "'extmodule'", "'parameter'", "'input'", 
-  "'output'", "'UInt'", "'SInt'", "'Clock'", "'Analog'", "'Fixed'", "'flip'", 
-  "'wire'", "'reg'", "'with'", "'mem'", "'depth'", "'reader'", "'writer'", 
-  "'readwriter'", "'inst'", "'of'", "'node'", "'is'", "'invalid'", "'when'", 
-  "'else'", "'stop'", "'printf'", "'skip'", "'old'", "'new'", "'undefined'", 
-  "'mux'", "'validif'", "'cmem'", "'smem'", "'mport'", "'infer'", "'read'", 
-  "'write'", "'rdwr'"
-};
-
-std::vector<std::string> FIRRTLParser::_symbolicNames = {
-  "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
-  "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
-  "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", 
-  "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "Key_circuit", 
-  "Key_module", "Key_extmodule", "Key_parameter", "Key_input", "Key_output", 
-  "Key_UInt", "Key_SInt", "Key_Clock", "Key_Analog", "Key_Fixed", "Key_flip", 
-  "Key_wire", "Key_reg", "Key_with", "Key_mem", "Key_depth", "Key_reader", 
-  "Key_writer", "Key_readwriter", "Key_inst", "Key_of", "Key_node", "Key_is", 
-  "Key_invalid", "Key_when", "Key_else", "Key_stop", "Key_printf", "Key_skip", 
-  "Key_old", "Key_new", "Key_undefined", "Key_mux", "Key_validif", "Key_cmem", 
-  "Key_smem", "Key_mport", "Key_infer", "Key_read", "Key_write", "Key_rdwr", 
-  "UnsignedInt", "SignedInt", "HexLit", "OctalLit", "BinaryLit", "DoubleLit", 
-  "StringLit", "RawString", "FileInfo", "Id", "RelaxedId", "COMMENT", "WHITESPACE", 
-  "NEWLINE", "INDENT", "DEDENT"
-};
-
-dfa::Vocabulary FIRRTLParser::_vocabulary(_literalNames, _symbolicNames);
-
-std::vector<std::string> FIRRTLParser::_tokenNames;
-
-FIRRTLParser::Initializer::Initializer() {
-	for (size_t i = 0; i < _symbolicNames.size(); ++i) {
-		std::string name = _vocabulary.getLiteralName(i);
-		if (name.empty()) {
-			name = _vocabulary.getSymbolicName(i);
-		}
-
-		if (name.empty()) {
-			_tokenNames.push_back("<INVALID>");
-		} else {
-      _tokenNames.push_back(name);
-    }
-	}
-
-  _serializedATN = {
-    0x3, 0x608b, 0xa72a, 0x8133, 0xb9ed, 0x417c, 0x3be7, 0x7786, 0x5964, 
-    0x3, 0x82, 0x259, 0x4, 0x2, 0x9, 0x2, 0x4, 0x3, 0x9, 0x3, 0x4, 0x4, 
-    0x9, 0x4, 0x4, 0x5, 0x9, 0x5, 0x4, 0x6, 0x9, 0x6, 0x4, 0x7, 0x9, 0x7, 
-    0x4, 0x8, 0x9, 0x8, 0x4, 0x9, 0x9, 0x9, 0x4, 0xa, 0x9, 0xa, 0x4, 0xb, 
-    0x9, 0xb, 0x4, 0xc, 0x9, 0xc, 0x4, 0xd, 0x9, 0xd, 0x4, 0xe, 0x9, 0xe, 
-    0x4, 0xf, 0x9, 0xf, 0x4, 0x10, 0x9, 0x10, 0x4, 0x11, 0x9, 0x11, 0x4, 
-    0x12, 0x9, 0x12, 0x4, 0x13, 0x9, 0x13, 0x4, 0x14, 0x9, 0x14, 0x4, 0x15, 
-    0x9, 0x15, 0x4, 0x16, 0x9, 0x16, 0x4, 0x17, 0x9, 0x17, 0x4, 0x18, 0x9, 
-    0x18, 0x4, 0x19, 0x9, 0x19, 0x4, 0x1a, 0x9, 0x1a, 0x4, 0x1b, 0x9, 0x1b, 
-    0x4, 0x1c, 0x9, 0x1c, 0x4, 0x1d, 0x9, 0x1d, 0x4, 0x1e, 0x9, 0x1e, 0x3, 
-    0x2, 0x3, 0x2, 0x3, 0x2, 0x3, 0x2, 0x5, 0x2, 0x41, 0xa, 0x2, 0x3, 0x2, 
-    0x3, 0x2, 0x7, 0x2, 0x45, 0xa, 0x2, 0xc, 0x2, 0xe, 0x2, 0x48, 0xb, 0x2, 
-    0x3, 0x2, 0x3, 0x2, 0x3, 0x2, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
-    0x5, 0x3, 0x51, 0xa, 0x3, 0x3, 0x3, 0x3, 0x3, 0x7, 0x3, 0x55, 0xa, 0x3, 
-    0xc, 0x3, 0xe, 0x3, 0x58, 0xb, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 
-    0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x5, 0x3, 0x61, 0xa, 0x3, 0x3, 0x3, 
-    0x3, 0x3, 0x7, 0x3, 0x65, 0xa, 0x3, 0xc, 0x3, 0xe, 0x3, 0x68, 0xb, 0x3, 
-    0x3, 0x3, 0x5, 0x3, 0x6b, 0xa, 0x3, 0x3, 0x3, 0x7, 0x3, 0x6e, 0xa, 0x3, 
-    0xc, 0x3, 0xe, 0x3, 0x71, 0xb, 0x3, 0x3, 0x3, 0x3, 0x3, 0x5, 0x3, 0x75, 
-    0xa, 0x3, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x5, 0x4, 
-    0x7c, 0xa, 0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x5, 0x3, 0x5, 0x3, 0x6, 0x3, 
-    0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x5, 0x6, 0x88, 0xa, 0x6, 
-    0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x5, 0x6, 0x8f, 0xa, 
-    0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x5, 0x6, 0x96, 
-    0xa, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 
-    0x5, 0x6, 0x9e, 0xa, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 
-    0x6, 0x3, 0x6, 0x5, 0x6, 0xa6, 0xa, 0x6, 0x3, 0x6, 0x3, 0x6, 0x5, 0x6, 
-    0xaa, 0xa, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 
-    0x6, 0x3, 0x6, 0x3, 0x6, 0x5, 0x6, 0xb4, 0xa, 0x6, 0x3, 0x6, 0x3, 0x6, 
-    0x7, 0x6, 0xb8, 0xa, 0x6, 0xc, 0x6, 0xe, 0x6, 0xbb, 0xb, 0x6, 0x3, 0x6, 
-    0x5, 0x6, 0xbe, 0xa, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 0x6, 0x3, 
-    0x6, 0x7, 0x6, 0xc5, 0xa, 0x6, 0xc, 0x6, 0xe, 0x6, 0xc8, 0xb, 0x6, 0x3, 
-    0x7, 0x5, 0x7, 0xcb, 0xa, 0x7, 0x3, 0x7, 0x3, 0x7, 0x3, 0x7, 0x3, 0x7, 
-    0x3, 0x8, 0x3, 0x8, 0x3, 0x8, 0x3, 0x8, 0x3, 0x8, 0x3, 0x9, 0x3, 0x9, 
-    0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 
-    0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 
-    0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 0x3, 0x9, 
-    0x3, 0x9, 0x5, 0x9, 0xee, 0xa, 0x9, 0x3, 0xa, 0x7, 0xa, 0xf1, 0xa, 0xa, 
-    0xc, 0xa, 0xe, 0xa, 0xf4, 0xb, 0xa, 0x3, 0xb, 0x3, 0xb, 0x3, 0xb, 0x3, 
-    0xb, 0x3, 0xb, 0x3, 0xb, 0x3, 0xb, 0x3, 0xc, 0x3, 0xc, 0x3, 0xc, 0x3, 
-    0xc, 0x3, 0xc, 0x5, 0xc, 0x102, 0xa, 0xc, 0x3, 0xd, 0x3, 0xd, 0x3, 0xd, 
-    0x5, 0xd, 0x107, 0xa, 0xd, 0x3, 0xd, 0x3, 0xd, 0x3, 0xd, 0x3, 0xd, 0x3, 
-    0xd, 0x3, 0xd, 0x5, 0xd, 0x10f, 0xa, 0xd, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 
-    0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 0x116, 0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 
-    0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 0x120, 
-    0xa, 0xe, 0x3, 0xe, 0x5, 0xe, 0x123, 0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 
-    0xe, 0x3, 0xe, 0x5, 0xe, 0x129, 0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 0x7, 0xe, 
-    0x12d, 0xa, 0xe, 0xc, 0xe, 0xe, 0xe, 0x130, 0xb, 0xe, 0x3, 0xe, 0x3, 
-    0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 0x139, 
-    0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 
-    0x140, 0xa, 0xe, 0x3, 0xe, 0x5, 0xe, 0x143, 0xa, 0xe, 0x3, 0xe, 0x3, 
-    0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 
-    0xe, 0x3, 0xe, 0x5, 0xe, 0x14f, 0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 
-    0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 0x156, 0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 
-    0xe, 0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 0x15d, 0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 
-    0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 0x163, 0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 
-    0xe, 0x3, 0xe, 0x5, 0xe, 0x169, 0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 
-    0x3, 0xe, 0x5, 0xe, 0x16f, 0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 
-    0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 0x178, 0xa, 0xe, 0x3, 0xe, 
-    0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x3, 0xe, 0x7, 0xe, 0x17f, 0xa, 0xe, 0xc, 
-    0xe, 0xe, 0xe, 0x182, 0xb, 0xe, 0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 0x186, 
-    0xa, 0xe, 0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 0x18a, 0xa, 0xe, 0x3, 0xe, 0x3, 
-    0xe, 0x3, 0xe, 0x6, 0xe, 0x18f, 0xa, 0xe, 0xd, 0xe, 0xe, 0xe, 0x190, 
-    0x3, 0xe, 0x3, 0xe, 0x5, 0xe, 0x195, 0xa, 0xe, 0x5, 0xe, 0x197, 0xa, 
-    0xe, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 
-    0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 
-    0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 
-    0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 
-    0xf, 0x6, 0xf, 0x1b5, 0xa, 0xf, 0xd, 0xf, 0xe, 0xf, 0x1b6, 0x3, 0xf, 
-    0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x6, 0xf, 0x1be, 0xa, 0xf, 0xd, 
-    0xf, 0xe, 0xf, 0x1bf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 0x3, 0xf, 
-    0x6, 0xf, 0x1c7, 0xa, 0xf, 0xd, 0xf, 0xe, 0xf, 0x1c8, 0x3, 0xf, 0x3, 
-    0xf, 0x5, 0xf, 0x1cd, 0xa, 0xf, 0x3, 0x10, 0x3, 0x10, 0x5, 0x10, 0x1d1, 
-    0xa, 0x10, 0x3, 0x11, 0x3, 0x11, 0x3, 0x11, 0x6, 0x11, 0x1d6, 0xa, 0x11, 
-    0xd, 0x11, 0xe, 0x11, 0x1d7, 0x3, 0x11, 0x3, 0x11, 0x5, 0x11, 0x1dc, 
-    0xa, 0x11, 0x3, 0x12, 0x3, 0x12, 0x3, 0x12, 0x3, 0x12, 0x5, 0x12, 0x1e2, 
-    0xa, 0x12, 0x3, 0x12, 0x5, 0x12, 0x1e5, 0xa, 0x12, 0x3, 0x12, 0x3, 0x12, 
-    0x3, 0x12, 0x3, 0x12, 0x5, 0x12, 0x1eb, 0xa, 0x12, 0x3, 0x12, 0x5, 0x12, 
-    0x1ee, 0xa, 0x12, 0x5, 0x12, 0x1f0, 0xa, 0x12, 0x5, 0x12, 0x1f2, 0xa, 
-    0x12, 0x3, 0x13, 0x3, 0x13, 0x3, 0x14, 0x3, 0x14, 0x3, 0x15, 0x3, 0x15, 
-    0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x5, 
-    0x16, 0x200, 0xa, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 
-    0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x5, 0x16, 0x20b, 
-    0xa, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 
-    0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 
-    0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x7, 
-    0x16, 0x21f, 0xa, 0x16, 0xc, 0x16, 0xe, 0x16, 0x222, 0xb, 0x16, 0x3, 
-    0x16, 0x7, 0x16, 0x225, 0xa, 0x16, 0xc, 0x16, 0xe, 0x16, 0x228, 0xb, 
-    0x16, 0x3, 0x16, 0x3, 0x16, 0x5, 0x16, 0x22c, 0xa, 0x16, 0x3, 0x16, 
-    0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 
-    0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 0x3, 0x16, 
-    0x3, 0x16, 0x3, 0x16, 0x7, 0x16, 0x23e, 0xa, 0x16, 0xc, 0x16, 0xe, 0x16, 
-    0x241, 0xb, 0x16, 0x3, 0x17, 0x3, 0x17, 0x5, 0x17, 0x245, 0xa, 0x17, 
-    0x3, 0x18, 0x3, 0x18, 0x3, 0x18, 0x3, 0x18, 0x5, 0x18, 0x24b, 0xa, 0x18, 
-    0x3, 0x19, 0x3, 0x19, 0x3, 0x1a, 0x3, 0x1a, 0x3, 0x1b, 0x3, 0x1b, 0x3, 
-    0x1c, 0x3, 0x1c, 0x3, 0x1d, 0x3, 0x1d, 0x3, 0x1e, 0x3, 0x1e, 0x3, 0x1e, 
-    0x2, 0x4, 0xa, 0x2a, 0x1f, 0x2, 0x4, 0x6, 0x8, 0xa, 0xc, 0xe, 0x10, 
-    0x12, 0x14, 0x16, 0x18, 0x1a, 0x1c, 0x1e, 0x20, 0x22, 0x24, 0x26, 0x28, 
-    0x2a, 0x2c, 0x2e, 0x30, 0x32, 0x34, 0x36, 0x38, 0x3a, 0x2, 0xb, 0x3, 
-    0x2, 0x4d, 0x4e, 0x3, 0x2, 0x6f, 0x72, 0x3, 0x2, 0x67, 0x69, 0x3, 0x2, 
-    0x73, 0x77, 0x4, 0x2, 0xc, 0xc, 0x12, 0x12, 0x4, 0x2, 0xd, 0xd, 0x13, 
-    0x13, 0x5, 0x2, 0x1f, 0x1f, 0x73, 0x74, 0x78, 0x78, 0x4, 0x2, 0x10, 
-    0x10, 0x49, 0x72, 0x3, 0x2, 0x20, 0x48, 0x2, 0x2a5, 0x2, 0x3c, 0x3, 
-    0x2, 0x2, 0x2, 0x4, 0x74, 0x3, 0x2, 0x2, 0x2, 0x6, 0x76, 0x3, 0x2, 0x2, 
-    0x2, 0x8, 0x7f, 0x3, 0x2, 0x2, 0x2, 0xa, 0xbd, 0x3, 0x2, 0x2, 0x2, 0xc, 
-    0xca, 0x3, 0x2, 0x2, 0x2, 0xe, 0xd0, 0x3, 0x2, 0x2, 0x2, 0x10, 0xed, 
-    0x3, 0x2, 0x2, 0x2, 0x12, 0xf2, 0x3, 0x2, 0x2, 0x2, 0x14, 0xf5, 0x3, 
-    0x2, 0x2, 0x2, 0x16, 0x101, 0x3, 0x2, 0x2, 0x2, 0x18, 0x10e, 0x3, 0x2, 
-    0x2, 0x2, 0x1a, 0x196, 0x3, 0x2, 0x2, 0x2, 0x1c, 0x1cc, 0x3, 0x2, 0x2, 
-    0x2, 0x1e, 0x1d0, 0x3, 0x2, 0x2, 0x2, 0x20, 0x1db, 0x3, 0x2, 0x2, 0x2, 
-    0x22, 0x1dd, 0x3, 0x2, 0x2, 0x2, 0x24, 0x1f3, 0x3, 0x2, 0x2, 0x2, 0x26, 
-    0x1f5, 0x3, 0x2, 0x2, 0x2, 0x28, 0x1f7, 0x3, 0x2, 0x2, 0x2, 0x2a, 0x22b, 
-    0x3, 0x2, 0x2, 0x2, 0x2c, 0x244, 0x3, 0x2, 0x2, 0x2, 0x2e, 0x24a, 0x3, 
-    0x2, 0x2, 0x2, 0x30, 0x24c, 0x3, 0x2, 0x2, 0x2, 0x32, 0x24e, 0x3, 0x2, 
-    0x2, 0x2, 0x34, 0x250, 0x3, 0x2, 0x2, 0x2, 0x36, 0x252, 0x3, 0x2, 0x2, 
-    0x2, 0x38, 0x254, 0x3, 0x2, 0x2, 0x2, 0x3a, 0x256, 0x3, 0x2, 0x2, 0x2, 
-    0x3c, 0x3d, 0x7, 0x49, 0x2, 0x2, 0x3d, 0x3e, 0x5, 0x2c, 0x17, 0x2, 0x3e, 
-    0x40, 0x7, 0x3, 0x2, 0x2, 0x3f, 0x41, 0x5, 0x24, 0x13, 0x2, 0x40, 0x3f, 
-    0x3, 0x2, 0x2, 0x2, 0x40, 0x41, 0x3, 0x2, 0x2, 0x2, 0x41, 0x42, 0x3, 
-    0x2, 0x2, 0x2, 0x42, 0x46, 0x7, 0x81, 0x2, 0x2, 0x43, 0x45, 0x5, 0x4, 
-    0x3, 0x2, 0x44, 0x43, 0x3, 0x2, 0x2, 0x2, 0x45, 0x48, 0x3, 0x2, 0x2, 
-    0x2, 0x46, 0x44, 0x3, 0x2, 0x2, 0x2, 0x46, 0x47, 0x3, 0x2, 0x2, 0x2, 
-    0x47, 0x49, 0x3, 0x2, 0x2, 0x2, 0x48, 0x46, 0x3, 0x2, 0x2, 0x2, 0x49, 
-    0x4a, 0x7, 0x82, 0x2, 0x2, 0x4a, 0x4b, 0x7, 0x2, 0x2, 0x3, 0x4b, 0x3, 
-    0x3, 0x2, 0x2, 0x2, 0x4c, 0x4d, 0x7, 0x4a, 0x2, 0x2, 0x4d, 0x4e, 0x5, 
-    0x2c, 0x17, 0x2, 0x4e, 0x50, 0x7, 0x3, 0x2, 0x2, 0x4f, 0x51, 0x5, 0x24, 
-    0x13, 0x2, 0x50, 0x4f, 0x3, 0x2, 0x2, 0x2, 0x50, 0x51, 0x3, 0x2, 0x2, 
-    0x2, 0x51, 0x52, 0x3, 0x2, 0x2, 0x2, 0x52, 0x56, 0x7, 0x81, 0x2, 0x2, 
-    0x53, 0x55, 0x5, 0x6, 0x4, 0x2, 0x54, 0x53, 0x3, 0x2, 0x2, 0x2, 0x55, 
-    0x58, 0x3, 0x2, 0x2, 0x2, 0x56, 0x54, 0x3, 0x2, 0x2, 0x2, 0x56, 0x57, 
-    0x3, 0x2, 0x2, 0x2, 0x57, 0x59, 0x3, 0x2, 0x2, 0x2, 0x58, 0x56, 0x3, 
-    0x2, 0x2, 0x2, 0x59, 0x5a, 0x5, 0x12, 0xa, 0x2, 0x5a, 0x5b, 0x7, 0x82, 
-    0x2, 0x2, 0x5b, 0x75, 0x3, 0x2, 0x2, 0x2, 0x5c, 0x5d, 0x7, 0x4b, 0x2, 
-    0x2, 0x5d, 0x5e, 0x5, 0x2c, 0x17, 0x2, 0x5e, 0x60, 0x7, 0x3, 0x2, 0x2, 
-    0x5f, 0x61, 0x5, 0x24, 0x13, 0x2, 0x60, 0x5f, 0x3, 0x2, 0x2, 0x2, 0x60, 
-    0x61, 0x3, 0x2, 0x2, 0x2, 0x61, 0x62, 0x3, 0x2, 0x2, 0x2, 0x62, 0x66, 
-    0x7, 0x81, 0x2, 0x2, 0x63, 0x65, 0x5, 0x6, 0x4, 0x2, 0x64, 0x63, 0x3, 
-    0x2, 0x2, 0x2, 0x65, 0x68, 0x3, 0x2, 0x2, 0x2, 0x66, 0x64, 0x3, 0x2, 
-    0x2, 0x2, 0x66, 0x67, 0x3, 0x2, 0x2, 0x2, 0x67, 0x6a, 0x3, 0x2, 0x2, 
-    0x2, 0x68, 0x66, 0x3, 0x2, 0x2, 0x2, 0x69, 0x6b, 0x5, 0xe, 0x8, 0x2, 
-    0x6a, 0x69, 0x3, 0x2, 0x2, 0x2, 0x6a, 0x6b, 0x3, 0x2, 0x2, 0x2, 0x6b, 
-    0x6f, 0x3, 0x2, 0x2, 0x2, 0x6c, 0x6e, 0x5, 0x10, 0x9, 0x2, 0x6d, 0x6c, 
-    0x3, 0x2, 0x2, 0x2, 0x6e, 0x71, 0x3, 0x2, 0x2, 0x2, 0x6f, 0x6d, 0x3, 
-    0x2, 0x2, 0x2, 0x6f, 0x70, 0x3, 0x2, 0x2, 0x2, 0x70, 0x72, 0x3, 0x2, 
-    0x2, 0x2, 0x71, 0x6f, 0x3, 0x2, 0x2, 0x2, 0x72, 0x73, 0x7, 0x82, 0x2, 
-    0x2, 0x73, 0x75, 0x3, 0x2, 0x2, 0x2, 0x74, 0x4c, 0x3, 0x2, 0x2, 0x2, 
-    0x74, 0x5c, 0x3, 0x2, 0x2, 0x2, 0x75, 0x5, 0x3, 0x2, 0x2, 0x2, 0x76, 
-    0x77, 0x5, 0x8, 0x5, 0x2, 0x77, 0x78, 0x5, 0x2c, 0x17, 0x2, 0x78, 0x79, 
-    0x7, 0x3, 0x2, 0x2, 0x79, 0x7b, 0x5, 0xa, 0x6, 0x2, 0x7a, 0x7c, 0x5, 
-    0x24, 0x13, 0x2, 0x7b, 0x7a, 0x3, 0x2, 0x2, 0x2, 0x7b, 0x7c, 0x3, 0x2, 
-    0x2, 0x2, 0x7c, 0x7d, 0x3, 0x2, 0x2, 0x2, 0x7d, 0x7e, 0x7, 0x80, 0x2, 
-    0x2, 0x7e, 0x7, 0x3, 0x2, 0x2, 0x2, 0x7f, 0x80, 0x9, 0x2, 0x2, 0x2, 
-    0x80, 0x9, 0x3, 0x2, 0x2, 0x2, 0x81, 0x82, 0x8, 0x6, 0x1, 0x2, 0x82, 
-    0x87, 0x7, 0x4f, 0x2, 0x2, 0x83, 0x84, 0x7, 0x4, 0x2, 0x2, 0x84, 0x85, 
-    0x5, 0x30, 0x19, 0x2, 0x85, 0x86, 0x7, 0x5, 0x2, 0x2, 0x86, 0x88, 0x3, 
-    0x2, 0x2, 0x2, 0x87, 0x83, 0x3, 0x2, 0x2, 0x2, 0x87, 0x88, 0x3, 0x2, 
-    0x2, 0x2, 0x88, 0xbe, 0x3, 0x2, 0x2, 0x2, 0x89, 0x8e, 0x7, 0x50, 0x2, 
-    0x2, 0x8a, 0x8b, 0x7, 0x4, 0x2, 0x2, 0x8b, 0x8c, 0x5, 0x30, 0x19, 0x2, 
-    0x8c, 0x8d, 0x7, 0x5, 0x2, 0x2, 0x8d, 0x8f, 0x3, 0x2, 0x2, 0x2, 0x8e, 
-    0x8a, 0x3, 0x2, 0x2, 0x2, 0x8e, 0x8f, 0x3, 0x2, 0x2, 0x2, 0x8f, 0xbe, 
-    0x3, 0x2, 0x2, 0x2, 0x90, 0x95, 0x7, 0x53, 0x2, 0x2, 0x91, 0x92, 0x7, 
-    0x4, 0x2, 0x2, 0x92, 0x93, 0x5, 0x30, 0x19, 0x2, 0x93, 0x94, 0x7, 0x5, 
-    0x2, 0x2, 0x94, 0x96, 0x3, 0x2, 0x2, 0x2, 0x95, 0x91, 0x3, 0x2, 0x2, 
-    0x2, 0x95, 0x96, 0x3, 0x2, 0x2, 0x2, 0x96, 0x9d, 0x3, 0x2, 0x2, 0x2, 
-    0x97, 0x98, 0x7, 0x4, 0x2, 0x2, 0x98, 0x99, 0x7, 0x4, 0x2, 0x2, 0x99, 
-    0x9a, 0x5, 0x30, 0x19, 0x2, 0x9a, 0x9b, 0x7, 0x5, 0x2, 0x2, 0x9b, 0x9c, 
-    0x7, 0x5, 0x2, 0x2, 0x9c, 0x9e, 0x3, 0x2, 0x2, 0x2, 0x9d, 0x97, 0x3, 
-    0x2, 0x2, 0x2, 0x9d, 0x9e, 0x3, 0x2, 0x2, 0x2, 0x9e, 0xbe, 0x3, 0x2, 
-    0x2, 0x2, 0x9f, 0xa5, 0x7, 0x6, 0x2, 0x2, 0xa0, 0xa1, 0x5, 0x32, 0x1a, 
-    0x2, 0xa1, 0xa2, 0x5, 0x36, 0x1c, 0x2, 0xa2, 0xa3, 0x5, 0x36, 0x1c, 
-    0x2, 0xa3, 0xa4, 0x5, 0x34, 0x1b, 0x2, 0xa4, 0xa6, 0x3, 0x2, 0x2, 0x2, 
-    0xa5, 0xa0, 0x3, 0x2, 0x2, 0x2, 0xa5, 0xa6, 0x3, 0x2, 0x2, 0x2, 0xa6, 
-    0xa9, 0x3, 0x2, 0x2, 0x2, 0xa7, 0xa8, 0x7, 0x7, 0x2, 0x2, 0xa8, 0xaa, 
-    0x5, 0x30, 0x19, 0x2, 0xa9, 0xa7, 0x3, 0x2, 0x2, 0x2, 0xa9, 0xaa, 0x3, 
-    0x2, 0x2, 0x2, 0xaa, 0xbe, 0x3, 0x2, 0x2, 0x2, 0xab, 0xbe, 0x7, 0x51, 
-    0x2, 0x2, 0xac, 0xbe, 0x7, 0x8, 0x2, 0x2, 0xad, 0xbe, 0x7, 0x9, 0x2, 
-    0x2, 0xae, 0xb3, 0x7, 0x52, 0x2, 0x2, 0xaf, 0xb0, 0x7, 0x4, 0x2, 0x2, 
-    0xb0, 0xb1, 0x5, 0x30, 0x19, 0x2, 0xb1, 0xb2, 0x7, 0x5, 0x2, 0x2, 0xb2, 
-    0xb4, 0x3, 0x2, 0x2, 0x2, 0xb3, 0xaf, 0x3, 0x2, 0x2, 0x2, 0xb3, 0xb4, 
-    0x3, 0x2, 0x2, 0x2, 0xb4, 0xbe, 0x3, 0x2, 0x2, 0x2, 0xb5, 0xb9, 0x7, 
-    0xa, 0x2, 0x2, 0xb6, 0xb8, 0x5, 0xc, 0x7, 0x2, 0xb7, 0xb6, 0x3, 0x2, 
-    0x2, 0x2, 0xb8, 0xbb, 0x3, 0x2, 0x2, 0x2, 0xb9, 0xb7, 0x3, 0x2, 0x2, 
-    0x2, 0xb9, 0xba, 0x3, 0x2, 0x2, 0x2, 0xba, 0xbc, 0x3, 0x2, 0x2, 0x2, 
-    0xbb, 0xb9, 0x3, 0x2, 0x2, 0x2, 0xbc, 0xbe, 0x7, 0xb, 0x2, 0x2, 0xbd, 
-    0x81, 0x3, 0x2, 0x2, 0x2, 0xbd, 0x89, 0x3, 0x2, 0x2, 0x2, 0xbd, 0x90, 
-    0x3, 0x2, 0x2, 0x2, 0xbd, 0x9f, 0x3, 0x2, 0x2, 0x2, 0xbd, 0xab, 0x3, 
-    0x2, 0x2, 0x2, 0xbd, 0xac, 0x3, 0x2, 0x2, 0x2, 0xbd, 0xad, 0x3, 0x2, 
-    0x2, 0x2, 0xbd, 0xae, 0x3, 0x2, 0x2, 0x2, 0xbd, 0xb5, 0x3, 0x2, 0x2, 
-    0x2, 0xbe, 0xc6, 0x3, 0x2, 0x2, 0x2, 0xbf, 0xc0, 0xc, 0x3, 0x2, 0x2, 
-    0xc0, 0xc1, 0x7, 0xc, 0x2, 0x2, 0xc1, 0xc2, 0x5, 0x30, 0x19, 0x2, 0xc2, 
-    0xc3, 0x7, 0xd, 0x2, 0x2, 0xc3, 0xc5, 0x3, 0x2, 0x2, 0x2, 0xc4, 0xbf, 
-    0x3, 0x2, 0x2, 0x2, 0xc5, 0xc8, 0x3, 0x2, 0x2, 0x2, 0xc6, 0xc4, 0x3, 
-    0x2, 0x2, 0x2, 0xc6, 0xc7, 0x3, 0x2, 0x2, 0x2, 0xc7, 0xb, 0x3, 0x2, 
-    0x2, 0x2, 0xc8, 0xc6, 0x3, 0x2, 0x2, 0x2, 0xc9, 0xcb, 0x7, 0x54, 0x2, 
-    0x2, 0xca, 0xc9, 0x3, 0x2, 0x2, 0x2, 0xca, 0xcb, 0x3, 0x2, 0x2, 0x2, 
-    0xcb, 0xcc, 0x3, 0x2, 0x2, 0x2, 0xcc, 0xcd, 0x5, 0x2e, 0x18, 0x2, 0xcd, 
-    0xce, 0x7, 0x3, 0x2, 0x2, 0xce, 0xcf, 0x5, 0xa, 0x6, 0x2, 0xcf, 0xd, 
-    0x3, 0x2, 0x2, 0x2, 0xd0, 0xd1, 0x7, 0xe, 0x2, 0x2, 0xd1, 0xd2, 0x7, 
-    0xf, 0x2, 0x2, 0xd2, 0xd3, 0x5, 0x2c, 0x17, 0x2, 0xd3, 0xd4, 0x7, 0x80, 
-    0x2, 0x2, 0xd4, 0xf, 0x3, 0x2, 0x2, 0x2, 0xd5, 0xd6, 0x7, 0x4c, 0x2, 
-    0x2, 0xd6, 0xd7, 0x5, 0x2c, 0x17, 0x2, 0xd7, 0xd8, 0x7, 0xf, 0x2, 0x2, 
-    0xd8, 0xd9, 0x5, 0x30, 0x19, 0x2, 0xd9, 0xda, 0x7, 0x80, 0x2, 0x2, 0xda, 
-    0xee, 0x3, 0x2, 0x2, 0x2, 0xdb, 0xdc, 0x7, 0x4c, 0x2, 0x2, 0xdc, 0xdd, 
-    0x5, 0x2c, 0x17, 0x2, 0xdd, 0xde, 0x7, 0xf, 0x2, 0x2, 0xde, 0xdf, 0x7, 
-    0x79, 0x2, 0x2, 0xdf, 0xe0, 0x7, 0x80, 0x2, 0x2, 0xe0, 0xee, 0x3, 0x2, 
-    0x2, 0x2, 0xe1, 0xe2, 0x7, 0x4c, 0x2, 0x2, 0xe2, 0xe3, 0x5, 0x2c, 0x17, 
-    0x2, 0xe3, 0xe4, 0x7, 0xf, 0x2, 0x2, 0xe4, 0xe5, 0x7, 0x78, 0x2, 0x2, 
-    0xe5, 0xe6, 0x7, 0x80, 0x2, 0x2, 0xe6, 0xee, 0x3, 0x2, 0x2, 0x2, 0xe7, 
-    0xe8, 0x7, 0x4c, 0x2, 0x2, 0xe8, 0xe9, 0x5, 0x2c, 0x17, 0x2, 0xe9, 0xea, 
-    0x7, 0xf, 0x2, 0x2, 0xea, 0xeb, 0x7, 0x7a, 0x2, 0x2, 0xeb, 0xec, 0x7, 
-    0x80, 0x2, 0x2, 0xec, 0xee, 0x3, 0x2, 0x2, 0x2, 0xed, 0xd5, 0x3, 0x2, 
-    0x2, 0x2, 0xed, 0xdb, 0x3, 0x2, 0x2, 0x2, 0xed, 0xe1, 0x3, 0x2, 0x2, 
-    0x2, 0xed, 0xe7, 0x3, 0x2, 0x2, 0x2, 0xee, 0x11, 0x3, 0x2, 0x2, 0x2, 
-    0xef, 0xf1, 0x5, 0x1e, 0x10, 0x2, 0xf0, 0xef, 0x3, 0x2, 0x2, 0x2, 0xf1, 
-    0xf4, 0x3, 0x2, 0x2, 0x2, 0xf2, 0xf0, 0x3, 0x2, 0x2, 0x2, 0xf2, 0xf3, 
-    0x3, 0x2, 0x2, 0x2, 0xf3, 0x13, 0x3, 0x2, 0x2, 0x2, 0xf4, 0xf2, 0x3, 
-    0x2, 0x2, 0x2, 0xf5, 0xf6, 0x7, 0x10, 0x2, 0x2, 0xf6, 0xf7, 0x7, 0x11, 
-    0x2, 0x2, 0xf7, 0xf8, 0x7, 0x12, 0x2, 0x2, 0xf8, 0xf9, 0x5, 0x2a, 0x16, 
-    0x2, 0xf9, 0xfa, 0x5, 0x2a, 0x16, 0x2, 0xfa, 0xfb, 0x7, 0x13, 0x2, 0x2, 
-    0xfb, 0x15, 0x3, 0x2, 0x2, 0x2, 0xfc, 0x102, 0x5, 0x14, 0xb, 0x2, 0xfd, 
-    0xfe, 0x7, 0x12, 0x2, 0x2, 0xfe, 0xff, 0x5, 0x14, 0xb, 0x2, 0xff, 0x100, 
-    0x7, 0x13, 0x2, 0x2, 0x100, 0x102, 0x3, 0x2, 0x2, 0x2, 0x101, 0xfc, 
-    0x3, 0x2, 0x2, 0x2, 0x101, 0xfd, 0x3, 0x2, 0x2, 0x2, 0x102, 0x17, 0x3, 
-    0x2, 0x2, 0x2, 0x103, 0x104, 0x7, 0x81, 0x2, 0x2, 0x104, 0x106, 0x5, 
-    0x16, 0xc, 0x2, 0x105, 0x107, 0x5, 0x24, 0x13, 0x2, 0x106, 0x105, 0x3, 
-    0x2, 0x2, 0x2, 0x106, 0x107, 0x3, 0x2, 0x2, 0x2, 0x107, 0x108, 0x3, 
-    0x2, 0x2, 0x2, 0x108, 0x109, 0x7, 0x82, 0x2, 0x2, 0x109, 0x10f, 0x3, 
-    0x2, 0x2, 0x2, 0x10a, 0x10b, 0x7, 0x12, 0x2, 0x2, 0x10b, 0x10c, 0x5, 
-    0x16, 0xc, 0x2, 0x10c, 0x10d, 0x7, 0x13, 0x2, 0x2, 0x10d, 0x10f, 0x3, 
-    0x2, 0x2, 0x2, 0x10e, 0x103, 0x3, 0x2, 0x2, 0x2, 0x10e, 0x10a, 0x3, 
-    0x2, 0x2, 0x2, 0x10f, 0x19, 0x3, 0x2, 0x2, 0x2, 0x110, 0x111, 0x7, 0x55, 
-    0x2, 0x2, 0x111, 0x112, 0x5, 0x2c, 0x17, 0x2, 0x112, 0x113, 0x7, 0x3, 
-    0x2, 0x2, 0x113, 0x115, 0x5, 0xa, 0x6, 0x2, 0x114, 0x116, 0x5, 0x24, 
-    0x13, 0x2, 0x115, 0x114, 0x3, 0x2, 0x2, 0x2, 0x115, 0x116, 0x3, 0x2, 
-    0x2, 0x2, 0x116, 0x197, 0x3, 0x2, 0x2, 0x2, 0x117, 0x118, 0x7, 0x56, 
-    0x2, 0x2, 0x118, 0x119, 0x5, 0x2c, 0x17, 0x2, 0x119, 0x11a, 0x7, 0x3, 
-    0x2, 0x2, 0x11a, 0x11b, 0x5, 0xa, 0x6, 0x2, 0x11b, 0x11f, 0x5, 0x2a, 
-    0x16, 0x2, 0x11c, 0x11d, 0x7, 0x57, 0x2, 0x2, 0x11d, 0x11e, 0x7, 0x3, 
-    0x2, 0x2, 0x11e, 0x120, 0x5, 0x18, 0xd, 0x2, 0x11f, 0x11c, 0x3, 0x2, 
-    0x2, 0x2, 0x11f, 0x120, 0x3, 0x2, 0x2, 0x2, 0x120, 0x122, 0x3, 0x2, 
-    0x2, 0x2, 0x121, 0x123, 0x5, 0x24, 0x13, 0x2, 0x122, 0x121, 0x3, 0x2, 
-    0x2, 0x2, 0x122, 0x123, 0x3, 0x2, 0x2, 0x2, 0x123, 0x197, 0x3, 0x2, 
-    0x2, 0x2, 0x124, 0x125, 0x7, 0x58, 0x2, 0x2, 0x125, 0x126, 0x5, 0x2c, 
-    0x17, 0x2, 0x126, 0x128, 0x7, 0x3, 0x2, 0x2, 0x127, 0x129, 0x5, 0x24, 
-    0x13, 0x2, 0x128, 0x127, 0x3, 0x2, 0x2, 0x2, 0x128, 0x129, 0x3, 0x2, 
-    0x2, 0x2, 0x129, 0x12a, 0x3, 0x2, 0x2, 0x2, 0x12a, 0x12e, 0x7, 0x81, 
-    0x2, 0x2, 0x12b, 0x12d, 0x5, 0x1c, 0xf, 0x2, 0x12c, 0x12b, 0x3, 0x2, 
-    0x2, 0x2, 0x12d, 0x130, 0x3, 0x2, 0x2, 0x2, 0x12e, 0x12c, 0x3, 0x2, 
-    0x2, 0x2, 0x12e, 0x12f, 0x3, 0x2, 0x2, 0x2, 0x12f, 0x131, 0x3, 0x2, 
-    0x2, 0x2, 0x130, 0x12e, 0x3, 0x2, 0x2, 0x2, 0x131, 0x132, 0x7, 0x82, 
-    0x2, 0x2, 0x132, 0x197, 0x3, 0x2, 0x2, 0x2, 0x133, 0x134, 0x7, 0x6c, 
-    0x2, 0x2, 0x134, 0x135, 0x5, 0x2c, 0x17, 0x2, 0x135, 0x136, 0x7, 0x3, 
-    0x2, 0x2, 0x136, 0x138, 0x5, 0xa, 0x6, 0x2, 0x137, 0x139, 0x5, 0x24, 
-    0x13, 0x2, 0x138, 0x137, 0x3, 0x2, 0x2, 0x2, 0x138, 0x139, 0x3, 0x2, 
-    0x2, 0x2, 0x139, 0x197, 0x3, 0x2, 0x2, 0x2, 0x13a, 0x13b, 0x7, 0x6d, 
-    0x2, 0x2, 0x13b, 0x13c, 0x5, 0x2c, 0x17, 0x2, 0x13c, 0x13d, 0x7, 0x3, 
-    0x2, 0x2, 0x13d, 0x13f, 0x5, 0xa, 0x6, 0x2, 0x13e, 0x140, 0x5, 0x28, 
-    0x15, 0x2, 0x13f, 0x13e, 0x3, 0x2, 0x2, 0x2, 0x13f, 0x140, 0x3, 0x2, 
-    0x2, 0x2, 0x140, 0x142, 0x3, 0x2, 0x2, 0x2, 0x141, 0x143, 0x5, 0x24, 
-    0x13, 0x2, 0x142, 0x141, 0x3, 0x2, 0x2, 0x2, 0x142, 0x143, 0x3, 0x2, 
-    0x2, 0x2, 0x143, 0x197, 0x3, 0x2, 0x2, 0x2, 0x144, 0x145, 0x5, 0x26, 
-    0x14, 0x2, 0x145, 0x146, 0x7, 0x6e, 0x2, 0x2, 0x146, 0x147, 0x5, 0x2c, 
-    0x17, 0x2, 0x147, 0x148, 0x7, 0xf, 0x2, 0x2, 0x148, 0x149, 0x5, 0x2c, 
-    0x17, 0x2, 0x149, 0x14a, 0x7, 0xc, 0x2, 0x2, 0x14a, 0x14b, 0x5, 0x2a, 
-    0x16, 0x2, 0x14b, 0x14c, 0x7, 0xd, 0x2, 0x2, 0x14c, 0x14e, 0x5, 0x2a, 
-    0x16, 0x2, 0x14d, 0x14f, 0x5, 0x24, 0x13, 0x2, 0x14e, 0x14d, 0x3, 0x2, 
-    0x2, 0x2, 0x14e, 0x14f, 0x3, 0x2, 0x2, 0x2, 0x14f, 0x197, 0x3, 0x2, 
-    0x2, 0x2, 0x150, 0x151, 0x7, 0x5d, 0x2, 0x2, 0x151, 0x152, 0x5, 0x2c, 
-    0x17, 0x2, 0x152, 0x153, 0x7, 0x5e, 0x2, 0x2, 0x153, 0x155, 0x5, 0x2c, 
-    0x17, 0x2, 0x154, 0x156, 0x5, 0x24, 0x13, 0x2, 0x155, 0x154, 0x3, 0x2, 
-    0x2, 0x2, 0x155, 0x156, 0x3, 0x2, 0x2, 0x2, 0x156, 0x197, 0x3, 0x2, 
-    0x2, 0x2, 0x157, 0x158, 0x7, 0x5f, 0x2, 0x2, 0x158, 0x159, 0x5, 0x2c, 
-    0x17, 0x2, 0x159, 0x15a, 0x7, 0xf, 0x2, 0x2, 0x15a, 0x15c, 0x5, 0x2a, 
-    0x16, 0x2, 0x15b, 0x15d, 0x5, 0x24, 0x13, 0x2, 0x15c, 0x15b, 0x3, 0x2, 
-    0x2, 0x2, 0x15c, 0x15d, 0x3, 0x2, 0x2, 0x2, 0x15d, 0x197, 0x3, 0x2, 
-    0x2, 0x2, 0x15e, 0x15f, 0x5, 0x2a, 0x16, 0x2, 0x15f, 0x160, 0x7, 0x14, 
-    0x2, 0x2, 0x160, 0x162, 0x5, 0x2a, 0x16, 0x2, 0x161, 0x163, 0x5, 0x24, 
-    0x13, 0x2, 0x162, 0x161, 0x3, 0x2, 0x2, 0x2, 0x162, 0x163, 0x3, 0x2, 
-    0x2, 0x2, 0x163, 0x197, 0x3, 0x2, 0x2, 0x2, 0x164, 0x165, 0x5, 0x2a, 
-    0x16, 0x2, 0x165, 0x166, 0x7, 0x15, 0x2, 0x2, 0x166, 0x168, 0x5, 0x2a, 
-    0x16, 0x2, 0x167, 0x169, 0x5, 0x24, 0x13, 0x2, 0x168, 0x167, 0x3, 0x2, 
-    0x2, 0x2, 0x168, 0x169, 0x3, 0x2, 0x2, 0x2, 0x169, 0x197, 0x3, 0x2, 
-    0x2, 0x2, 0x16a, 0x16b, 0x5, 0x2a, 0x16, 0x2, 0x16b, 0x16c, 0x7, 0x60, 
-    0x2, 0x2, 0x16c, 0x16e, 0x7, 0x61, 0x2, 0x2, 0x16d, 0x16f, 0x5, 0x24, 
-    0x13, 0x2, 0x16e, 0x16d, 0x3, 0x2, 0x2, 0x2, 0x16e, 0x16f, 0x3, 0x2, 
-    0x2, 0x2, 0x16f, 0x197, 0x3, 0x2, 0x2, 0x2, 0x170, 0x197, 0x5, 0x22, 
-    0x12, 0x2, 0x171, 0x172, 0x7, 0x16, 0x2, 0x2, 0x172, 0x173, 0x5, 0x2a, 
-    0x16, 0x2, 0x173, 0x174, 0x5, 0x2a, 0x16, 0x2, 0x174, 0x175, 0x5, 0x30, 
-    0x19, 0x2, 0x175, 0x177, 0x7, 0x13, 0x2, 0x2, 0x176, 0x178, 0x5, 0x24, 
-    0x13, 0x2, 0x177, 0x176, 0x3, 0x2, 0x2, 0x2, 0x177, 0x178, 0x3, 0x2, 
-    0x2, 0x2, 0x178, 0x197, 0x3, 0x2, 0x2, 0x2, 0x179, 0x17a, 0x7, 0x17, 
-    0x2, 0x2, 0x17a, 0x17b, 0x5, 0x2a, 0x16, 0x2, 0x17b, 0x17c, 0x5, 0x2a, 
-    0x16, 0x2, 0x17c, 0x180, 0x7, 0x79, 0x2, 0x2, 0x17d, 0x17f, 0x5, 0x2a, 
-    0x16, 0x2, 0x17e, 0x17d, 0x3, 0x2, 0x2, 0x2, 0x17f, 0x182, 0x3, 0x2, 
-    0x2, 0x2, 0x180, 0x17e, 0x3, 0x2, 0x2, 0x2, 0x180, 0x181, 0x3, 0x2, 
-    0x2, 0x2, 0x181, 0x183, 0x3, 0x2, 0x2, 0x2, 0x182, 0x180, 0x3, 0x2, 
-    0x2, 0x2, 0x183, 0x185, 0x7, 0x13, 0x2, 0x2, 0x184, 0x186, 0x5, 0x24, 
-    0x13, 0x2, 0x185, 0x184, 0x3, 0x2, 0x2, 0x2, 0x185, 0x186, 0x3, 0x2, 
-    0x2, 0x2, 0x186, 0x197, 0x3, 0x2, 0x2, 0x2, 0x187, 0x189, 0x7, 0x66, 
-    0x2, 0x2, 0x188, 0x18a, 0x5, 0x24, 0x13, 0x2, 0x189, 0x188, 0x3, 0x2, 
-    0x2, 0x2, 0x189, 0x18a, 0x3, 0x2, 0x2, 0x2, 0x18a, 0x197, 0x3, 0x2, 
-    0x2, 0x2, 0x18b, 0x18c, 0x7, 0x18, 0x2, 0x2, 0x18c, 0x18e, 0x7, 0x12, 
-    0x2, 0x2, 0x18d, 0x18f, 0x5, 0x2a, 0x16, 0x2, 0x18e, 0x18d, 0x3, 0x2, 
-    0x2, 0x2, 0x18f, 0x190, 0x3, 0x2, 0x2, 0x2, 0x190, 0x18e, 0x3, 0x2, 
-    0x2, 0x2, 0x190, 0x191, 0x3, 0x2, 0x2, 0x2, 0x191, 0x192, 0x3, 0x2, 
-    0x2, 0x2, 0x192, 0x194, 0x7, 0x13, 0x2, 0x2, 0x193, 0x195, 0x5, 0x24, 
-    0x13, 0x2, 0x194, 0x193, 0x3, 0x2, 0x2, 0x2, 0x194, 0x195, 0x3, 0x2, 
-    0x2, 0x2, 0x195, 0x197, 0x3, 0x2, 0x2, 0x2, 0x196, 0x110, 0x3, 0x2, 
-    0x2, 0x2, 0x196, 0x117, 0x3, 0x2, 0x2, 0x2, 0x196, 0x124, 0x3, 0x2, 
-    0x2, 0x2, 0x196, 0x133, 0x3, 0x2, 0x2, 0x2, 0x196, 0x13a, 0x3, 0x2, 
-    0x2, 0x2, 0x196, 0x144, 0x3, 0x2, 0x2, 0x2, 0x196, 0x150, 0x3, 0x2, 
-    0x2, 0x2, 0x196, 0x157, 0x3, 0x2, 0x2, 0x2, 0x196, 0x15e, 0x3, 0x2, 
-    0x2, 0x2, 0x196, 0x164, 0x3, 0x2, 0x2, 0x2, 0x196, 0x16a, 0x3, 0x2, 
-    0x2, 0x2, 0x196, 0x170, 0x3, 0x2, 0x2, 0x2, 0x196, 0x171, 0x3, 0x2, 
-    0x2, 0x2, 0x196, 0x179, 0x3, 0x2, 0x2, 0x2, 0x196, 0x187, 0x3, 0x2, 
-    0x2, 0x2, 0x196, 0x18b, 0x3, 0x2, 0x2, 0x2, 0x197, 0x1b, 0x3, 0x2, 0x2, 
-    0x2, 0x198, 0x199, 0x7, 0x19, 0x2, 0x2, 0x199, 0x19a, 0x7, 0x11, 0x2, 
-    0x2, 0x19a, 0x19b, 0x5, 0xa, 0x6, 0x2, 0x19b, 0x19c, 0x7, 0x80, 0x2, 
-    0x2, 0x19c, 0x1cd, 0x3, 0x2, 0x2, 0x2, 0x19d, 0x19e, 0x7, 0x59, 0x2, 
-    0x2, 0x19e, 0x19f, 0x7, 0x11, 0x2, 0x2, 0x19f, 0x1a0, 0x5, 0x30, 0x19, 
-    0x2, 0x1a0, 0x1a1, 0x7, 0x80, 0x2, 0x2, 0x1a1, 0x1cd, 0x3, 0x2, 0x2, 
-    0x2, 0x1a2, 0x1a3, 0x7, 0x1a, 0x2, 0x2, 0x1a3, 0x1a4, 0x7, 0x11, 0x2, 
-    0x2, 0x1a4, 0x1a5, 0x5, 0x30, 0x19, 0x2, 0x1a5, 0x1a6, 0x7, 0x80, 0x2, 
-    0x2, 0x1a6, 0x1cd, 0x3, 0x2, 0x2, 0x2, 0x1a7, 0x1a8, 0x7, 0x1b, 0x2, 
-    0x2, 0x1a8, 0x1a9, 0x7, 0x11, 0x2, 0x2, 0x1a9, 0x1aa, 0x5, 0x30, 0x19, 
-    0x2, 0x1aa, 0x1ab, 0x7, 0x80, 0x2, 0x2, 0x1ab, 0x1cd, 0x3, 0x2, 0x2, 
-    0x2, 0x1ac, 0x1ad, 0x7, 0x1c, 0x2, 0x2, 0x1ad, 0x1ae, 0x7, 0x11, 0x2, 
-    0x2, 0x1ae, 0x1af, 0x5, 0x28, 0x15, 0x2, 0x1af, 0x1b0, 0x7, 0x80, 0x2, 
-    0x2, 0x1b0, 0x1cd, 0x3, 0x2, 0x2, 0x2, 0x1b1, 0x1b2, 0x7, 0x5a, 0x2, 
-    0x2, 0x1b2, 0x1b4, 0x7, 0x11, 0x2, 0x2, 0x1b3, 0x1b5, 0x5, 0x2c, 0x17, 
-    0x2, 0x1b4, 0x1b3, 0x3, 0x2, 0x2, 0x2, 0x1b5, 0x1b6, 0x3, 0x2, 0x2, 
-    0x2, 0x1b6, 0x1b4, 0x3, 0x2, 0x2, 0x2, 0x1b6, 0x1b7, 0x3, 0x2, 0x2, 
-    0x2, 0x1b7, 0x1b8, 0x3, 0x2, 0x2, 0x2, 0x1b8, 0x1b9, 0x7, 0x80, 0x2, 
-    0x2, 0x1b9, 0x1cd, 0x3, 0x2, 0x2, 0x2, 0x1ba, 0x1bb, 0x7, 0x5b, 0x2, 
-    0x2, 0x1bb, 0x1bd, 0x7, 0x11, 0x2, 0x2, 0x1bc, 0x1be, 0x5, 0x2c, 0x17, 
-    0x2, 0x1bd, 0x1bc, 0x3, 0x2, 0x2, 0x2, 0x1be, 0x1bf, 0x3, 0x2, 0x2, 
-    0x2, 0x1bf, 0x1bd, 0x3, 0x2, 0x2, 0x2, 0x1bf, 0x1c0, 0x3, 0x2, 0x2, 
-    0x2, 0x1c0, 0x1c1, 0x3, 0x2, 0x2, 0x2, 0x1c1, 0x1c2, 0x7, 0x80, 0x2, 
-    0x2, 0x1c2, 0x1cd, 0x3, 0x2, 0x2, 0x2, 0x1c3, 0x1c4, 0x7, 0x5c, 0x2, 
-    0x2, 0x1c4, 0x1c6, 0x7, 0x11, 0x2, 0x2, 0x1c5, 0x1c7, 0x5, 0x2c, 0x17, 
-    0x2, 0x1c6, 0x1c5, 0x3, 0x2, 0x2, 0x2, 0x1c7, 0x1c8, 0x3, 0x2, 0x2, 
-    0x2, 0x1c8, 0x1c6, 0x3, 0x2, 0x2, 0x2, 0x1c8, 0x1c9, 0x3, 0x2, 0x2, 
-    0x2, 0x1c9, 0x1ca, 0x3, 0x2, 0x2, 0x2, 0x1ca, 0x1cb, 0x7, 0x80, 0x2, 
-    0x2, 0x1cb, 0x1cd, 0x3, 0x2, 0x2, 0x2, 0x1cc, 0x198, 0x3, 0x2, 0x2, 
-    0x2, 0x1cc, 0x19d, 0x3, 0x2, 0x2, 0x2, 0x1cc, 0x1a2, 0x3, 0x2, 0x2, 
-    0x2, 0x1cc, 0x1a7, 0x3, 0x2, 0x2, 0x2, 0x1cc, 0x1ac, 0x3, 0x2, 0x2, 
-    0x2, 0x1cc, 0x1b1, 0x3, 0x2, 0x2, 0x2, 0x1cc, 0x1ba, 0x3, 0x2, 0x2, 
-    0x2, 0x1cc, 0x1c3, 0x3, 0x2, 0x2, 0x2, 0x1cd, 0x1d, 0x3, 0x2, 0x2, 0x2, 
-    0x1ce, 0x1d1, 0x5, 0x1a, 0xe, 0x2, 0x1cf, 0x1d1, 0x7, 0x80, 0x2, 0x2, 
-    0x1d0, 0x1ce, 0x3, 0x2, 0x2, 0x2, 0x1d0, 0x1cf, 0x3, 0x2, 0x2, 0x2, 
-    0x1d1, 0x1f, 0x3, 0x2, 0x2, 0x2, 0x1d2, 0x1dc, 0x5, 0x1e, 0x10, 0x2, 
-    0x1d3, 0x1d5, 0x7, 0x81, 0x2, 0x2, 0x1d4, 0x1d6, 0x5, 0x1e, 0x10, 0x2, 
-    0x1d5, 0x1d4, 0x3, 0x2, 0x2, 0x2, 0x1d6, 0x1d7, 0x3, 0x2, 0x2, 0x2, 
-    0x1d7, 0x1d5, 0x3, 0x2, 0x2, 0x2, 0x1d7, 0x1d8, 0x3, 0x2, 0x2, 0x2, 
-    0x1d8, 0x1d9, 0x3, 0x2, 0x2, 0x2, 0x1d9, 0x1da, 0x7, 0x82, 0x2, 0x2, 
-    0x1da, 0x1dc, 0x3, 0x2, 0x2, 0x2, 0x1db, 0x1d2, 0x3, 0x2, 0x2, 0x2, 
-    0x1db, 0x1d3, 0x3, 0x2, 0x2, 0x2, 0x1dc, 0x21, 0x3, 0x2, 0x2, 0x2, 0x1dd, 
-    0x1de, 0x7, 0x62, 0x2, 0x2, 0x1de, 0x1df, 0x5, 0x2a, 0x16, 0x2, 0x1df, 
-    0x1e1, 0x7, 0x3, 0x2, 0x2, 0x1e0, 0x1e2, 0x5, 0x24, 0x13, 0x2, 0x1e1, 
-    0x1e0, 0x3, 0x2, 0x2, 0x2, 0x1e1, 0x1e2, 0x3, 0x2, 0x2, 0x2, 0x1e2, 
-    0x1e4, 0x3, 0x2, 0x2, 0x2, 0x1e3, 0x1e5, 0x5, 0x20, 0x11, 0x2, 0x1e4, 
-    0x1e3, 0x3, 0x2, 0x2, 0x2, 0x1e4, 0x1e5, 0x3, 0x2, 0x2, 0x2, 0x1e5, 
-    0x1f1, 0x3, 0x2, 0x2, 0x2, 0x1e6, 0x1ef, 0x7, 0x63, 0x2, 0x2, 0x1e7, 
-    0x1f0, 0x5, 0x22, 0x12, 0x2, 0x1e8, 0x1ea, 0x7, 0x3, 0x2, 0x2, 0x1e9, 
-    0x1eb, 0x5, 0x24, 0x13, 0x2, 0x1ea, 0x1e9, 0x3, 0x2, 0x2, 0x2, 0x1ea, 
-    0x1eb, 0x3, 0x2, 0x2, 0x2, 0x1eb, 0x1ed, 0x3, 0x2, 0x2, 0x2, 0x1ec, 
-    0x1ee, 0x5, 0x20, 0x11, 0x2, 0x1ed, 0x1ec, 0x3, 0x2, 0x2, 0x2, 0x1ed, 
-    0x1ee, 0x3, 0x2, 0x2, 0x2, 0x1ee, 0x1f0, 0x3, 0x2, 0x2, 0x2, 0x1ef, 
-    0x1e7, 0x3, 0x2, 0x2, 0x2, 0x1ef, 0x1e8, 0x3, 0x2, 0x2, 0x2, 0x1f0, 
-    0x1f2, 0x3, 0x2, 0x2, 0x2, 0x1f1, 0x1e6, 0x3, 0x2, 0x2, 0x2, 0x1f1, 
-    0x1f2, 0x3, 0x2, 0x2, 0x2, 0x1f2, 0x23, 0x3, 0x2, 0x2, 0x2, 0x1f3, 0x1f4, 
-    0x7, 0x7b, 0x2, 0x2, 0x1f4, 0x25, 0x3, 0x2, 0x2, 0x2, 0x1f5, 0x1f6, 
-    0x9, 0x3, 0x2, 0x2, 0x1f6, 0x27, 0x3, 0x2, 0x2, 0x2, 0x1f7, 0x1f8, 0x9, 
-    0x4, 0x2, 0x2, 0x1f8, 0x29, 0x3, 0x2, 0x2, 0x2, 0x1f9, 0x1fa, 0x8, 0x16, 
-    0x1, 0x2, 0x1fa, 0x1ff, 0x7, 0x4f, 0x2, 0x2, 0x1fb, 0x1fc, 0x7, 0x4, 
-    0x2, 0x2, 0x1fc, 0x1fd, 0x5, 0x30, 0x19, 0x2, 0x1fd, 0x1fe, 0x7, 0x5, 
-    0x2, 0x2, 0x1fe, 0x200, 0x3, 0x2, 0x2, 0x2, 0x1ff, 0x1fb, 0x3, 0x2, 
-    0x2, 0x2, 0x1ff, 0x200, 0x3, 0x2, 0x2, 0x2, 0x200, 0x201, 0x3, 0x2, 
-    0x2, 0x2, 0x201, 0x202, 0x7, 0x12, 0x2, 0x2, 0x202, 0x203, 0x5, 0x30, 
-    0x19, 0x2, 0x203, 0x204, 0x7, 0x13, 0x2, 0x2, 0x204, 0x22c, 0x3, 0x2, 
-    0x2, 0x2, 0x205, 0x20a, 0x7, 0x50, 0x2, 0x2, 0x206, 0x207, 0x7, 0x4, 
-    0x2, 0x2, 0x207, 0x208, 0x5, 0x30, 0x19, 0x2, 0x208, 0x209, 0x7, 0x5, 
-    0x2, 0x2, 0x209, 0x20b, 0x3, 0x2, 0x2, 0x2, 0x20a, 0x206, 0x3, 0x2, 
-    0x2, 0x2, 0x20a, 0x20b, 0x3, 0x2, 0x2, 0x2, 0x20b, 0x20c, 0x3, 0x2, 
-    0x2, 0x2, 0x20c, 0x20d, 0x7, 0x12, 0x2, 0x2, 0x20d, 0x20e, 0x5, 0x30, 
-    0x19, 0x2, 0x20e, 0x20f, 0x7, 0x13, 0x2, 0x2, 0x20f, 0x22c, 0x3, 0x2, 
-    0x2, 0x2, 0x210, 0x22c, 0x5, 0x2c, 0x17, 0x2, 0x211, 0x212, 0x7, 0x1d, 
-    0x2, 0x2, 0x212, 0x213, 0x5, 0x2a, 0x16, 0x2, 0x213, 0x214, 0x5, 0x2a, 
-    0x16, 0x2, 0x214, 0x215, 0x5, 0x2a, 0x16, 0x2, 0x215, 0x216, 0x7, 0x13, 
-    0x2, 0x2, 0x216, 0x22c, 0x3, 0x2, 0x2, 0x2, 0x217, 0x218, 0x7, 0x1e, 
-    0x2, 0x2, 0x218, 0x219, 0x5, 0x2a, 0x16, 0x2, 0x219, 0x21a, 0x5, 0x2a, 
-    0x16, 0x2, 0x21a, 0x21b, 0x7, 0x13, 0x2, 0x2, 0x21b, 0x22c, 0x3, 0x2, 
-    0x2, 0x2, 0x21c, 0x220, 0x5, 0x3a, 0x1e, 0x2, 0x21d, 0x21f, 0x5, 0x2a, 
-    0x16, 0x2, 0x21e, 0x21d, 0x3, 0x2, 0x2, 0x2, 0x21f, 0x222, 0x3, 0x2, 
-    0x2, 0x2, 0x220, 0x21e, 0x3, 0x2, 0x2, 0x2, 0x220, 0x221, 0x3, 0x2, 
-    0x2, 0x2, 0x221, 0x226, 0x3, 0x2, 0x2, 0x2, 0x222, 0x220, 0x3, 0x2, 
-    0x2, 0x2, 0x223, 0x225, 0x5, 0x30, 0x19, 0x2, 0x224, 0x223, 0x3, 0x2, 
-    0x2, 0x2, 0x225, 0x228, 0x3, 0x2, 0x2, 0x2, 0x226, 0x224, 0x3, 0x2, 
-    0x2, 0x2, 0x226, 0x227, 0x3, 0x2, 0x2, 0x2, 0x227, 0x229, 0x3, 0x2, 
-    0x2, 0x2, 0x228, 0x226, 0x3, 0x2, 0x2, 0x2, 0x229, 0x22a, 0x7, 0x13, 
-    0x2, 0x2, 0x22a, 0x22c, 0x3, 0x2, 0x2, 0x2, 0x22b, 0x1f9, 0x3, 0x2, 
-    0x2, 0x2, 0x22b, 0x205, 0x3, 0x2, 0x2, 0x2, 0x22b, 0x210, 0x3, 0x2, 
-    0x2, 0x2, 0x22b, 0x211, 0x3, 0x2, 0x2, 0x2, 0x22b, 0x217, 0x3, 0x2, 
-    0x2, 0x2, 0x22b, 0x21c, 0x3, 0x2, 0x2, 0x2, 0x22c, 0x23f, 0x3, 0x2, 
-    0x2, 0x2, 0x22d, 0x22e, 0xc, 0x9, 0x2, 0x2, 0x22e, 0x22f, 0x7, 0x7, 
-    0x2, 0x2, 0x22f, 0x23e, 0x5, 0x2e, 0x18, 0x2, 0x230, 0x231, 0xc, 0x8, 
-    0x2, 0x2, 0x231, 0x232, 0x7, 0x7, 0x2, 0x2, 0x232, 0x23e, 0x7, 0x78, 
-    0x2, 0x2, 0x233, 0x234, 0xc, 0x7, 0x2, 0x2, 0x234, 0x235, 0x7, 0xc, 
-    0x2, 0x2, 0x235, 0x236, 0x5, 0x30, 0x19, 0x2, 0x236, 0x237, 0x7, 0xd, 
-    0x2, 0x2, 0x237, 0x23e, 0x3, 0x2, 0x2, 0x2, 0x238, 0x239, 0xc, 0x6, 
-    0x2, 0x2, 0x239, 0x23a, 0x7, 0xc, 0x2, 0x2, 0x23a, 0x23b, 0x5, 0x2a, 
-    0x16, 0x2, 0x23b, 0x23c, 0x7, 0xd, 0x2, 0x2, 0x23c, 0x23e, 0x3, 0x2, 
-    0x2, 0x2, 0x23d, 0x22d, 0x3, 0x2, 0x2, 0x2, 0x23d, 0x230, 0x3, 0x2, 
-    0x2, 0x2, 0x23d, 0x233, 0x3, 0x2, 0x2, 0x2, 0x23d, 0x238, 0x3, 0x2, 
-    0x2, 0x2, 0x23e, 0x241, 0x3, 0x2, 0x2, 0x2, 0x23f, 0x23d, 0x3, 0x2, 
-    0x2, 0x2, 0x23f, 0x240, 0x3, 0x2, 0x2, 0x2, 0x240, 0x2b, 0x3, 0x2, 0x2, 
-    0x2, 0x241, 0x23f, 0x3, 0x2, 0x2, 0x2, 0x242, 0x245, 0x7, 0x7c, 0x2, 
-    0x2, 0x243, 0x245, 0x5, 0x38, 0x1d, 0x2, 0x244, 0x242, 0x3, 0x2, 0x2, 
-    0x2, 0x244, 0x243, 0x3, 0x2, 0x2, 0x2, 0x245, 0x2d, 0x3, 0x2, 0x2, 0x2, 
-    0x246, 0x24b, 0x7, 0x7c, 0x2, 0x2, 0x247, 0x24b, 0x7, 0x7d, 0x2, 0x2, 
-    0x248, 0x24b, 0x7, 0x73, 0x2, 0x2, 0x249, 0x24b, 0x5, 0x38, 0x1d, 0x2, 
-    0x24a, 0x246, 0x3, 0x2, 0x2, 0x2, 0x24a, 0x247, 0x3, 0x2, 0x2, 0x2, 
-    0x24a, 0x248, 0x3, 0x2, 0x2, 0x2, 0x24a, 0x249, 0x3, 0x2, 0x2, 0x2, 
-    0x24b, 0x2f, 0x3, 0x2, 0x2, 0x2, 0x24c, 0x24d, 0x9, 0x5, 0x2, 0x2, 0x24d, 
-    0x31, 0x3, 0x2, 0x2, 0x2, 0x24e, 0x24f, 0x9, 0x6, 0x2, 0x2, 0x24f, 0x33, 
-    0x3, 0x2, 0x2, 0x2, 0x250, 0x251, 0x9, 0x7, 0x2, 0x2, 0x251, 0x35, 0x3, 
-    0x2, 0x2, 0x2, 0x252, 0x253, 0x9, 0x8, 0x2, 0x2, 0x253, 0x37, 0x3, 0x2, 
-    0x2, 0x2, 0x254, 0x255, 0x9, 0x9, 0x2, 0x2, 0x255, 0x39, 0x3, 0x2, 0x2, 
-    0x2, 0x256, 0x257, 0x9, 0xa, 0x2, 0x2, 0x257, 0x3b, 0x3, 0x2, 0x2, 0x2, 
-    0x47, 0x40, 0x46, 0x50, 0x56, 0x60, 0x66, 0x6a, 0x6f, 0x74, 0x7b, 0x87, 
-    0x8e, 0x95, 0x9d, 0xa5, 0xa9, 0xb3, 0xb9, 0xbd, 0xc6, 0xca, 0xed, 0xf2, 
-    0x101, 0x106, 0x10e, 0x115, 0x11f, 0x122, 0x128, 0x12e, 0x138, 0x13f, 
-    0x142, 0x14e, 0x155, 0x15c, 0x162, 0x168, 0x16e, 0x177, 0x180, 0x185, 
-    0x189, 0x190, 0x194, 0x196, 0x1b6, 0x1bf, 0x1c8, 0x1cc, 0x1d0, 0x1d7, 
-    0x1db, 0x1e1, 0x1e4, 0x1ea, 0x1ed, 0x1ef, 0x1f1, 0x1ff, 0x20a, 0x220, 
-    0x226, 0x22b, 0x23d, 0x23f, 0x244, 0x24a, 
-  };
-
-  atn::ATNDeserializer deserializer;
-  _atn = deserializer.deserialize(_serializedATN);
-
-  size_t count = _atn.getNumberOfDecisions();
-  _decisionToDFA.reserve(count);
-  for (size_t i = 0; i < count; i++) { 
-    _decisionToDFA.emplace_back(_atn.getDecisionState(i), i);
-  }
-}
-
-FIRRTLParser::Initializer FIRRTLParser::_init;
